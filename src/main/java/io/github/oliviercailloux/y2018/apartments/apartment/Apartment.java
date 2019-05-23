@@ -141,6 +141,7 @@ public class Apartment extends Object {
 		//return floorAreaTS + addressTS + titleTS;
 	//}
 
+	@Override
 	public String toString(){
 		ToStringHelper floorAreas = MoreObjects.toStringHelper(this);
 		ToStringHelper adressTS = MoreObjects.toStringHelper(this);
