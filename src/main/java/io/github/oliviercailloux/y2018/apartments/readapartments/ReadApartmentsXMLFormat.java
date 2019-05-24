@@ -43,21 +43,13 @@ public class ReadApartmentsXMLFormat {
 
 		LOGGER.info("XML Files loaded with success");
 
-		if (prop.containsKey("floorArea")==false || prop.containsKey("address")==false || prop.containsKey("title")==false) {
+		if (!prop.containsKey("floorArea") || !prop.containsKey("address") || !prop.containsKey("title")) {
 			LOGGER.error("Impossible to create an apartment if a floor Area, a title or an address is missing.");
 			throw new InvalidPropertiesFormatException("Capital information left for the creation of an Apartment Object");
 		}
 
 		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),prop.getProperty("address"),prop.getProperty("title"));
 
-		Field fields[] = apartment.getClass().getDeclaredFields();
-    	for(Field f : fields) {
-        	if(prop.containsKey(f.getName())){
-            	f.setAccessible(true);
-            	f.set(apartment, prop.get(f.getName()));
-        	}
-    	}
-		/*
 		if (prop.containsKey("description"))
 			apartment.setDescription(prop.getProperty("description"));
 		if (prop.containsKey("nbBathrooms"))
@@ -78,7 +70,6 @@ public class ReadApartmentsXMLFormat {
 			apartment.setPricePerNight(Double.parseDouble(prop.getProperty("pricePerNight")));
 		if (prop.containsKey("nbMinNight"))
 			apartment.setNbMinNight(Integer.parseInt(prop.getProperty("nbMinNight")));
-		*/
 
 		LOGGER.info("Parameters inserted with success in the Apartment Object");
 		LOGGER.info("Leave readApartment method");
