@@ -2,12 +2,9 @@ package io.github.oliviercailloux.y2018.apartments.gui;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
-
-import javax.imageio.IIOException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -61,6 +58,9 @@ public class PrintApartementGUI {
 	 * @throws IOException
 	 */
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException{
+		
+		
+		@SuppressWarnings("unused")
 		PrintApartementGUI prtApp = new PrintApartementGUI();
 		LOGGER.info("Test Apartment has been created");
 		Label lbl = new Label(shell, SWT.CENTER);
