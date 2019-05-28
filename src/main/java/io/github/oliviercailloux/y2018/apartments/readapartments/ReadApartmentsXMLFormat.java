@@ -2,7 +2,6 @@ package io.github.oliviercailloux.y2018.apartments.readapartments;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
