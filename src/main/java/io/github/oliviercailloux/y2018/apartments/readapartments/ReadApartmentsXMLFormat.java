@@ -43,7 +43,7 @@ public class ReadApartmentsXMLFormat {
 		LOGGER.info("XML Files loaded with success");
 
 		if (!prop.containsKey("floorArea") || !prop.containsKey("address") || !prop.containsKey("title")) {
-			LOGGER.error("Impossible to create an apartment if a floor Area, a title or an address is missing.");
+			// LOGGER.error("Impossible to create an apartment if a floor Area, a title or an address is missing.");
 			throw new InvalidPropertiesFormatException("Capital information left for the creation of an Apartment Object");
 		}
 
