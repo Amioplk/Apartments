@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Generated file for the apartment  </comment>
+<entry key="nbSleeping">1</entry>
+<entry key="nbMinNight">3</entry>
+<entry key="terrace">true</entry>
+<entry key="nbBedrooms">7</entry>
+<entry key="floorArea">289.6</entry>
+<entry key="pricePerNight">67.38</entry>
+<entry key="tele">false</entry>
+<entry key="wifi">false</entry>
+<entry key="title"> </entry>
+<entry key="nbBathrooms">1</entry>
+<entry key="address">10 rue de Dauphine 75016</entry>
+<entry key="description"/>
+<entry key="floorAreaTerrace">25.73</entry>
+</properties>

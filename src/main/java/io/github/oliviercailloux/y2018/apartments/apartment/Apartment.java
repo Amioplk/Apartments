@@ -101,19 +101,19 @@ public class Apartment extends Object {
 	 * @param address is a string of characters that gives the full location of the apartment
 	 * @param title a string of characters that represents the title of the announcement
 	 */
-	public Apartment (double floorArea, String address, String title) {	
+	public Apartment (double floorArea, String address, String title, int nbBedrooms, int nbSleeping, int nbBathrooms, double floorAreaTerrace, double pricePerNight, int nbMinNight, boolean terrace) {	
 		this.floorArea = floorArea;
 		this.address = address;
-		this.nbBedrooms = 0 ;
-		this.nbSleeping = 0 ;
-		this.nbBathrooms = 0;
-		this.terrace = false ;
-		this.floorAreaTerrace = 0 ;
+		this.nbBedrooms = nbBedrooms ;
+		this.nbSleeping = nbSleeping ;
+		this.nbBathrooms = nbBathrooms;
+		this.terrace = terrace ;
+		this.floorAreaTerrace = floorAreaTerrace ;
 		this.description = "";
 		this.title = title;
 		this.wifi = false ;
-		this.pricePerNight = 0;
-		this.nbMinNight = 0 ;
+		this.pricePerNight = pricePerNight;
+		this.nbMinNight = nbMinNight ;
 		this.tele = false ;
 		checkArgument(floorArea>=0,"The floor area of the apartment cannot be negative");
 		checkArgument(address !="","The address of the apartment must be specified");

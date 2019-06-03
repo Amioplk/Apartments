@@ -34,21 +34,22 @@ public class ReadApartmentsXMLFormat {
 	 * @throws IOException if reading from the specified input streamresults in an <code>IOException</code>.
 	 * @throws IllegalAccessException if this <code>Field</code> object is enforcing Java language access control and the underlying field is either inaccessible or final.
 	 */
-	public Apartment readApartment(InputStream input) throws IOException, IllegalAccessException {
-
+	
+	public Apartment readApartment(InputStream input) throws IOException, NumberFormatException, InvalidPropertiesFormatException{
+		
 		LOGGER.info("Enter readApartment method");
 
 		prop.loadFromXML(input);
 
 		LOGGER.info("XML Files loaded with success");
 
-		if (!prop.containsKey("floorArea") || !prop.containsKey("address") || !prop.containsKey("title")) {
+		if (!prop.containsKey("floorArea")|| !prop.containsKey("address") || !prop.containsKey("title")) {
 			LOGGER.error("Impossible to create an apartment if a floor Area, a title or an address is missing.");
 			throw new InvalidPropertiesFormatException("Capital information left for the creation of an Apartment Object");
 		}
-
-		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),prop.getProperty("address"),prop.getProperty("title"));
-
+		
+		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),prop.getProperty("address"),prop.getProperty("title"), 0, 0, 0, 0, 0, 0, false);
+		
 		if (prop.containsKey("description"))
 			apartment.setDescription(prop.getProperty("description"));
 		if (prop.containsKey("nbBathrooms"))

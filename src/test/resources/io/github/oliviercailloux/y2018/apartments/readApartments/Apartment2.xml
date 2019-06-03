@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Generated file for the apartment appartement</comment>
+<entry key="nbSleeping">2</entry>
+<entry key="nbMinNight">1</entry>
+<entry key="terrace">false</entry>
+<entry key="nbBedrooms">9</entry>
+<entry key="floorArea">238.03</entry>
+<entry key="pricePerNight">90.28</entry>
+<entry key="tele">false</entry>
+<entry key="wifi">false</entry>
+<entry key="title">appartement</entry>
+<entry key="nbBathrooms">0</entry>
+<entry key="address">5 avenue des Champs-Elysées 75016</entry>
+<entry key="description"/>
+<entry key="floorAreaTerrace">0.0</entry>
+</properties>
