@@ -33,6 +33,7 @@ public class ReadApartmentsXMLFormat {
 	 * @return an apartment object with values for each parameters found in the XML files and default values for the other parameters.
 	 * @throws IOException, NumberFormatException, InvalidPropertiesFormatException
 	 */
+	
 	public Apartment readApartment(InputStream input) throws IOException, NumberFormatException, InvalidPropertiesFormatException{
 		
 		LOGGER.info("Enter readApartment method");
@@ -41,12 +42,12 @@ public class ReadApartmentsXMLFormat {
 		
 		LOGGER.info("XML Files loaded with success");
 		
-		if (prop.containsKey("floorArea")==false || prop.containsKey("address")==false || prop.containsKey("title")==false) {
+		if (!prop.containsKey("floorArea")|| !prop.containsKey("address") || !prop.containsKey("title")) {
 			LOGGER.error("Impossible to create an apartment if a floor Area, a title or an address is missing.");
 			throw new InvalidPropertiesFormatException("Capital information left for the creation of an Apartment Object");
 		}
 		
-		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),prop.getProperty("address"),prop.getProperty("title"));
+		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),prop.getProperty("address"),prop.getProperty("title"), 0, 0, 0, 0, 0, 0, false);
 		
 		if (prop.containsKey("description"))
 			apartment.setDescription(prop.getProperty("description"));

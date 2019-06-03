@@ -149,7 +149,7 @@ public class FormApartmentGUI {
 				&& verificationText(title, TypeButtonText.REQUIRED)
 				&& verificationText(address, TypeButtonText.REQUIRED)) {
 
-			apart = new Apartment(Double.parseDouble(floorArea.getText()), address.getText(), title.getText());
+			apart = new Apartment(Double.parseDouble(floorArea.getText()), address.getText(), title.getText(),0,0,0,0,0,0,false);
 
 			apart.setTele(tele.getSelection());
 			apart.setWifi(wifi.getSelection());

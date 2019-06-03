@@ -5,6 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -49,7 +52,7 @@ public class XMLProperties{
 				properties.remove("apartment");
 				properties.remove("LOGGER");
 				properties.remove("Logger");
-				properties.storeToXML(xmlFile, "Generated file for the apartment " + a.getTitle() );
+				properties.storeToXML(xmlFile, "Generated file for the apartment " + a.getTitle());
 				
 				xmlFile.close();
 				LOGGER.info("Stream has been closed");
@@ -57,7 +60,44 @@ public class XMLProperties{
 		
 	}
 	
-
+	public static void generateRandomXML() throws DOMException, IllegalArgumentException, IllegalAccessException, IOException {
+		
+		List<String> titlesList = Arrays.asList( "Maison", "logement", "appartement"," "," "," "," "," "," "," ");
+		List<String> addressList = Arrays.asList( "2 avenue Pasteur 94160 Saint-mandé", "8 avenue de Paris 94160 Saint-mandé", "5 avenue des Champs-Elysées 75016" , "13 rue des Arts 75001","10 rue de Dauphine 75016","33 rue de Tolbiac 75013","33 rue de Tolbiac 75013"," "," ", " ");
+		
+		ArrayList<String> titles = new ArrayList<String>();
+		ArrayList<String> address = new ArrayList<String>();
+		titles.addAll(titlesList);
+		address.addAll(addressList);
+		
+		for (int i = 1; i < 10 ; i ++) {
+			 XMLProperties j = new XMLProperties();
+			 String Area = String.format ("%.2f", (double)(Math.random()*300));
+			 double floorArea = Double.parseDouble(Area);
+			 int terraceInt = (int) (Math.random()*2);
+			 boolean terrace = false;
+			 double floorAreaTerrace = 0;
+			 if (terraceInt != 0) {
+				 terrace = true;
+				 String AreaTerrace = String.format ("%.2f", (double)(Math.random()*100));
+				 floorAreaTerrace = Double.parseDouble(AreaTerrace);
+			 }
+			 int nbMinNight = (int) (Math.random()*5);
+			 int nbBedrooms = (int) (Math.random()*10);
+			 String price = String.format ("%.2f", (double)(Math.random()*80 + 20));
+			 double pricePerNight = Double.parseDouble(price);
+			 int nbSleeping = (int) (Math.random()*5);
+			 int nbBathrooms = (int) (Math.random()*10);
+			 
+			 Apartment a = new Apartment(floorArea, address.get(i), titles.get(i), nbBedrooms, nbSleeping, nbBathrooms, floorAreaTerrace, pricePerNight, nbMinNight, terrace);
+			 File f = new File("src/test/resources/io/github/oliviercailloux/y2018/apartments/readApartments/Apartment" + i + ".xml");
+			 try(FileOutputStream s = new FileOutputStream(f.getAbsolutePath()))
+			 {
+				 j.toXML(a, s);
+				 s.close();
+			 }
+		}	
+	}	
 	/**
 	 * This is the main function
 	 * 
@@ -67,14 +107,7 @@ public class XMLProperties{
 	 * @throws DOMException 
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws DOMException, IllegalArgumentException, IllegalAccessException, IOException {
-		XMLProperties j = new XMLProperties();
-		Apartment a = new Apartment(80.5, "6 rue des paquerette 74000 Annecy", "Petit Manoir de campagne");
-		File f = new File("src/test/resources/xmlfile.xml");
-		try(FileOutputStream s = new FileOutputStream(f.getAbsolutePath()))
-		{
-			j.toXML(a, s);
-		}
-
+	public static void main(String[] args) throws DOMException, IllegalArgumentException, IllegalAccessException, IOException  {
+	generateRandomXML();
 	}
 }

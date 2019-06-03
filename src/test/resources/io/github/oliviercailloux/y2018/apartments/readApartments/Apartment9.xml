@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Generated file for the apartment  </comment>
+<entry key="nbSleeping">4</entry>
+<entry key="nbMinNight">2</entry>
+<entry key="terrace">true</entry>
+<entry key="nbBedrooms">0</entry>
+<entry key="floorArea">169.69</entry>
+<entry key="pricePerNight">95.38</entry>
+<entry key="tele">false</entry>
+<entry key="wifi">false</entry>
+<entry key="title"> </entry>
+<entry key="nbBathrooms">9</entry>
+<entry key="address"> </entry>
+<entry key="description"/>
+<entry key="floorAreaTerrace">92.85</entry>
+</properties>
