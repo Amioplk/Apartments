@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2018.apartments.gui;
 
+import java.awt.Font;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -57,17 +58,37 @@ public class PrintApartementGUI {
 	 * @throws IllegalAccessException
 	 * @throws IOException
 	 */
+
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException{
 		
 		
 		@SuppressWarnings("unused")
 		//PrintApartementGUI prtApp = new PrintApartementGUI("/home/aissatou/PROJETJAVA/Apartments/src/main/java/io/github/oliviercailloux/y2018/apartments/gui/testXML.xml");
-		PrintApartementGUI prtApp = new PrintApartementGUI("/home/aissatou/PROJETJAVA/Apartments/src/main/java/io/github/oliviercailloux/y2018/apartments/gui/testXML.xml");
+		PrintApartementGUI prtApp = new PrintApartementGUI();
 		
                 LOGGER.info("Test Apartment has been created");
-		Label lbl = new Label(shell, SWT.CENTER);
-		lbl.setText("here are alll the apartments");
-		lbl.pack();
+		Label title = new Label(shell, SWT.CENTER);
+		Label adress = new Label(shell, SWT.CENTER);
+		Label florArea = new Label(shell, SWT.CENTER);
+		Label wifi = new Label(shell, SWT.CENTER);
+		
+		
+		
+		title.setText(prtApp.appar.getTitle());
+		adress.setText("adress		" + prtApp.appar.getAddress());
+		florArea.setText("floor Area		" + prtApp.appar.getFloorArea()+" m2 ");
+		wifi.setText("wifi		" + prtApp.appar.getWifi()+ "");
+		
+		wifi.pack();
+		florArea.pack();
+		adress.pack();
+		title.pack();
+		
+		florArea.setLocation(100, 60);
+		adress.setLocation(100, 90);
+		wifi.setLocation(100, 120);
+		title.setLocation(100, 20);
+		
 		
 		shell.setText("Apartments");
                 shell.setMinimumSize(1000, 500);
@@ -79,7 +100,7 @@ public class PrintApartementGUI {
 			if(!display.readAndDispatch( ))
 				display.sleep( );
 		}
-		lbl.dispose();
+		title.dispose();
 		display.dispose();
 		
 	}
