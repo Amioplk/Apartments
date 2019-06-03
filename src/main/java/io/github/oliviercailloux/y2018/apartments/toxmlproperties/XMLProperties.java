@@ -7,7 +7,6 @@ import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -60,32 +59,30 @@ public class XMLProperties{
 		
 	}
 	
-	public static void generateRandomXML() throws DOMException, IllegalArgumentException, IllegalAccessException, IOException {
-		
-		List<String> titlesList = Arrays.asList( "Maison", "logement", "appartement"," "," "," "," "," "," "," ");
-		List<String> addressList = Arrays.asList( "2 avenue Pasteur 94160 Saint-mandé", "8 avenue de Paris 94160 Saint-mandé", "5 avenue des Champs-Elysées 75016" , "13 rue des Arts 75001","10 rue de Dauphine 75016","33 rue de Tolbiac 75013","33 rue de Tolbiac 75013"," "," ", " ");
-		
-		ArrayList<String> titles = new ArrayList<String>();
-		ArrayList<String> address = new ArrayList<String>();
-		titles.addAll(titlesList);
-		address.addAll(addressList);
+	/**
+	 * @throws DOMException
+	 * @throws IllegalAccessException
+	 * @throws IOException
+	 * Generates an XML file representing a random apartment
+	 */
+	public static void generateRandomXML() throws DOMException, IllegalAccessException, IOException {
+				
+		ArrayList<String> titles = new ArrayList<String>(
+							Arrays.asList( "Maison", "logement", "appartement"," "," "," "," "," "," "," "));
+		ArrayList<String> address = new ArrayList<String>(
+							Arrays.asList( "2 avenue Pasteur 94160 Saint-mandé", "8 avenue de Paris 94160 Saint-mandé", "5 avenue des Champs-Elysées 75016" , "13 rue des Arts 75001","10 rue de Dauphine 75016","33 rue de Tolbiac 75013","33 rue de Tolbiac 75013"," "," ", " "));
 		
 		for (int i = 1; i < 10 ; i ++) {
+			
 			 XMLProperties j = new XMLProperties();
-			 String Area = String.format ("%.2f", (double)(Math.random()*300));
-			 double floorArea = Double.parseDouble(Area);
-			 int terraceInt = (int) (Math.random()*2);
-			 boolean terrace = false;
+			 double floorArea = Math.random()*300;
+			 boolean terrace = (Math.random()*2 >= 0) ? true : false;
 			 double floorAreaTerrace = 0;
-			 if (terraceInt != 0) {
-				 terrace = true;
-				 String AreaTerrace = String.format ("%.2f", (double)(Math.random()*100));
-				 floorAreaTerrace = Double.parseDouble(AreaTerrace);
-			 }
+			 if(terrace) floorAreaTerrace = Math.random()*100;
+			 
 			 int nbMinNight = (int) (Math.random()*5);
 			 int nbBedrooms = (int) (Math.random()*10);
-			 String price = String.format ("%.2f", (double)(Math.random()*80 + 20));
-			 double pricePerNight = Double.parseDouble(price);
+			 double pricePerNight = Math.random()*80 + 20d;
 			 int nbSleeping = (int) (Math.random()*5);
 			 int nbBathrooms = (int) (Math.random()*10);
 			 
@@ -103,11 +100,10 @@ public class XMLProperties{
 	 * 
 	 * @param args
 	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 * @throws DOMException 
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws DOMException, IllegalArgumentException, IllegalAccessException, IOException  {
-	generateRandomXML();
+	public static void main(String[] args) throws DOMException, IllegalAccessException, IOException  {
+		generateRandomXML();
 	}
 }
