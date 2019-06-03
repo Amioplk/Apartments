@@ -17,7 +17,7 @@ class ToXmlPropertiesTest {
 	void readApartmentTest() throws IllegalArgumentException, IllegalAccessException, IOException
 	{
 		XMLProperties j = new XMLProperties();
-		Apartment a = new Apartment(1182118.48, "118 rue du père noel 77480", "Grand Igloo");
+		Apartment a = new Apartment(1182118.48, "118 rue du père noel 77480", "Grand Igloo",0,0,0,0,0,0,false);
 		a.setNbSleeping(10);
 		a.setNbMinNight(1);
 		a.setTerrace(true);

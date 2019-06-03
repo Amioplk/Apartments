@@ -101,19 +101,19 @@ public class Apartment extends Object {
 	 * @param address is a string of characters that gives the full location of the apartment
 	 * @param title a string of characters that represents the title of the announcement
 	 */
-	public Apartment (double floorArea, String address, String title) {	
+	public Apartment (double floorArea, String address, String title, int nbBedrooms, int nbSleeping, int nbBathrooms, double floorAreaTerrace, double pricePerNight, int nbMinNight, boolean terrace) {	
 		this.floorArea = floorArea;
 		this.address = address;
-		this.nbBedrooms = 0 ;
-		this.nbSleeping = 0 ;
-		this.nbBathrooms = 0;
-		this.terrace = false ;
-		this.floorAreaTerrace = 0 ;
+		this.nbBedrooms = nbBedrooms ;
+		this.nbSleeping = nbSleeping ;
+		this.nbBathrooms = nbBathrooms;
+		this.terrace = terrace ;
+		this.floorAreaTerrace = floorAreaTerrace ;
 		this.description = "";
 		this.title = title;
 		this.wifi = false ;
-		this.pricePerNight = 0;
-		this.nbMinNight = 0 ;
+		this.pricePerNight = pricePerNight;
+		this.nbMinNight = nbMinNight ;
 		this.tele = false ;
 		checkArgument(floorArea>=0,"The floor area of the apartment cannot be negative");
 		checkArgument(address !="","The address of the apartment must be specified");
@@ -129,27 +129,13 @@ public class Apartment extends Object {
 		return apart.floorArea == floorArea && apart.address.equals(address) && apart.nbBedrooms == nbBedrooms && apart.nbSleeping == nbSleeping && apart.nbBathrooms == nbBathrooms && apart.terrace == terrace && apart.floorAreaTerrace == floorAreaTerrace && apart.description.equals(description) && apart.title.equals(title) && apart.wifi == wifi && apart.pricePerNight == pricePerNight && apart.nbMinNight == nbMinNight &&  apart.tele == tele ;
 		}
 	
-	
-	/**
-	 * A toString meant to be used while in development for the testing
-	 *  @return only the essential information of an apartment, which are the floor area, its address and his title
-	 */
-	// public String toString() {
-		//String floorAreaTS = "\nFloor area : " + Double.toString(floorArea) + " square meters";
-		//String addressTS = "\nAddress : " + address ;
-		//String titleTS = "\nTitle : " + title ;
-		//return floorAreaTS + addressTS + titleTS;
-	//}
-
+	@Override
 	public String toString(){
-		ToStringHelper floorAreas = MoreObjects.toStringHelper(this);
-		ToStringHelper adressTS = MoreObjects.toStringHelper(this);
-		ToStringHelper titleTS = MoreObjects.toStringHelper(this);
-		adressTS.add(this.address, true);
-		floorAreas.add(Double.toString(this.floorArea), true);
-		titleTS.add(this.title, true);
-		return floorAreas.toString() + adressTS.toString() + titleTS.toString(); 
-		
+		ToStringHelper apart = MoreObjects.toStringHelper(this);
+		apart.add(this.address, true);
+		apart.add(Double.toString(this.floorArea), true);
+		apart.add(this.title, true);
+		return apart.toString(); 
 	}
 
 	/**

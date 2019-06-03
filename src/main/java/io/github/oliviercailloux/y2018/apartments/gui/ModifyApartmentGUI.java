@@ -33,29 +33,28 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	 * 
 	 * @param args
 	 * 	must contains as first parameter the complete name of the file (Full Path).
-	 * @throws IOException
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 */
-	static public void main(String args[]) throws IOException, IllegalArgumentException, IllegalAccessException {
+	static public void main(String args[]) {
 		ModifyApartmentGUI c;
 		if (args[0] == null)
 			c = new ModifyApartmentGUI("GUITest");
 		else
 			c = new ModifyApartmentGUI(args[0]);
-		c.screenDisplay();
-		
+		try {
+			c.screenDisplay();
+		}
+		catch(Exception e){
+			LOGGER.error("An error occured while displaying the data.");
+		}
 	}
 	/**
-	 * This method initialize every element of the form with the data present 
+	 * This method initializes every element of the form with the data present 
 	 * in the Apartment apart field.
 	 * It used getApartment() in order to get the apartment from the xml file 
 	 * transmit in the main method
-	 * @throws IOException
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
+	 * @throws IOException if an exception occurs in getApartment() 
 	 */
-	private void initializeField() throws IOException, IllegalArgumentException, IllegalAccessException {
+	private void initializeField() throws IOException {
 		getApartment();
 		if(!apart.getTitle().equals("") && !apart.getTitle().isEmpty())
 			title.setText(apart.getTitle());
@@ -90,27 +89,24 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	
 	/**
 	 * Initialize the apart field with the xml file set in the file field.
-	 * @throws IOException
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
+	 * @throws IOException if an I/O exception occurs while opening the stream.
 	 */
-	private void getApartment() throws IOException, IllegalArgumentException, IllegalAccessException
-	{
+	private void getApartment() throws IOException {
 		try (InputStream i = Files.asByteSource(file).openStream())
 		{
 			ReadApartmentsXMLFormat f = new ReadApartmentsXMLFormat();
 			apart = f.readApartment(i);
 		}
-
-		
+		catch(IllegalAccessException e) {
+			LOGGER.error("An arreor occured while reading the xml file.");
+		}
 	}
 	/**
 	 * General method which displays all the element of the GUI.
 	 * @throws IOException if the logo doesn't load well.
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException if an exception occurs while initializing the form.
 	 */
-	protected void screenDisplay() throws IOException, IllegalArgumentException, IllegalAccessException {
+	protected void screenDisplay() throws IOException, IllegalAccessException {
 		try(InputStream f = DisplayIcon.class.getResourceAsStream("logo.png")){
 
 			LOGGER.info("The logo has been loaded with success.");
