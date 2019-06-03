@@ -138,14 +138,7 @@ public class Apartment extends Object {
 	 */
 	@Override
 	public String toString(){
-<<<<<<< HEAD
-		ToStringHelper apart = MoreObjects.toStringHelper(this);
-		apart.add(this.address, true);
-		apart.add(Double.toString(this.floorArea), true);
-		apart.add(this.title, true);
-		return apart.t0oString(); 
 		
-=======
 		ToStringHelper apart = MoreObjects.toStringHelper(this.getClass());
 		apart.add("address", this.address);
 		apart.add("FloorArea", Double.toString(this.floorArea));
@@ -154,7 +147,6 @@ public class Apartment extends Object {
 		LOGGER.info("La représentation en String de cet apart est " + apart.toString());
 		
 		return apart.toString(); 
->>>>>>> fcbcee174512b7a38d1cc41c03519c349595bf77
 	}
 
 	/**
