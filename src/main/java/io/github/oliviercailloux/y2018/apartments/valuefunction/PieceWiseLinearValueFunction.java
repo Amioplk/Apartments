@@ -8,31 +8,43 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * A class that allows the user to determinate the subjective value of a double given in argument,
+ * according to two or more known values.
+ *
+ */
 public class PieceWiseLinearValueFunction implements PartialValueFunction<Double> {
 	
-	private SortedMap<Double, Double> map; // K : value, V : grades
-	private final static Logger LOGGER = LoggerFactory.getLogger(LinearValueFunction.class);
+	private SortedMap<Double, Double> map; // K : value, V : grade
+	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 	
+	/**
+	 * Builder of the PieceWiseLinearValueFunction
+	 * @param parameters : the dictinary of all values along with the grades associated to them,
+	 * If the difference of two values is positive, then the difference of their grades also has
+	 * to be positive.
+	 * THere has to be a value associated to the value 0, and another value associated to the grade 1.
+	 */
 	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
 		boolean grade0 = false;
 		boolean grade1 = false;
 		for(Double v : parameters.values()) {
 			if(v < 0 || v > 1) {
 				LOGGER.error("The grade given to each value has to be between 0 and 1.");
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("The grades have to be between 0 and 1.");
 			}
 			if(v == 0) grade0 = true;
 			if(v == 1) grade1 = true;
 		}
 		if(!grade0 || !grade1) {
 			LOGGER.error("There has to be a value associated to the grade 0, and a value associated to the grade 1.");
-			throw new IllegalArgumentException();
-		}
-		if(!CheckValues()) {
-			LOGGER.error("A grade cannot be greater than another if its value associated is lower.");
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The value associated to the grade 0 or 1 is missing.");
 		}
 		map = new ConcurrentSkipListMap<Double, Double>(parameters);
+		if(!CheckValues()) {
+			LOGGER.error("A grade cannot be greater than another if its value associated is lower.");
+			throw new IllegalArgumentException("A grade cannot be greater than another if its value associated is lower.");
+		}
 		LOGGER.info("The map of data has been successfully instatiated.");
 	}
 	
@@ -58,32 +70,29 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 		if(map.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
-		Double minValue = map.firstKey();
-		Double maxValue = map.lastKey();
-		if(objectiveData <= minValue) {
+		Double minKey = map.firstKey();
+		Double maxKey = map.lastKey();
+		if(objectiveData <= minKey) {
 			return 0d;
 		}
-		if(objectiveData >= maxValue) {
+		if(objectiveData >= maxKey) {
 			return 1d;
 		}
 		
-		Double[] keys = (Double[]) map.keySet().toArray();
+		Object[] keys = map.keySet().toArray();
 		for(int i = 0; i < keys.length - 1; i++) {
-			if(objectiveData == keys[i]) return map.get(keys[i]);
-			if(objectiveData > keys[i] && objectiveData <= keys[i+1]) {
-				minValue = keys[i];
-				maxValue = keys[i+1];
-				break;
-			}
+			minKey = (Double) keys[i];
+			maxKey = (Double) keys[i+1];
+			if(objectiveData == minKey) return map.get(minKey);
+			if(objectiveData > minKey && objectiveData <= maxKey) break;
 		}
-		// il reste à calculer avec la formule qu'on avait trouvé.
-		return 0;
+		Double minValue = map.get(minKey);
+		Double maxValue = map.get(maxKey);
+		return ((objectiveData - minKey)*(maxValue - minValue)/(maxKey - minKey)) + minValue;
 	}
 
 	@Override
 	public Double apply(Double t) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubjectiveValue(t);
 	}
-
 }
