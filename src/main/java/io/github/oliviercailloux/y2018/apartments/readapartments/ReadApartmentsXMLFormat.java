@@ -2,7 +2,6 @@ package io.github.oliviercailloux.y2018.apartments.readapartments;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
@@ -32,11 +31,10 @@ public class ReadApartmentsXMLFormat {
 	 * This method enables to read a XML file and store the informations into an apartment object. The XML file must contain at list a value for floorArea address and title. The key of each parameters in the XML file is respectively the name of the parameter.
 	 * @param input is the path of XML file
 	 * @return an apartment object with values for each parameters found in the XML files and default values for the other parameters.
-	 * @throws IOException, NumberFormatException, InvalidPropertiesFormatException
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
+	 * @throws IOException if reading from the specified input streamresults in an <code>IOException</code>.
+	 * @throws IllegalAccessException if this <code>Field</code> object is enforcing Java language access control and the underlying field is either inaccessible or final.
 	 */
-	public Apartment readApartment(InputStream input) throws IOException, InvalidPropertiesFormatException, IllegalArgumentException, IllegalAccessException{
+	public Apartment readApartment(InputStream input) throws IOException, IllegalAccessException {
 
 		LOGGER.info("Enter readApartment method");
 
@@ -44,21 +42,13 @@ public class ReadApartmentsXMLFormat {
 
 		LOGGER.info("XML Files loaded with success");
 
-		if (prop.containsKey("floorArea")==false || prop.containsKey("address")==false || prop.containsKey("title")==false) {
+		if (!prop.containsKey("floorArea") || !prop.containsKey("address") || !prop.containsKey("title")) {
 			LOGGER.error("Impossible to create an apartment if a floor Area, a title or an address is missing.");
 			throw new InvalidPropertiesFormatException("Capital information left for the creation of an Apartment Object");
 		}
 
 		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),prop.getProperty("address"),prop.getProperty("title"));
 
-		Field fields[] = apartment.getClass().getDeclaredFields();
-    	for(Field f : fields) {
-        	if(prop.containsKey(f.getName())){
-            	f.setAccessible(true);
-            	f.set(apartment, prop.get(f.getName()));
-        	}
-    	}
-		/*
 		if (prop.containsKey("description"))
 			apartment.setDescription(prop.getProperty("description"));
 		if (prop.containsKey("nbBathrooms"))
@@ -79,7 +69,6 @@ public class ReadApartmentsXMLFormat {
 			apartment.setPricePerNight(Double.parseDouble(prop.getProperty("pricePerNight")));
 		if (prop.containsKey("nbMinNight"))
 			apartment.setNbMinNight(Integer.parseInt(prop.getProperty("nbMinNight")));
-		*/
 
 		LOGGER.info("Parameters inserted with success in the Apartment Object");
 		LOGGER.info("Leave readApartment method");
