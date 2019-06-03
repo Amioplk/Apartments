@@ -129,13 +129,19 @@ public class Apartment extends Object {
 		return apart.floorArea == floorArea && apart.address.equals(address) && apart.nbBedrooms == nbBedrooms && apart.nbSleeping == nbSleeping && apart.nbBathrooms == nbBathrooms && apart.terrace == terrace && apart.floorAreaTerrace == floorAreaTerrace && apart.description.equals(description) && apart.title.equals(title) && apart.wifi == wifi && apart.pricePerNight == pricePerNight && apart.nbMinNight == nbMinNight &&  apart.tele == tele ;
 		}
 	
+	
+	/**
+	 * A toString meant to be used while in development for the testing
+	 *  @return only the essential information of an apartment, which are the floor area, its address and his title
+	 */
 	@Override
 	public String toString(){
 		ToStringHelper apart = MoreObjects.toStringHelper(this);
 		apart.add(this.address, true);
 		apart.add(Double.toString(this.floorArea), true);
 		apart.add(this.title, true);
-		return apart.toString(); 
+		return apart.t0oString(); 
+		
 	}
 
 	/**
