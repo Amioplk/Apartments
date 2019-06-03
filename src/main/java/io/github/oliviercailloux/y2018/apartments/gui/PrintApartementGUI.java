@@ -32,7 +32,7 @@ public class PrintApartementGUI {
 	
 	public Apartment appar;
 	protected static Display display = new Display();
-	protected static Shell shell = new Shell(display, SWT.BORDER);
+	protected static Shell shell = new Shell(display);
 	
 	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
 		this.appar = new Apartment(20.0 , "20 rue des consé" , "Test Apartment" );
@@ -61,17 +61,19 @@ public class PrintApartementGUI {
 		
 		
 		@SuppressWarnings("unused")
-		PrintApartementGUI prtApp = new PrintApartementGUI();
-		LOGGER.info("Test Apartment has been created");
+		//PrintApartementGUI prtApp = new PrintApartementGUI("/home/aissatou/PROJETJAVA/Apartments/src/main/java/io/github/oliviercailloux/y2018/apartments/gui/testXML.xml");
+		PrintApartementGUI prtApp = new PrintApartementGUI("/home/aissatou/PROJETJAVA/Apartments/src/main/java/io/github/oliviercailloux/y2018/apartments/gui/testXML.xml");
+		
+                LOGGER.info("Test Apartment has been created");
 		Label lbl = new Label(shell, SWT.CENTER);
-		lbl.setText("this isa lable test");
+		lbl.setText("here are alll the apartments");
 		lbl.pack();
 		
 		shell.setText("Apartments");
-		shell.setSize(500, 700);
+                shell.setMinimumSize(1000, 500);
+		shell.setSize(1000, 1500);
 		shell.pack();
 		shell.open();
-		lbl.setSize(500, 700);
 		
 		while(!shell.isDisposed( )){
 			if(!display.readAndDispatch( ))
