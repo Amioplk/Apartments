@@ -13,7 +13,7 @@ import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsX
 
 /**
  * Test class for ReadApartmentsXMLFormat class.
- *
+ * do not function
  */
 class ReadApartmentsXMLFormatTest {
 
