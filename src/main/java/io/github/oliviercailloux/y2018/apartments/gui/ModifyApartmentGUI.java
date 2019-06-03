@@ -33,19 +33,18 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	 * 
 	 * @param args
 	 * 	must contains as first parameter the complete name of the file (Full Path).
+	 * @throws IOException 
+	 * @throws IllegalAccessException 
 	 */
-	static public void main(String args[]) {
+	static public void main(String args[]) throws IllegalAccessException, IOException {
 		ModifyApartmentGUI c;
 		if (args[0] == null)
 			c = new ModifyApartmentGUI("GUITest");
 		else
 			c = new ModifyApartmentGUI(args[0]);
-		try {
-			c.screenDisplay();
-		}
-		catch(Exception e){
-			LOGGER.error("An error occured while displaying the data.");
-		}
+	
+		c.screenDisplay();
+	
 	}
 	/**
 	 * This method initializes every element of the form with the data present 
@@ -53,8 +52,9 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	 * It used getApartment() in order to get the apartment from the xml file 
 	 * transmit in the main method
 	 * @throws IOException if an exception occurs in getApartment() 
+	 * @throws IllegalAccessException 
 	 */
-	private void initializeField() throws IOException {
+	private void initializeField() throws IOException, IllegalAccessException {
 		getApartment();
 		if(!apart.getTitle().equals("") && !apart.getTitle().isEmpty())
 			title.setText(apart.getTitle());
@@ -90,16 +90,15 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	/**
 	 * Initialize the apart field with the xml file set in the file field.
 	 * @throws IOException if an I/O exception occurs while opening the stream.
+	 * @throws IllegalAccessException 
 	 */
-	private void getApartment() throws IOException {
-		try (InputStream i = Files.asByteSource(file).openStream())
-		{
-			ReadApartmentsXMLFormat f = new ReadApartmentsXMLFormat();
-			apart = f.readApartment(i);
-		}
-		catch(IllegalAccessException e) {
-			LOGGER.error("An arreor occured while reading the xml file.");
-		}
+	private void getApartment() throws IOException, IllegalAccessException {
+		
+		InputStream i = Files.asByteSource(file).openStream();
+		
+		ReadApartmentsXMLFormat f = new ReadApartmentsXMLFormat();
+		apart = f.readApartment(i);
+		
 	}
 	/**
 	 * General method which displays all the element of the GUI.
