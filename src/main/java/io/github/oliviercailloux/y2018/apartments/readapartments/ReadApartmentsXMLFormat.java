@@ -32,9 +32,8 @@ public class ReadApartmentsXMLFormat {
 	 * @param input is the path of XML file
 	 * @return an apartment object with values for each parameters found in the XML files and default values for the other parameters.
 	 * @throws IOException if reading from the specified input streamresults in an <code>IOException</code>.
-	 * @throws IllegalAccessException if this <code>Field</code> object is enforcing Java language access control and the underlying field is either inaccessible or final.
 	 */
-	public Apartment readApartment(InputStream input) throws IOException, IllegalAccessException {
+	public Apartment readApartment(InputStream input) throws IOException {
 
 		LOGGER.info("Enter readApartment method");
 
