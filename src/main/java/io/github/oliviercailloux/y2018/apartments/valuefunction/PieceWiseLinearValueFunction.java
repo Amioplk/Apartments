@@ -47,7 +47,7 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 		if(!valuesAreSorted()) {
 			throw new IllegalArgumentException("A grade cannot be greater than another if its value associated is lower.");
 		}
-		LOGGER.info("The map of data has been successfully instatiated.");
+		LOGGER.info("The map of data has been successfully instantiated.");
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 
 	@Override
 	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException {
-		if(map.isEmpty()) {
+		if(map.isEmpty() || map.size() < 2) {
 			throw new IllegalArgumentException();
 		}
 		Iterator<Double> iterator = map.keySet().iterator();
