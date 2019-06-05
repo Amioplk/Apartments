@@ -97,7 +97,7 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 			ReadApartmentsXMLFormat f = new ReadApartmentsXMLFormat();
 			apart = f.readApartment(i);
 		}
-		catch(IllegalAccessException e) {
+		catch(IOException e) {
 			LOGGER.error("An arreor occured while reading the xml file.");
 		}
 	}
