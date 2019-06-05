@@ -36,7 +36,7 @@ public class PrintApartementGUI {
 	protected static Shell shell = new Shell(display);
 	
 	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
-		this.appar = new Apartment(20.0 , "20 rue des consé" , "Test Apartment" );
+		this.appar = new Apartment(20.0 , "20 rue des consé" , "Test Apartment", 0, 0, 0, 0, 0, 0, false);
 
 	}
 	

@@ -34,10 +34,8 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	 * @param args
 	 * 	must contains as first parameter the complete name of the file (Full Path).
 	 * @throws IOException
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 */
-	static public void main(String args[]) throws IOException, IllegalArgumentException, IllegalAccessException {
+	static public void main(String args[]) throws IOException {
 		ModifyApartmentGUI c;
 		if (args[0] == null)
 			c = new ModifyApartmentGUI("GUITest");
@@ -52,10 +50,8 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	 * It used getApartment() in order to get the apartment from the xml file 
 	 * transmit in the main method
 	 * @throws IOException
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 */
-	private void initializeField() throws IOException, IllegalArgumentException, IllegalAccessException {
+	private void initializeField() throws IOException {
 		getApartment();
 		if(!apart.getTitle().equals("") && !apart.getTitle().isEmpty())
 			title.setText(apart.getTitle());
@@ -91,10 +87,8 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	/**
 	 * Initialize the apart field with the xml file set in the file field.
 	 * @throws IOException
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 */
-	private void getApartment() throws IOException, IllegalArgumentException, IllegalAccessException
+	private void getApartment() throws IOException
 	{
 		try (InputStream i = Files.asByteSource(file).openStream())
 		{
@@ -107,10 +101,8 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	/**
 	 * General method which displays all the element of the GUI.
 	 * @throws IOException if the logo doesn't load well.
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 */
-	protected void screenDisplay() throws IOException, IllegalArgumentException, IllegalAccessException {
+	protected void screenDisplay() throws IOException {
 		try(InputStream f = DisplayIcon.class.getResourceAsStream("logo.png")){
 
 			LOGGER.info("The logo has been loaded with success.");
@@ -144,5 +136,3 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 		}
 	}
 }
-	
-
