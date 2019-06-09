@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.y2018.apartments.gui;
 
-import java.awt.Font;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -32,48 +31,42 @@ public class PrintApartementGUI {
 	 * @throws IllegalArgumentException
 	 */
 
-	public Apartment appar;
-	protected static Display display = new Display();
-	protected static Shell shell = new Shell(display);
+	private Apartment apar;
+	protected Display display = new Display();
+	protected Shell shell = new Shell(display);
 
-	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
-		this.appar = new Apartment(20.0, "20 rue des consé", "Test Apartment");
-
-	}
-
-	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
-		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
-		FileInputStream fileinputstream = new FileInputStream(fileName);
-		this.appar = xmlReader.readApartment(fileinputstream);
-
-		LOGGER.info("Apratement has been loaded ");
-		// lecture d'un appartement au format xml
+	public PrintApartementGUI() {
+		this.setApar(new Apartment(20.0, "20 rue des consé", "Test Apartment"));
 
 	}
 
 	/**
-	 * @param args
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
+	 * Create a printer of an apartment given in xml format
+	 * @param fileName
 	 * @throws IOException
+	 * @throws IllegalArgumentException
 	 */
-	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
+	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException {
+		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
+		FileInputStream fileinputstream = new FileInputStream(fileName);
+		this.setApar(xmlReader.readApartment(fileinputstream));
 
-		@SuppressWarnings("unused")
-		// PrintApartementGUI prtApp = new
-		// PrintApartementGUI("/home/aissatou/PROJETJAVA/Apartments/src/main/java/io/github/oliviercailloux/y2018/apartments/gui/testXML.xml");
-		PrintApartementGUI prtApp = new PrintApartementGUI();
+		LOGGER.info("Apratement has been loaded ");
 
+	}
+
+	public void print() {
+		
 		LOGGER.info("Test Apartment has been created");
 		Label title = new Label(shell, SWT.CENTER);
 		Label adress = new Label(shell, SWT.CENTER);
 		Label florArea = new Label(shell, SWT.CENTER);
 		Label wifi = new Label(shell, SWT.CENTER);
 
-		title.setText(prtApp.appar.getTitle());
-		adress.setText("adress : " + prtApp.appar.getAddress());
-		florArea.setText("floor Area : " + prtApp.appar.getFloorArea() + " m2 ");
-		wifi.setText("wifi : " + prtApp.appar.getWifi() + "");
+		title.setText(getApar().getTitle());
+		adress.setText("adress : " + this.getApar().getAddress());
+		florArea.setText("floor Area : " + this.getApar().getFloorArea() + " m2 ");
+		wifi.setText("wifi : " + this.getApar().getWifi() + "");
 
 		wifi.pack();
 		florArea.pack();
@@ -98,6 +91,29 @@ public class PrintApartementGUI {
 		title.dispose();
 		display.dispose();
 
+	}
+	
+	/**
+	 * @param args
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws IOException
+	 */
+	public static void main(String args[]) throws IllegalArgumentException, IOException {
+
+//		Exemple : 
+		 PrintApartementGUI prtApp = new PrintApartementGUI("src/test/resources/io/github/oliviercailloux/y2018/apartments/gui/apartTest.xml");
+//		PrintApartementGUI prtApp = new PrintApartementGUI();
+		prtApp.print();
+		
+	}
+
+	public Apartment getApar() {
+		return apar;
+	}
+
+	public void setApar(Apartment apar) {
+		this.apar = apar;
 	}
 
 }
