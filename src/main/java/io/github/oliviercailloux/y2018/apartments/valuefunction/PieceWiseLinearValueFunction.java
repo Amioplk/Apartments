@@ -6,10 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Verify;
 import com.google.common.collect.Comparators;
 import com.google.common.collect.ImmutableSortedMap;
 
@@ -31,18 +33,16 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	 * There has to be a value associated to the value 0, and another value associated to the grade 1.
 	 */
 	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
-		boolean grade0 = false;
-		boolean grade1 = false;
-		for(Double v : parameters.values()) {
-			if(v < 0 || v > 1) {
-				throw new IllegalArgumentException("The grades have to be between 0 and 1.");
-			}
-			if(v == 0) grade0 = true;
-			if(v == 1) grade1 = true;
-		}
-		if(!grade0 || !grade1) {
+		
+		if(!parameters.containsValue(0d) || !parameters.containsValue(1d)) {
 			throw new IllegalArgumentException("The value associated to the grade 0 or 1 is missing.");
 		}
+		
+		Stream<Double> error = parameters.values().stream().filter(v -> v > 1d || v < 0d);
+		if(error.count() >= 0) {
+			throw new IllegalArgumentException("The grades have to be between 0 and 1.");
+		}
+		
 		map = ImmutableSortedMap.copyOf(parameters);
 		if(!valuesAreSorted()) {
 			throw new IllegalArgumentException("A grade cannot be greater than another if its value associated is lower.");
@@ -62,13 +62,13 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 
 	@Override
 	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException {
-		if(map.isEmpty() || map.size() < 2) {
-			throw new IllegalArgumentException();
-		}
+		
+		Verify.verify(map.isEmpty() || map.size() < 2);
+		
 		Iterator<Double> iterator = map.keySet().iterator();
 		Double maxKey = iterator.next();
 		Double minKey = 0d;
-		if(objectiveData <= maxKey) {
+		if(objectiveData <= minKey) {
 			return 0d;
 		}
 		while(objectiveData > maxKey) {
@@ -83,6 +83,7 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 		
 		Double minValue = map.get(minKey);
 		Double maxValue = map.get(maxKey);
+		
 		return ((objectiveData - minKey)*(maxValue - minValue)/(maxKey - minKey)) + minValue;
 	}
 
