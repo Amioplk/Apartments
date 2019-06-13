@@ -1,7 +1,9 @@
 package io.github.oliviercailloux.y2018.apartments.readapartments;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
@@ -32,6 +34,13 @@ public class ReadApartmentsXMLFormat {
 	 * @param input is the path of XML file
 	 * @return an apartment object with values for each parameters found in the XML files and default values for the other parameters.
 	 * @throws IOException, NumberFormatException, InvalidPropertiesFormatException
+	 */
+	/**
+	 * @param input
+	 * @return
+	 * @throws IOException
+	 * @throws NumberFormatException
+	 * @throws InvalidPropertiesFormatException
 	 */
 	public Apartment readApartment(InputStream input) throws IOException, NumberFormatException, InvalidPropertiesFormatException{
 		
@@ -69,10 +78,41 @@ public class ReadApartmentsXMLFormat {
 		if (prop.containsKey("nbMinNight"))
 			apartment.setNbMinNight(Integer.parseInt(prop.getProperty("nbMinNight")));
 		
+		if (prop.containsKey("Images"))
+			apartment.setImages(this.findOutImagesPaths(prop.getProperty("Images")));
+		
+		
 		LOGGER.info("Parameters inserted with success in the Apartment Object");
 		LOGGER.info("Leave readApartment method");
 		
 		return apartment;
+	}
+	
+	/**
+	 * @param FolderPath : the Path of the folder which contains Images related to the Apartment described in the XML file
+	 * @return ArrayList of strings, each string is the path of one image related to the apratment
+	 */
+
+	private ArrayList<String> findOutImagesPaths(String FolderPath) throws IOException{
+		
+		try {
+			File file = new File(FolderPath).getAbsoluteFile();
+	        
+			LOGGER.info("Folder path has been set : " + file );
+			String liste[] = file.list();
+	        ArrayList<String> finalList  = new ArrayList<String>();
+	        for (String str : liste){
+	        	finalList.add(str);
+	        	LOGGER.info("a new path to another Image has been set : " + str);
+	        }
+	        return finalList;
+			
+		}
+	    catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+		return null;
+		
 	}
 
 }

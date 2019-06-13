@@ -16,4 +16,5 @@
 <entry key="address">Chaville</entry>
 <entry key="description"/>
 <entry key="floorAreaTerrace">0.0</entry>
+	<entry key="Images">/home/yanis/Documents/Apartments/src/test/resources/io/github/oliviercailloux/y2018/apartments/readApartments/Images_A</entry>
 </properties>

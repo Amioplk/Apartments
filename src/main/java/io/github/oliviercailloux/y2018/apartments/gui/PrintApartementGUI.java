@@ -11,6 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.hamcrest.core.IsInstanceOf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,15 +34,25 @@ public class PrintApartementGUI {
 	 */
 
 	public Apartment appar;
-	protected static Display display = new Display();
-	protected static Shell shell = new Shell(display);
+	protected static Display display; 
+	protected static Shell shell;
 
+	public static void setDisplayApartment(){
+		display = new Display();
+		shell = new Shell(display);
+	}
+	
 	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
-		this.appar = new Apartment(20.0, "20 rue des consé", "Test Apartment");
-
+		if (display == null ){
+			setDisplayApartment();
+		}
+		new Apartment(20.0, "20 rue des consé", "Test Apartment");
 	}
 
 	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
+		if (display == null ){
+			setDisplayApartment();
+		}
 		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
 		FileInputStream fileinputstream = new FileInputStream(fileName);
 		this.appar = xmlReader.readApartment(fileinputstream);

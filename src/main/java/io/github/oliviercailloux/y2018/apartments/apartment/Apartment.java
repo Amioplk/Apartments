@@ -1,6 +1,10 @@
 package io.github.oliviercailloux.y2018.apartments.apartment;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +12,11 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 
 
+/**
+ * Modifications on 09 June
+ * Sandra Salamé and AIT ALI BRAHAM Farouk 
+ * Add Images attributes to the class 
+ */
 public class Apartment extends Object {
 	
 	private static Logger LOGGER = LoggerFactory.getLogger(Apartment.class);
@@ -91,7 +100,12 @@ public class Apartment extends Object {
 	private boolean tele; 
 
 
-
+	/**	@param Images is a set of Image describing one apartment
+	 * An apartment can have zero, one or many Images,  
+	 * If not initialized, it will be a set without any object
+	 */
+	private ArrayList<String> Images;
+	
 	/**
 	 * @param floorArea is a real number superior or equal to zero, it represents the floor area of the apartment in square meters
 	 * @param address is a string of characters that gives the full location of the apartment
@@ -111,6 +125,10 @@ public class Apartment extends Object {
 		this.pricePerNight = 0;
 		this.nbMinNight = 0 ;
 		this.tele = false ;
+		
+		this.setImages(new ArrayList<String>());
+		
+		
 		checkArgument(floorArea>=0,"The floor area of the apartment cannot be negative");
 		checkArgument(address !="","The address of the apartment must be specified");
 		checkArgument(title !="","The title of the apartment must be specified");
@@ -134,7 +152,7 @@ public class Apartment extends Object {
 		String floorAreaTS = "\nFloor area : " + Double.toString(floorArea) + " square meters";
 		String addressTS = "\nAddress : " + address ;
 		String titleTS = "\nTitle : " + title ;
-		return floorAreaTS + addressTS + titleTS;
+		return floorAreaTS + addressTS + titleTS ;
 	}
 
 	/**
@@ -170,7 +188,7 @@ public class Apartment extends Object {
 		dispPricePerNight = "\nPrice per night : " + ((pricePerNight == 0) ? "N/A" : Double.toString(pricePerNight)+"€") ;
 		dispNbMinNight = "\nNumber of night minimum to rent this apartment : " + ((nbMinNight == 0) ? "N/A" : Integer.toString(nbMinNight)+" night(s)") ;
 		
-		return dispTitle + dispAddress + dispFloorArea  +dispNbBedrooms + dispNbSleeping + dispNbBathrooms + dispTerrace + dispFloorAreaTerrace + dispDescription  +dispWifi + dispPricePerNight + dispNbMinNight + dispTele ; 
+		return dispTitle + dispAddress + dispFloorArea  +dispNbBedrooms + dispNbSleeping + dispNbBathrooms + dispTerrace + dispFloorAreaTerrace + dispDescription  +dispWifi + dispPricePerNight + dispNbMinNight + dispTele + "\nphotos : " + this.getImages().toString(); 
 	}
 
 	/**
@@ -397,6 +415,14 @@ public class Apartment extends Object {
 	@Override
 	public int hashCode() {
 		return Objects.hash(address, floorArea, nbBedrooms, nbSleeping, nbBathrooms, terrace, floorAreaTerrace, description, title, wifi, pricePerNight, nbMinNight, tele);
+	}
+
+	public ArrayList<String> getImages() {
+		return Images;
+	}
+
+	public void setImages(ArrayList<String> images) {
+		Images = images;
 	}
 
 }
