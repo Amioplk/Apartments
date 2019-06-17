@@ -53,7 +53,7 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	@Override
 	public double getSubjectiveValue(Double objectiveData) {
 		
-		Verify.verify(map.isEmpty() || map.size() < 2);
+		Verify.verify(map.size() >= 2);
 
 		if(objectiveData <= map.firstKey()) {
 			return 0d;
