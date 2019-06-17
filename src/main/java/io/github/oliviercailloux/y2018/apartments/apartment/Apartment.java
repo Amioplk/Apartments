@@ -104,7 +104,7 @@ public class Apartment extends Object {
 	 * An apartment can have zero, one or many Images,  
 	 * If not initialized, it will be a set without any object
 	 */
-	private ArrayList<String> Images;
+	private ArrayList<String> images;
 	
 	/**
 	 * @param floorArea is a real number superior or equal to zero, it represents the floor area of the apartment in square meters
@@ -126,7 +126,7 @@ public class Apartment extends Object {
 		this.nbMinNight = 0 ;
 		this.tele = false ;
 		
-		this.setImages(new ArrayList<String>());
+		this.images = new ArrayList<String>();
 		
 		
 		checkArgument(floorArea>=0,"The floor area of the apartment cannot be negative");
@@ -418,11 +418,15 @@ public class Apartment extends Object {
 	}
 
 	public ArrayList<String> getImages() {
-		return Images;
+		return this.images;
 	}
 
+	public void addImages(String image) {
+		this.images.add(image);
+	}
+	
 	public void setImages(ArrayList<String> images) {
-		Images = images;
+		this.images = images;
 	}
 
 }
