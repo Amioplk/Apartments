@@ -2,7 +2,6 @@ package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -18,11 +17,15 @@ import com.google.common.collect.ImmutableSortedMap;
 /**
  * A class that allows the user to determinate the subjective value of a double given in argument,
  * according to two or more known values.
- *
+ * 
  */
 public class PieceWiseLinearValueFunction implements PartialValueFunction<Double> {
 	
-	private ImmutableSortedMap<Double, Double> map; // K : value, V : grade
+	/**
+	 * The map is composed of all known utilities. For each entry, the Key represents the value taken by
+	 * the attribute and the Value is the grade associated.
+	 */
+	private ImmutableSortedMap<Double, Double> map;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 	
 	/**
@@ -43,26 +46,17 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 		}
 		
 		map = ImmutableSortedMap.copyOf(parameters);
-		if(!valuesAreSorted()) {
+		if(!Comparators.isInOrder(this.map.values(), Comparator.naturalOrder())) {
 			throw new IllegalArgumentException("A grade cannot be greater than another if its value associated is lower.");
 		}
 		LOGGER.info("The map of data has been successfully instantiated.");
 	}
 	
-	/**
-	 * @return <code>true</code> if the list of values is sorted,
-	 * <code>false</code> otherwise.
-	 */
-	private boolean valuesAreSorted() {
-		List<Double> values = new ArrayList<Double>(this.map.values());
-		Comparator<Double> comparator = Comparator.naturalOrder();
-		return Comparators.isInOrder(values, comparator);
-	}
-
 	@Override
 	public double getSubjectiveValue(Double objectiveData) {
 		
 		Verify.verify(map.isEmpty() || map.size() < 2);
+
 		if(objectiveData <= map.firstKey()) {
 			return 0d;
 		}
