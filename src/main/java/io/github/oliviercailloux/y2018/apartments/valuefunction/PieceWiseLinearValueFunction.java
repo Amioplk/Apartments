@@ -28,9 +28,9 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	
 	/**
 	 * Builder of the PieceWiseLinearValueFunction
-	 * @param parameters : the dictionary of all values along with the grades associated to them,
-	 * If the collection of keys is sorted, then the collection of grades also has to be sorted.
-	 * There has to be a value associated to the value 0, and another value associated to the grade 1.
+	 * @param parameters is the dictionary of all values along with the grades associated to them,
+	 * In this map, if the collection of keys was sorted, then the collection of grades would also have to be sorted.
+	 * There has to be a value associated to the grade 0, and another value associated to the grade 1.
 	 */
 	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
 		
@@ -39,7 +39,7 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 		}
 		
 		Stream<Double> error = parameters.values().stream().filter(v -> v > 1d || v < 0d);
-		if(error.count() >= 0) {
+		if(error.count() > 0) {
 			throw new IllegalArgumentException("The grades have to be between 0 and 1.");
 		}
 		
