@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
 import java.util.stream.Stream;
 
 import org.slf4j.Logger;
@@ -23,7 +22,7 @@ import com.google.common.collect.ImmutableSortedMap;
  */
 public class PieceWiseLinearValueFunction implements PartialValueFunction<Double> {
 	
-	private SortedMap<Double, Double> map; // K : value, V : grade
+	private ImmutableSortedMap<Double, Double> map; // K : value, V : grade
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 	
 	/**
@@ -61,28 +60,22 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	}
 
 	@Override
-	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException {
+	public double getSubjectiveValue(Double objectiveData) {
 		
 		Verify.verify(map.isEmpty() || map.size() < 2);
-		
-		Iterator<Double> iterator = map.keySet().iterator();
-		Double maxKey = iterator.next();
-		Double minKey = 0d;
-		if(objectiveData <= minKey) {
+		if(objectiveData <= map.firstKey()) {
 			return 0d;
 		}
-		while(objectiveData > maxKey) {
-			if(iterator.hasNext()) {
-				minKey = maxKey;
-				maxKey = iterator.next();
-			}
-			else {
-				return 1d;
-			}
+		if(objectiveData >= map.lastKey()) {
+			return 1d;
 		}
 		
-		Double minValue = map.get(minKey);
-		Double maxValue = map.get(maxKey);
+		Map.Entry<Double, Double> minEntry = map.floorEntry(objectiveData);
+		Map.Entry<Double, Double> maxEntry = map.ceilingEntry(objectiveData);
+		Double minKey = minEntry.getKey();
+		Double maxKey = maxEntry.getKey();
+		Double minValue = minEntry.getValue();
+		Double maxValue = maxEntry.getValue();
 		
 		return ((objectiveData - minKey)*(maxValue - minValue)/(maxKey - minKey)) + minValue;
 	}
