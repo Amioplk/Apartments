@@ -3,7 +3,12 @@ package io.github.oliviercailloux.y2018.apartments.valuefunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.ImmutableList;
+
 import static com.google.common.base.Preconditions.checkArgument;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 
@@ -420,7 +425,7 @@ public class ApartmentValueFunction {
 	}
 	
 	/**
-	 * @return A randomized ApartmentValueFunction
+	 * @return A randomized instance of an ApartmentValueFunction
 	 */
 	public static ApartmentValueFunction getRandomApartmentValueFunction() {
 		
@@ -437,18 +442,30 @@ public class ApartmentValueFunction {
 		apartValueFunction.setNbMinNightValueFunction(new ConstantValueFunction<>());
 		apartValueFunction.setTeleValueFunction(new ConstantValueFunction<>());
 
-		apartValueFunction.floorAreaSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbBedroomsSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbSleepingSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbBathroomsSubjectiveValueWeight= 0.1;
-		apartValueFunction.terraceSubjectiveValueWeight= 0.1;
-		apartValueFunction.floorAreaTerraceSubjectiveValueWeight= 0.1;
-		apartValueFunction.wifiSubjectiveValueWeight= 0.1;
-		apartValueFunction.pricePerNightSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbMinNightSubjectiveValueWeight= 0.1;
-		apartValueFunction.teleSubjectiveValueWeight= 0.1;
+		List<Double> weightRange = new ArrayList<Double>();
+		int i = 0;
+		for(;i<10;++i) {
+			weightRange.add(Math.random());
+		}
 		
-		return new ApartmentValueFunction();
+		/**
+		 * Found on https://stackoverflow.com/questions/30125296/how-to-sum-a-list-of-integers-with-java-streams
+		 */
+		double sum = weightRange.stream().reduce(0d, Double::sum);
+		weightRange = weightRange.stream().map(d -> d/sum).collect(ImmutableList.toImmutableList());
+		
+		apartValueFunction.floorAreaSubjectiveValueWeight= weightRange.get(1);
+		apartValueFunction.nbBedroomsSubjectiveValueWeight= weightRange.get(2);
+		apartValueFunction.nbSleepingSubjectiveValueWeight= weightRange.get(3);
+		apartValueFunction.nbBathroomsSubjectiveValueWeight= weightRange.get(4);
+		apartValueFunction.terraceSubjectiveValueWeight= weightRange.get(5);
+		apartValueFunction.floorAreaTerraceSubjectiveValueWeight= weightRange.get(6);
+		apartValueFunction.wifiSubjectiveValueWeight= weightRange.get(7);
+		apartValueFunction.pricePerNightSubjectiveValueWeight= weightRange.get(8);
+		apartValueFunction.nbMinNightSubjectiveValueWeight= weightRange.get(9);
+		apartValueFunction.teleSubjectiveValueWeight= weightRange.get(10);
+		
+		return apartValueFunction;
 	}
 
 }
