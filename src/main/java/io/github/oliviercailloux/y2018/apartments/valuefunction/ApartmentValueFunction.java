@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
@@ -437,7 +435,7 @@ public class ApartmentValueFunction {
 		// Map<String, List<Integer>> boundsMap = new HashMap<>();
 		
 		// boundsMap.add();
-		int floorAreaEndBound = random.ints(random.nextInt(100) + 1).findAny().getAsInt();
+		int floorAreaEndBound = random.nextInt(100) + 1;
 		int nbBedroomsEndBound = random.nextInt(6) + 1;
 		int nbSleepingEndBound;
 		int nbBathroomsEndBound;

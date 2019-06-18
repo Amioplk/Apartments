@@ -21,7 +21,7 @@ public class RandomRange {
 		 * Found on https://stackoverflow.com/questions/30125296/how-to-sum-a-list-of-integers-with-java-streams
 		 */
 		double sum = weightRange.stream().reduce(0d, Double::sum);
-		weightRange = weightRange.stream().map(d -> d/sum).collect(ImmutableList.toImmutableList());
+		weightRange = weightRange.stream().map(d -> (d/sum)*s).collect(ImmutableList.toImmutableList());
 		
 		return weightRange;
 		
