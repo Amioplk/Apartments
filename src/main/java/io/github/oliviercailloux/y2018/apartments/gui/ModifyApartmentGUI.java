@@ -37,7 +37,7 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 	 */
 	static public void main(String args[]) throws IOException {
 		ModifyApartmentGUI c;
-		if (args[0] == null)
+		if (args.length == 0)
 			c = new ModifyApartmentGUI("GUITest");
 		else
 			c = new ModifyApartmentGUI(args[0]);
