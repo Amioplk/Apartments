@@ -4,6 +4,10 @@ import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.base.MoreObjects;
+import com.google.common.base.MoreObjects.ToStringHelper;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 
@@ -126,15 +130,12 @@ public class Apartment extends Object {
 		}
 	
 	@Override
-	/**
-	 * A toString meant to be used while in development for the testing
-	 *  @return only the essential information of an apartment, which are the floor area, its address and his title
-	 */
-	public String toString() {
-		String floorAreaTS = "\nFloor area : " + Double.toString(floorArea) + " square meters";
-		String addressTS = "\nAddress : " + address ;
-		String titleTS = "\nTitle : " + title ;
-		return floorAreaTS + addressTS + titleTS;
+	public String toString(){
+		ToStringHelper apart = MoreObjects.toStringHelper(this);
+		apart.add(this.address, true);
+		apart.add(Double.toString(this.floorArea), true);
+		apart.add(this.title, true);
+		return apart.toString(); 
 	}
 
 	/**
