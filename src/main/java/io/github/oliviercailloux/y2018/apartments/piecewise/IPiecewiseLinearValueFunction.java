@@ -12,7 +12,7 @@ public interface IPiecewiseLinearValueFunction {
 	/**
 	 * This method calculates and returns the value of the utility associated with the key
 	 * in parameter.
-	 * @param value of the key (int) which has to be more or equal than the min and strictly less or equal than the max 
+	 * @param value of the key (int) which has to be more or equal than the min and less or equal than the max 
 	 * @return the value (double) of the utility associated with the key in parameter
 	 * @throws IOException 
 	 */

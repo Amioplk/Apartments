@@ -21,8 +21,8 @@ public class LinearValueFunction implements PartialValueFunction<Double> {
 	 * @param max upper bound of the interval
 	 */
 	public LinearValueFunction (double min, double max) {
-		if (min == max) {
-			LOGGER.error("The upper bound is equal to the lower bound in the constructor of the LinearValueFunction.");
+		if (min >= max) {
+			LOGGER.error("The upper bound is lower or equal to the lower bound in the constructor of the LinearValueFunction.");
 			throw new IllegalArgumentException("The upper bound can't be equal to the lower bound.");
 		}
 		interval = Range.closed(min, max);
@@ -30,9 +30,9 @@ public class LinearValueFunction implements PartialValueFunction<Double> {
 	}
 
 	@Override
-	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException {
+	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException, IllegalStateException {
 		if (interval.isEmpty())
-			throw new IllegalArgumentException();
+			throw new IllegalStateException();
 		if(interval.lowerEndpoint() >= objectiveData) {
 			return 0;
 		}
