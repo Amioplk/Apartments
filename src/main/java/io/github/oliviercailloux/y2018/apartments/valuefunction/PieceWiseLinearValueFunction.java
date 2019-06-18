@@ -26,7 +26,7 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	 * It is an ImmutableSortedMap, therefore it is not possible to set a different utility afterwards.
 	 * Do do so, we need to initialize a new PieceWiseLinearValueFunction.
 	 */
-	private ImmutableSortedMap<Double, Double> map;
+	protected ImmutableSortedMap<Double, Double> map;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 
 	/**
