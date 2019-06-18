@@ -6,7 +6,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 /**
- * @author Amioplk
+ * @author Amioplk, alexisperdereau
  * Manages random ranges of doubles
  */
 public class RandomRange {
