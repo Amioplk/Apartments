@@ -5,7 +5,10 @@ import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.utils.RandomRange;
@@ -428,9 +431,25 @@ public class ApartmentValueFunction {
 	public static ApartmentValueFunction getRandomApartmentValueFunction() {
 		
 		ApartmentValueFunction apartValueFunction = new ApartmentValueFunction();
+		Random random = new Random();
 		
-		apartValueFunction.setFloorAreaValueFunction(new LinearValueFunction(0,200)); // PieceWiseLinear
-		apartValueFunction.setNbBedroomsValueFunction(new LinearValueFunction(0,6));
+		// Utiliser map avec des clés des noms des attributs ?
+		// Map<String, List<Integer>> boundsMap = new HashMap<>();
+		
+		// boundsMap.add();
+		int floorAreaEndBound = random.ints(random.nextInt(100) + 1).findAny().getAsInt();
+		int nbBedroomsEndBound = random.nextInt(6) + 1;
+		int nbSleepingEndBound;
+		int nbBathroomsEndBound;
+		int terraceEndBound;
+		int floorAreaTerraceEndBound;
+		int wifiEndBound;
+		int pricePerNightEndBound;
+		int nbMinNightEndBound;
+		int teleEndBound;
+		
+		apartValueFunction.setFloorAreaValueFunction(new LinearValueFunction(0,floorAreaEndBound)); // PieceWiseLinear
+		apartValueFunction.setNbBedroomsValueFunction(new LinearValueFunction(0,nbBedroomsEndBound));
 		apartValueFunction.setNbSleepingValueFunction(new LinearValueFunction(0,10));
 		apartValueFunction.setNbBathroomsValueFunction(new DiscreteValueFunction<Double>(0d, 1d, 2d)); // Randomize map
 		apartValueFunction.setTerraceValueFunction(new BooleanValueFunction(true));
