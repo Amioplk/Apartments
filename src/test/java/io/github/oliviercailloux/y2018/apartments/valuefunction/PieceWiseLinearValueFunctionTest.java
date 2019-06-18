@@ -8,18 +8,41 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class PieceWiseLinearValueFunctionTest {
-	
+
 	@Test
 	public void getSubjectiveValueNormalTest() throws IOException {
-		
-		Map<Double,Double> map = new HashMap<>();
-		map.put(0d, 0d);
-		map.put(10d,0.5);
-		map.put(30d,1d);
-		
-		PieceWiseLinearValueFunction p = new PieceWiseLinearValueFunction(map);
-		Assert.assertEquals(0.75, p.getSubjectiveValue(20d), 0.001);
-		Assert.assertEquals(0.25, p.getSubjectiveValue(5d), 0.001);
+
+		PieceWiseLinearValueFunction p = initializePieceWise();
+
+		Assert.assertEquals(0.75, p.getSubjectiveValue(20), 0.001);
+		Assert.assertEquals(0.25, p.getSubjectiveValue(5), 0.001);
 	}
-	
+
+	@Test
+	public void getUtilityWithParamAboveMax() throws IOException {
+
+		PieceWiseLinearValueFunction p = initializePieceWise();
+
+		Assert.assertEquals(1d, p.getSubjectiveValue(70), 0);
+
+	}
+
+	@Test
+	public void getUtilityWithParamBelowMin() throws IOException {
+
+		PieceWiseLinearValueFunction p = initializePieceWise();
+		
+		Assert.assertEquals(0, p.getSubjectiveValue(-10), 0);
+
+	}
+
+	private static PieceWiseLinearValueFunction initializePieceWise() {
+
+		Map<Double, Double> map = new HashMap<>();
+		map.put(0d, 0d);
+		map.put(10d, 0.5);
+		map.put(30d, 1d);
+		
+		return new PieceWiseLinearValueFunction(map);
+	}
 }

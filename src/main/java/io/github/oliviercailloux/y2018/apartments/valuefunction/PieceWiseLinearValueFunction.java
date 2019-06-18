@@ -78,6 +78,10 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 
 		return ((objectiveData - minKey) * (maxValue - minValue) / (maxKey - minKey)) + minValue;
 	}
+	
+	public double getSubjectiveValue(int objectiveDataInt) {
+		return this.getSubjectiveValue(Integer.valueOf(objectiveDataInt).doubleValue());
+	}
 
 	@Override
 	public Double apply(Double t) {
