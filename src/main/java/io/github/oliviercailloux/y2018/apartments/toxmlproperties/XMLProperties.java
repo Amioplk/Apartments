@@ -61,42 +61,7 @@ public class XMLProperties{
 		
 	}
 	
-	/**
-	 * @throws DOMException
-	 * @throws IllegalAccessException
-	 * @throws IOException
-	 * Generates an XML file representing a random apartment
-	 */
-	public static void generateRandomXML() throws DOMException, IllegalAccessException, IOException {
-				
-		ArrayList<String> titles = new ArrayList<String>(
-							Arrays.asList( "Maison", "logement", "appartement"," "," "," "," "," "," "," "));
-		ArrayList<String> address = new ArrayList<String>(
-							Arrays.asList( "2 avenue Pasteur 94160 Saint-mandé", "8 avenue de Paris 94160 Saint-mandé", "5 avenue des Champs-Elysées 75016" , "13 rue des Arts 75001","10 rue de Dauphine 75016","33 rue de Tolbiac 75013","33 rue de Tolbiac 75013"," "," ", " "));
-		
-		for (int i = 1; i < 10 ; i ++) {
-			
-			 XMLProperties j = new XMLProperties();
-			 double floorArea = Math.random()*300;
-			 boolean terrace = (Math.random()*2 >= 0) ? true : false;
-			 double floorAreaTerrace = 0;
-			 if(terrace) floorAreaTerrace = Math.random()*100;
-			 
-			 int nbMinNight = (int) (Math.random()*5);
-			 int nbBedrooms = (int) (Math.random()*10);
-			 double pricePerNight = Math.random()*80 + 20d;
-			 int nbSleeping = (int) (Math.random()*5);
-			 int nbBathrooms = (int) (Math.random()*10);
-			 
-			 Apartment a = new Apartment(floorArea, address.get(i), titles.get(i), nbBedrooms, nbSleeping, nbBathrooms, floorAreaTerrace, pricePerNight, nbMinNight, terrace);
-			 File f = new File("src/test/resources/io/github/oliviercailloux/y2018/apartments/readApartments/Apartment" + i + ".xml");
-			 try(FileOutputStream s = new FileOutputStream(f.getAbsolutePath()))
-			 {
-				 j.toXML(a, s);
-				 s.close();
-			 }
-		}	
-	}	
+
 	/**
 	 * @throws DOMException
 	 * @throws IllegalAccessException
@@ -141,13 +106,9 @@ public class XMLProperties{
 	 * @throws DOMException 
 	 * @throws IOException 
 	 */
-<<<<<<< HEAD
+
 	public static void main(String[] args) throws DOMException, IllegalAccessException, IOException  {
 		generateRandomXML();
-=======
-	public static void main(String[] args) throws DOMException, IllegalArgumentException, IllegalAccessException, IOException {
-		generateRandomXML();
 
->>>>>>> generateRandom2
 	}
 }
