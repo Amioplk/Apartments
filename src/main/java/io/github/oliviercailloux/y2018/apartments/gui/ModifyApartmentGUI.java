@@ -136,5 +136,3 @@ public class ModifyApartmentGUI extends FormApartmentGUI{
 		}
 	}
 }
-	
-

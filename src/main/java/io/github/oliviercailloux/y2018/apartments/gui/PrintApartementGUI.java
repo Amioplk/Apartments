@@ -1,29 +1,34 @@
 package io.github.oliviercailloux.y2018.apartments.gui;
 
+/*import java.awt.Font;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
-import io.github.oliviercailloux.y2018.apartments.toxmlproperties.XMLProperties;
+
+import io.github.oliviercailloux.y2018.apartments.toxmlproperties.XMLProperties;*/
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.RowData;
+//import org.eclipse.swt.layout.RowData;
+
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.w3c.dom.DOMException;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-//import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
-//import org.eclipse.swt.widgets.Display;
-//import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
-//import org.eclipse.swt.widgets.Shell;
-//import java.awt.List;
+import org.eclipse.swt.widgets.Shell;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,8 +38,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.w3c.dom.DOMException;
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 
@@ -58,13 +63,7 @@ public class PrintApartementGUI {
 	 */
 
 
-	
-	/**
-	 * @param args
-	 * @throws IllegalArgumentException
-	 * @throws IllegalAccessException
-	 * @throws IOException
-	 */
+
 	public static void main(String args[]) throws IllegalArgumentException, IOException {
 
 		Display display = new Display();
@@ -123,9 +122,10 @@ public class PrintApartementGUI {
 	               display.sleep();
 	       }
 	       display.dispose();
-	   }
-	
-
-	
-
+	}
 }
+	
+
+	
+
+
