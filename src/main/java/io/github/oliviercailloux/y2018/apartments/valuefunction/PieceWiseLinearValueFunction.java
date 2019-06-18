@@ -14,6 +14,7 @@ import com.google.common.collect.ImmutableSortedMap;
 /**
  * A class that allows the user to determinate the subjective value of a double
  * given in argument, according to two or more known values.
+
  * 
  */
 public class PieceWiseLinearValueFunction implements PartialValueFunction<Double> {
@@ -22,6 +23,8 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	 * The map is composed of all known utilities. For each entry, the Key
 	 * represents the value taken by the attribute and the Value is the grade
 	 * associated.
+	 * It is an ImmutableSortedMap, therefore it is not possible to set a different utility afterwards.
+	 * Do do so, we need to initialize a new PieceWiseLinearValueFunction.
 	 */
 	private ImmutableSortedMap<Double, Double> map;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
