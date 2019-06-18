@@ -42,6 +42,7 @@ import java.util.Properties;
 //import org.slf4j.LoggerFactory;
 import org.w3c.dom.DOMException;
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
+import io.github.oliviercailloux.y2018.apartments.toxmlproperties.XMLProperties;
 
 
 /**
@@ -60,11 +61,14 @@ public class PrintApartementGUI {
 	 * @throws IOException
 	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
+	 * @throws DOMException 
 	 */
 
 
 
-	public static void main(String args[]) throws IllegalArgumentException, IOException {
+	public static void main(String args[]) throws IllegalArgumentException, IOException, DOMException, IllegalAccessException {
+		
+		
 
 		Display display = new Display();
 	       Shell shell = new Shell(display);
@@ -79,24 +83,27 @@ public class PrintApartementGUI {
 	       shell.setLayout(layout);
 	       
 	       
-
+	      
 	       
-	       
-	 
+	    
 	       // Create a List
 	       // (Allows selecte multiple lines and display vertical scroll bar.).
 	       final List list = new List(shell, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 	       list.setLayoutData(new RowData(240, 100));
 	       
+	     
+	       ArrayList<Apartment> appart = new ArrayList<Apartment>(10);
+			 for(int i = 0; i < 10; ++i) {
+			  Apartment a = XMLProperties.generateRandomXML();
+			  appart.add(a);
+			 }
+			 
+			 for(Apartment a : appart) {
+			  System.out.println("Appart : " + a);
+			  list.add(a.getTitle() + "    "+ a.getAddress());
+			 }
 	       
-	       final String [] titres= new String[100];
-	       
-	       for(int i= 0; i<=9; i++) {
-	    	   //titres[i]= "titre "+ i;
-	    	   //titres= apps[i].getTitle();
-	    	   list.add("titre "+titres);
-	       }
-	       
+	     
 	       
 	 
 	       Label label = new Label(shell, SWT.NONE);
