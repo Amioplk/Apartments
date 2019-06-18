@@ -418,37 +418,5 @@ public class ApartmentValueFunction {
 		return ((floorAreaSubjectiveValue * floorAreaSubjectiveValueWeight + nbBedroomsSubjectiveValue * nbBedroomsSubjectiveValueWeight + nbSleepingSubjectiveValue * nbSleepingSubjectiveValueWeight + nbBathroomsSubjectiveValue * nbBathroomsSubjectiveValueWeight + terraceSubjectiveValue * terraceSubjectiveValueWeight + floorAreaTerraceSubjectiveValue * floorAreaTerraceSubjectiveValueWeight + wifiSubjectiveValue * wifiSubjectiveValueWeight + pricePerNightSubjectiveValue * pricePerNightSubjectiveValueWeight + nbMinNightSubjectiveValue * nbMinNightSubjectiveValueWeight + teleSubjectiveValue * teleSubjectiveValueWeight)
 				/ ( floorAreaSubjectiveValueWeight + nbBedroomsSubjectiveValueWeight + nbSleepingSubjectiveValueWeight + nbBathroomsSubjectiveValueWeight + terraceSubjectiveValueWeight + floorAreaTerraceSubjectiveValueWeight + wifiSubjectiveValueWeight + pricePerNightSubjectiveValueWeight + nbMinNightSubjectiveValueWeight + teleSubjectiveValueWeight));
 	}
-	
-	/**
-	 * @return A randomized ApartmentValueFunction
-	 */
-	public static ApartmentValueFunction getRandomApartmentValueFunction() {
-		
-		ApartmentValueFunction apartValueFunction = new ApartmentValueFunction();
-		
-		apartValueFunction.setFloorAreaValueFunction(new LinearValueFunction(0,200)); //PieceWiseLinear
-		apartValueFunction.setNbBedroomsValueFunction(new LinearValueFunction(0,6));
-		apartValueFunction.setNbSleepingValueFunction(new ConstantValueFunction<>());
-		apartValueFunction.setNbBathroomsValueFunction(new ConstantValueFunction<>());
-		apartValueFunction.setTerraceValueFunction(new ConstantValueFunction<>());
-		apartValueFunction.setFloorAreaTerraceValueFunction(new ConstantValueFunction<>());
-		apartValueFunction.setWifiValueFunction(new ConstantValueFunction<>());
-		apartValueFunction.setPricePerNightValueFunction(new ConstantValueFunction<>());
-		apartValueFunction.setNbMinNightValueFunction(new ConstantValueFunction<>());
-		apartValueFunction.setTeleValueFunction(new ConstantValueFunction<>());
-
-		apartValueFunction.floorAreaSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbBedroomsSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbSleepingSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbBathroomsSubjectiveValueWeight= 0.1;
-		apartValueFunction.terraceSubjectiveValueWeight= 0.1;
-		apartValueFunction.floorAreaTerraceSubjectiveValueWeight= 0.1;
-		apartValueFunction.wifiSubjectiveValueWeight= 0.1;
-		apartValueFunction.pricePerNightSubjectiveValueWeight= 0.1;
-		apartValueFunction.nbMinNightSubjectiveValueWeight= 0.1;
-		apartValueFunction.teleSubjectiveValueWeight= 0.1;
-		
-		return new ApartmentValueFunction();
-	}
 
 }
