@@ -12,7 +12,8 @@ import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 
 /**
  *
- * This class enables the user to load an XML file for an apartment and transform it to an apartment object.
+ * This class enables the user to load an XML file for an apartment and
+ * transform it to an apartment object.
  *
  */
 public class ReadApartmentsXMLFormat {
@@ -26,12 +27,17 @@ public class ReadApartmentsXMLFormat {
 		prop = new Properties();
 	}
 
-
 	/**
-	 * This method enables to read a XML file and store the informations into an apartment object. The XML file must contain at list a value for floorArea address and title. The key of each parameters in the XML file is respectively the name of the parameter.
+	 * This method enables to read a XML file and store the informations into an
+	 * apartment object. The XML file must contain at list a value for floorArea
+	 * address and title. The key of each parameters in the XML file is respectively
+	 * the name of the parameter.
+	 * 
 	 * @param input is the path of XML file
-	 * @return an apartment object with values for each parameters found in the XML files and default values for the other parameters.
-	 * @throws IOException if reading from the specified input streamresults in an <code>IOException</code>.
+	 * @return an apartment object with values for each parameters found in the XML
+	 *         files and default values for the other parameters.
+	 * @throws IOException if reading from the specified input streamresults in an
+	 *                     <code>IOException</code>.
 	 */
 	public Apartment readApartment(InputStream input) throws IOException {
 
@@ -42,10 +48,12 @@ public class ReadApartmentsXMLFormat {
 		LOGGER.info("XML Files loaded with success");
 
 		if (!prop.containsKey("floorArea") || !prop.containsKey("address") || !prop.containsKey("title")) {
-			throw new InvalidPropertiesFormatException("Capital information left for the creation of an Apartment Object");
+			throw new InvalidPropertiesFormatException(
+					"Capital information left for the creation of an Apartment Object");
 		}
 
-		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),prop.getProperty("address"),prop.getProperty("title"));
+		Apartment apartment = new Apartment(Double.parseDouble(prop.getProperty("floorArea")),
+				prop.getProperty("address"), prop.getProperty("title"));
 
 		if (prop.containsKey("description"))
 			apartment.setDescription(prop.getProperty("description"));
