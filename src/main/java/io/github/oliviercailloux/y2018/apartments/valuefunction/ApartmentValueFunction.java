@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -423,6 +424,7 @@ public class ApartmentValueFunction {
 				/ ( floorAreaSubjectiveValueWeight + nbBedroomsSubjectiveValueWeight + nbSleepingSubjectiveValueWeight + nbBathroomsSubjectiveValueWeight + terraceSubjectiveValueWeight + floorAreaTerraceSubjectiveValueWeight + wifiSubjectiveValueWeight + pricePerNightSubjectiveValueWeight + nbMinNightSubjectiveValueWeight + teleSubjectiveValueWeight));
 	}
 	
+	
 	/**
 	 * @return A randomized instance of an ApartmentValueFunction
 	 */
@@ -431,31 +433,40 @@ public class ApartmentValueFunction {
 		ApartmentValueFunction apartValueFunction = new ApartmentValueFunction();
 		Random random = new Random();
 		
-		// Utiliser map avec des clés des noms des attributs ?
-		// Map<String, List<Integer>> boundsMap = new HashMap<>();
+		HashMap<Double, Double>  nbBedroomsEndBoundMap= RandomRange.mapBound(4,6);
+		HashMap<Double, Double>  nbSleepingEndBoundMap= RandomRange.mapBound(4,6);
+		HashMap<Double, Double>  nbBathroomsEndBoundMap= RandomRange.mapBound(2,3);
 		
-		// boundsMap.add();
-		int floorAreaEndBound = random.nextInt(100) + 1;
-		int nbBedroomsEndBound = random.nextInt(6) + 1;
-		int nbSleepingEndBound;
-		int nbBathroomsEndBound;
-		int terraceEndBound;
-		int floorAreaTerraceEndBound;
-		int wifiEndBound;
-		int pricePerNightEndBound;
-		int nbMinNightEndBound;
-		int teleEndBound;
+		int floorAreaEndBound = random.nextInt(80) + 21;
+		int terraceEndBoundInt = random.nextInt(2);
+		boolean terraceEndBound = false;
+		if (terraceEndBoundInt == 1) terraceEndBound = true;
+		int floorAreaTerraceEndBound = random.nextInt(80) + 21;
+		int wifiEndBoundInt = random.nextInt(2);
+		boolean wifiEndBound = false;
+		if (wifiEndBoundInt == 1) wifiEndBound = true;
+		int pricePerNightEndBound = random.nextInt(180) + 21;
+		int nbMinNightEndBound = random.nextInt(7) + 3;
+		int teleEndBoundInt = random.nextInt(2);
+		boolean teleEndBound = false;
+		if (teleEndBoundInt == 1) teleEndBound = true;
 		
-		apartValueFunction.setFloorAreaValueFunction(new LinearValueFunction(0,floorAreaEndBound)); // PieceWiseLinear
-		apartValueFunction.setNbBedroomsValueFunction(new LinearValueFunction(0,nbBedroomsEndBound));
-		apartValueFunction.setNbSleepingValueFunction(new LinearValueFunction(0,10));
-		apartValueFunction.setNbBathroomsValueFunction(new DiscreteValueFunction<Double>(0d, 1d, 2d)); // Randomize map
-		apartValueFunction.setTerraceValueFunction(new BooleanValueFunction(true));
-		apartValueFunction.setFloorAreaTerraceValueFunction(new ConstantValueFunction<>()); // Comment faire ?
-		apartValueFunction.setWifiValueFunction(new BooleanValueFunction(true));
-		apartValueFunction.setPricePerNightValueFunction(new LinearValueFunction(20,150));
-		apartValueFunction.setNbMinNightValueFunction(new ReversedLinearValueFunction(1, 6));
-		apartValueFunction.setTeleValueFunction(new BooleanValueFunction(true));
+		int floorAreaStartBound = random.nextInt(floorAreaEndBound);
+		int floorAreaTerraceStartBound = random.nextInt(floorAreaTerraceEndBound);
+		int pricePerNightStartBound = random.nextInt(pricePerNightEndBound);
+		int nbMinNightStartBound = random.nextInt(nbMinNightEndBound);
+		
+		
+		apartValueFunction.setFloorAreaValueFunction(new LinearValueFunction(floorAreaStartBound,floorAreaEndBound));
+		apartValueFunction.setNbBedroomsValueFunction(new DiscreteValueFunction<Double>(nbBedroomsEndBoundMap));
+		apartValueFunction.setNbSleepingValueFunction(new DiscreteValueFunction<Double>(nbSleepingEndBoundMap));
+		apartValueFunction.setNbBathroomsValueFunction(new DiscreteValueFunction<Double>(nbBathroomsEndBoundMap));
+		apartValueFunction.setTerraceValueFunction(new BooleanValueFunction(terraceEndBound));
+		apartValueFunction.setFloorAreaTerraceValueFunction(new LinearValueFunction(floorAreaTerraceStartBound,floorAreaTerraceEndBound));
+		apartValueFunction.setWifiValueFunction(new BooleanValueFunction(wifiEndBound));
+		apartValueFunction.setPricePerNightValueFunction(new LinearValueFunction(pricePerNightStartBound,pricePerNightEndBound));
+		apartValueFunction.setNbMinNightValueFunction(new ReversedLinearValueFunction(nbMinNightStartBound, nbMinNightEndBound));
+		apartValueFunction.setTeleValueFunction(new BooleanValueFunction(teleEndBound));
 
 		List<Double> weightRange = RandomRange.weightRangeOfSum(1d, 10);
 		
