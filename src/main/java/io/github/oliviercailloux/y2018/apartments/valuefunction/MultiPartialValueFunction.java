@@ -40,7 +40,7 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	 */
 	public MultiPartialValueFunction(Map<Double, Double> parameters, SortedMap<Range<Double>, PartialValueFunction<Double>> partials) {
 
-		setPartials(partials);
+		this.partials = partials;
 		
 		if (!parameters.containsValue(0d) || !parameters.containsValue(1d)) {
 			throw new IllegalArgumentException("The value associated to the grade 0 or 1 is missing.");
@@ -66,10 +66,12 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	public void setPartials(SortedMap<Range<Double>, PartialValueFunction<Double>> partials) {
 		
 		if(partials.firstKey().lowerEndpoint() != this.map.firstKey()) {
-			// Problem : log
+			LOGGER.debug("The partials could not be set correctly, missing data.");
+			throw new IllegalArgumentException("The PartialValueFunction type used in the first interval is missing.");
 		}
 		if(partials.lastKey().upperEndpoint() != this.map.lastKey()) {
-			// Problem : log
+			LOGGER.debug("The partials could not be set correctly, missing data.");
+			throw new IllegalArgumentException("The PartialValueFunction type used in the last interval is missing.");
 		}
 		
 		this.partials = partials;
@@ -90,10 +92,16 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 		}
 		
 		Double minKey = map.floorEntry(objectiveData).getKey();
+		Double maxKey = map.ceilingEntry(objectiveData).getKey();
 		
-		PartialValueFunction<Double> pvf = partials.getOrDefault(minKey, new ConstantValueFunction<Double>(0));
+		PartialValueFunction<Double> partialValueFunction = new ConstantValueFunction<>();
+		for(Range<Double> range: partials.keySet()) {
+			if(range.contains(maxKey) && range.contains(minKey)) {
+				partialValueFunction = partials.get(range);
+			}
+		}
 		
-		return pvf.getSubjectiveValue(objectiveData);
+		return partialValueFunction.getSubjectiveValue(objectiveData);
 	
 	}
 

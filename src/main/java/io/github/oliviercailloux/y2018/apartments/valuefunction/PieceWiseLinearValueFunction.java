@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
+import java.util.Comparator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
@@ -9,7 +10,7 @@ import com.google.common.collect.Range;
 /**
  * A class that allows the user to determinate the subjective value of a double
  * given in argument, according to two or more known values.
-
+ * 
  * 
  */
 public class PieceWiseLinearValueFunction extends MultiPartialValueFunction {
@@ -24,21 +25,23 @@ public class PieceWiseLinearValueFunction extends MultiPartialValueFunction {
 	 *                   grade 0, and another value associated to the grade 1.
 	 */
 	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
-		
-		super(parameters, new ConcurrentSkipListMap<Range<Double>,PartialValueFunction<Double>>());
-		
-		ConcurrentSkipListMap<Range<Double>,PartialValueFunction<Double>> linears = new ConcurrentSkipListMap<Range<Double>,PartialValueFunction<Double>>();
-		
+
+		super(parameters, new ConcurrentSkipListMap<Range<Double>, PartialValueFunction<Double>>());
+
+		ConcurrentSkipListMap<Range<Double>, PartialValueFunction<Double>> linears = new ConcurrentSkipListMap<Range<Double>, PartialValueFunction<Double>>(
+				Comparator.comparingDouble(Range::lowerEndpoint));
+
 		Preconditions.checkNotNull(map);
-		
-		for(Double k : map.keySet()) {
-			if(map.higherKey(k) != null) {
-				linears.put(Range.closed(map.floorKey(k),map.higherKey(k)),new LinearValueFunction(map.floorEntry(k),map.higherEntry(k)));
+
+		for (Double k : map.keySet()) {
+			if (map.higherKey(k) != null) {
+				linears.put(Range.closed(map.floorKey(k), map.higherKey(k)),
+						new LinearValueFunction(map.floorEntry(k), map.higherEntry(k)));
 			}
 		}
-		
+
 		setPartials(linears);
-		
+
 	}
 
 	public double getSubjectiveValue(int objectiveDataInt) {
