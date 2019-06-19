@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Range;
 
 /**
  * A class that allows the user to determinate the subjective value of a double
@@ -24,15 +25,15 @@ public class PieceWiseLinearValueFunction extends MultiPartialValueFunction {
 	 */
 	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
 		
-		super(parameters, new ConcurrentSkipListMap<Double,PartialValueFunction<Double>>());
+		super(parameters, new ConcurrentSkipListMap<Range<Double>,PartialValueFunction<Double>>());
 		
-		ConcurrentSkipListMap<Double,PartialValueFunction<Double>> linears = new ConcurrentSkipListMap<Double,PartialValueFunction<Double>>();
+		ConcurrentSkipListMap<Range<Double>,PartialValueFunction<Double>> linears = new ConcurrentSkipListMap<Range<Double>,PartialValueFunction<Double>>();
 		
 		Preconditions.checkNotNull(map);
 		
 		for(Double k : map.keySet()) {
 			if(map.higherKey(k) != null) {
-				linears.put(k,new LinearValueFunction(map.floorEntry(k),map.higherEntry(k)));
+				linears.put(Range.closed(map.floorKey(k),map.higherKey(k)),new LinearValueFunction(map.floorEntry(k),map.higherEntry(k)));
 			}
 		}
 		

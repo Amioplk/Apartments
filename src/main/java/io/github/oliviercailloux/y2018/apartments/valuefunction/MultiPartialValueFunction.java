@@ -12,20 +12,20 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Verify;
 import com.google.common.collect.Comparators;
 import com.google.common.collect.ImmutableSortedMap;
+import com.google.common.collect.Range;
 
 /**
  * @author Amioplk, alexisperdereau
  * A class which enables to get a utility whose type is different between 0 and 1
- * Does only work with ? extends PartialValueFunction<Double>
+ * Does only work with PartialValueFunction<Double>, not PartialValueFunction<T>
  */
 public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	
 	/**
-	 * Represents the PartialValueFunctions used from the key
-	 * A map of PartialValueFunctions 
-	 * Must have a size which is the size of map - 1
+	 * Represents the PartialValueFunctions used in the key Range
+	 * A map of PartialValueFunctions
 	 */
-	protected SortedMap<Double, PartialValueFunction<Double>> partials;
+	protected SortedMap<Range<Double>, PartialValueFunction<Double>> partials;
 	protected ImmutableSortedMap<Double, Double> map;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 	
@@ -38,7 +38,7 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	 *                   to be sorted. There has to be a value associated to the
 	 *                   grade 0, and another value associated to the grade 1.
 	 */
-	public MultiPartialValueFunction(Map<Double, Double> parameters, SortedMap<Double, PartialValueFunction<Double>> partials) {
+	public MultiPartialValueFunction(Map<Double, Double> parameters, SortedMap<Range<Double>, PartialValueFunction<Double>> partials) {
 
 		setPartials(partials);
 		
@@ -59,20 +59,28 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 		LOGGER.info("The map of data has been successfully instantiated.");
 	}
 	
-	public SortedMap<Double, PartialValueFunction<Double>> getPartials() {
+	public SortedMap<Range<Double>, PartialValueFunction<Double>> getPartials() {
 		return partials;
 	}
 
-	public void setPartials(SortedMap<Double, PartialValueFunction<Double>> partials) {
+	public void setPartials(SortedMap<Range<Double>, PartialValueFunction<Double>> partials) {
+		
+		if(partials.firstKey().lowerEndpoint() != this.map.firstKey()) {
+			// Problem : log
+		}
+		if(partials.lastKey().upperEndpoint() != this.map.lastKey()) {
+			// Problem : log
+		}
+		
 		this.partials = partials;
 	}
 
 	@Override
-	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException {
+	public double getSubjectiveValue(Double objectiveData) {
 		
 		Preconditions.checkNotNull(this.partials);
-		Verify.verify(this.partials.size() == map.size() - 1);
-		Verify.verify(map.size() >= 2); // Then partials.size() >= 1
+		Verify.verify(map.size() >= 2);
+		Verify.verify(this.partials.size() >= 1);
 		
 		if (objectiveData <= map.firstKey()) {
 			return 0d;
