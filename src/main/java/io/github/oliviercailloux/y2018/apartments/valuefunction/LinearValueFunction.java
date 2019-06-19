@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +16,9 @@ public class LinearValueFunction implements PartialValueFunction<Double> {
 
 	private Range<Double> interval ;
 	private final static Logger LOGGER = LoggerFactory.getLogger(LinearValueFunction.class);
-
+	private double minSubjectiveValue;
+	private double maxSubjectiveValue;
+	
 	/**
 	 * Builder of the class LinearValueFunction.
 	 * @param min lower bound of the interval
@@ -26,27 +30,53 @@ public class LinearValueFunction implements PartialValueFunction<Double> {
 			throw new IllegalArgumentException("The upper bound can't be equal to the lower bound.");
 		}
 		interval = Range.closed(min, max);
+		setMinSubjectiveValue(0);
+		setMaxSubjectiveValue(1);
 		LOGGER.info("The interval ["+min+","+max+"] "+" has been set with success in the LinearValueFunction class.");
 	}
 
+	public LinearValueFunction (Map.Entry<Double,Double> min, Map.Entry<Double,Double> max) {
+		this(min.getKey(), max.getKey());
+		setMinSubjectiveValue(min.getValue());
+		setMaxSubjectiveValue(max.getValue());
+	}
+	
 	@Override
 	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException, IllegalStateException {
 		if (interval.isEmpty())
 			throw new IllegalStateException();
 		if(interval.lowerEndpoint() >= objectiveData) {
-			return 0;
+			return 0; // Is it safe ? What about minSubjectiveData ?
 		}
 		else if(interval.upperEndpoint() <= objectiveData) {
-			return 1;
+			return 1; // Is it safe ? What about maxSubjectiveData ?
 		}
 		else {
-			return (objectiveData - interval.lowerEndpoint())/(interval.upperEndpoint() - interval.lowerEndpoint());
+			return (maxSubjectiveValue - minSubjectiveValue)*(objectiveData - interval.lowerEndpoint())
+					/(interval.upperEndpoint() - interval.lowerEndpoint())
+					+ minSubjectiveValue;
 		}
 	}
 
 	@Override
 	public Double apply(Double objectiveData) {
 		return getSubjectiveValue(objectiveData);
+	}
+
+	public double getMinSubjectiveValue() {
+		return minSubjectiveValue;
+	}
+
+	public void setMinSubjectiveValue(double minSubjectiveValue) {
+		this.minSubjectiveValue = minSubjectiveValue;
+	}
+
+	public double getMaxSubjectiveValue() {
+		return maxSubjectiveValue;
+	}
+
+	public void setMaxSubjectiveValue(double maxSubjectiveValue) {
+		this.maxSubjectiveValue = maxSubjectiveValue;
 	}
 
 }

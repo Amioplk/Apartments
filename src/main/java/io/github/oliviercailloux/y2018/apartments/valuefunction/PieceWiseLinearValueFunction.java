@@ -3,7 +3,7 @@ package io.github.oliviercailloux.y2018.apartments.valuefunction;
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
-import com.google.common.base.Verify;
+import com.google.common.base.Preconditions;
 
 /**
  * A class that allows the user to determinate the subjective value of a double
@@ -28,43 +28,20 @@ public class PieceWiseLinearValueFunction extends MultiPartialValueFunction {
 		
 		ConcurrentSkipListMap<Double,PartialValueFunction<Double>> linears = new ConcurrentSkipListMap<Double,PartialValueFunction<Double>>();
 		
-		for(Double d : map.keySet()) {
-			linears.put(d,new LinearValueFunction(d,map.ceilingKey(d).doubleValue()));
+		Preconditions.checkNotNull(map);
+		
+		for(Double k : map.keySet()) {
+			if(map.higherKey(k) != null) {
+				linears.put(k,new LinearValueFunction(map.floorEntry(k),map.higherEntry(k)));
+			}
 		}
 		
 		setPartials(linears);
 		
 	}
 
-	@Override
-	public double getSubjectiveValue(Double objectiveData) {
-
-		Verify.verify(map.size() >= 2);
-
-		if (objectiveData <= map.firstKey()) {
-			return 0d;
-		}
-		if (objectiveData >= map.lastKey()) {
-			return 1d;
-		}
-
-		Map.Entry<Double, Double> minEntry = map.floorEntry(objectiveData);
-		Map.Entry<Double, Double> maxEntry = map.ceilingEntry(objectiveData);
-		Double minKey = minEntry.getKey();
-		Double maxKey = maxEntry.getKey();
-		Double minValue = minEntry.getValue();
-		Double maxValue = maxEntry.getValue();
-
-		return ((objectiveData - minKey) * (maxValue - minValue) / (maxKey - minKey)) + minValue;
-	}
-	
 	public double getSubjectiveValue(int objectiveDataInt) {
 		return this.getSubjectiveValue(Integer.valueOf(objectiveDataInt).doubleValue());
-	}
-
-	@Override
-	public Double apply(Double t) {
-		return getSubjectiveValue(t);
 	}
 
 }
