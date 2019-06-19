@@ -1,15 +1,9 @@
 package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
-import java.util.Comparator;
 import java.util.Map;
-import java.util.stream.Stream;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.google.common.base.Verify;
-import com.google.common.collect.Comparators;
-import com.google.common.collect.ImmutableSortedMap;
 
 /**
  * A class that allows the user to determinate the subjective value of a double
@@ -17,17 +11,7 @@ import com.google.common.collect.ImmutableSortedMap;
 
  * 
  */
-public class PieceWiseLinearValueFunction implements PartialValueFunction<Double> {
-
-	/**
-	 * The map is composed of all known utilities. For each entry, the Key
-	 * represents the value taken by the attribute and the Value is the grade
-	 * associated.
-	 * It is an ImmutableSortedMap, therefore it is not possible to set a different utility afterwards.
-	 * Do do so, we need to initialize a new PieceWiseLinearValueFunction.
-	 */
-	protected ImmutableSortedMap<Double, Double> map;
-	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
+public class PieceWiseLinearValueFunction extends MultiPartialValueFunction {
 
 	/**
 	 * Builder of the PieceWiseLinearValueFunction
@@ -39,22 +23,17 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	 *                   grade 0, and another value associated to the grade 1.
 	 */
 	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
-
-		if (!parameters.containsValue(0d) || !parameters.containsValue(1d)) {
-			throw new IllegalArgumentException("The value associated to the grade 0 or 1 is missing.");
+		
+		super(parameters, new ConcurrentSkipListMap<Double,PartialValueFunction<Double>>());
+		
+		ConcurrentSkipListMap<Double,PartialValueFunction<Double>> linears = new ConcurrentSkipListMap<Double,PartialValueFunction<Double>>();
+		
+		for(Double d : map.keySet()) {
+			linears.put(d,new LinearValueFunction(d,map.ceilingKey(d).doubleValue()));
 		}
-
-		Stream<Double> error = parameters.values().stream().filter(v -> v > 1d || v < 0d);
-		if (error.count() > 0) {
-			throw new IllegalArgumentException("The grades have to be between 0 and 1.");
-		}
-
-		map = ImmutableSortedMap.copyOf(parameters);
-		if (!Comparators.isInOrder(this.map.values(), Comparator.naturalOrder())) {
-			throw new IllegalArgumentException(
-					"A grade cannot be greater than another if its value associated is lower.");
-		}
-		LOGGER.info("The map of data has been successfully instantiated.");
+		
+		setPartials(linears);
+		
 	}
 
 	@Override
