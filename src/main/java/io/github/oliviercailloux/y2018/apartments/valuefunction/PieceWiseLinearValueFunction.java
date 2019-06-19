@@ -23,31 +23,32 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	 * represents the value taken by the attribute and the Value is the grade
 	 * associated.
 	 */
-	private ImmutableSortedMap<Double, Double> map;
+	private ImmutableSortedMap<Double, Double> utilities;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 
 	/**
 	 * Builder of the PieceWiseLinearValueFunction
 	 * 
-	 * @param parameters is the dictionary of all values along with the grades
-	 *                   associated to them, In this map, if the collection of keys
-	 *                   was sorted, then the collection of grades would also have
-	 *                   to be sorted. There has to be a value associated to the
-	 *                   grade 0, and another value associated to the grade 1.
+	 * @param utilParameters is the dictionary of all values along with the grades
+	 *                       associated to them, In this map, if the collection of
+	 *                       keys was sorted, then the collection of grades would
+	 *                       also have to be sorted. There has to be a value
+	 *                       associated to the grade 0, and another value associated
+	 *                       to the grade 1.
 	 */
-	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
+	public PieceWiseLinearValueFunction(Map<Double, Double> utilParameters) {
 
-		if (!parameters.containsValue(0d) || !parameters.containsValue(1d)) {
+		if (!utilParameters.containsValue(0d) || !utilParameters.containsValue(1d)) {
 			throw new IllegalArgumentException("The value associated to the grade 0 or 1 is missing.");
 		}
 
-		Stream<Double> error = parameters.values().stream().filter(v -> v > 1d || v < 0d);
+		Stream<Double> error = utilParameters.values().stream().filter(v -> v > 1d || v < 0d);
 		if (error.count() > 0) {
 			throw new IllegalArgumentException("The grades have to be between 0 and 1.");
 		}
 
-		map = ImmutableSortedMap.copyOf(parameters);
-		if (!Comparators.isInOrder(this.map.values(), Comparator.naturalOrder())) {
+		utilities = ImmutableSortedMap.copyOf(utilParameters);
+		if (!Comparators.isInOrder(this.utilities.values(), Comparator.naturalOrder())) {
 			throw new IllegalArgumentException(
 					"A grade cannot be greater than another if its value associated is lower.");
 		}
@@ -57,17 +58,17 @@ public class PieceWiseLinearValueFunction implements PartialValueFunction<Double
 	@Override
 	public double getSubjectiveValue(Double objectiveData) {
 
-		Verify.verify(map.size() >= 2);
+		Verify.verify(utilities.size() >= 2);
 
-		if (objectiveData <= map.firstKey()) {
+		if (objectiveData <= utilities.firstKey()) {
 			return 0d;
 		}
-		if (objectiveData >= map.lastKey()) {
+		if (objectiveData >= utilities.lastKey()) {
 			return 1d;
 		}
 
-		Map.Entry<Double, Double> minEntry = map.floorEntry(objectiveData);
-		Map.Entry<Double, Double> maxEntry = map.ceilingEntry(objectiveData);
+		Map.Entry<Double, Double> minEntry = utilities.floorEntry(objectiveData);
+		Map.Entry<Double, Double> maxEntry = utilities.ceilingEntry(objectiveData);
 		Double minKey = minEntry.getKey();
 		Double maxKey = maxEntry.getKey();
 		Double minValue = minEntry.getValue();
