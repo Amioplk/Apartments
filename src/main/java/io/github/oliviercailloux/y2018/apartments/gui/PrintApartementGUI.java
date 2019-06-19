@@ -1,49 +1,18 @@
 package io.github.oliviercailloux.y2018.apartments.gui;
 
-/*import java.awt.Font;
-
+import java.awt.Font;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
 
-import io.github.oliviercailloux.y2018.apartments.toxmlproperties.XMLProperties;*/
-
 import org.eclipse.swt.SWT;
-//import org.eclipse.swt.layout.RowData;
-
-
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import org.w3c.dom.DOMException;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Shell;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Properties;
-
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-import org.w3c.dom.DOMException;
-import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
-import io.github.oliviercailloux.y2018.apartments.toxmlproperties.XMLProperties;
-
 
 /**
  * @author AITALIBRAHAM & SAKHO
@@ -51,9 +20,9 @@ import io.github.oliviercailloux.y2018.apartments.toxmlproperties.XMLProperties;
  */
 public class PrintApartementGUI {
 	/**
-	 * This class aims to print apartments to the users
+	 * This class aims to print an apartment to the users
 	 */
-	//private final static Logger LOGGER = LoggerFactory.getLogger(CreateApartmentGUI.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(CreateApartmentGUI.class);
 
 	/**
 	 * @param filename : the file describing apartments should be given in
@@ -61,78 +30,74 @@ public class PrintApartementGUI {
 	 * @throws IOException
 	 * @throws IllegalAccessException
 	 * @throws IllegalArgumentException
-	 * @throws DOMException 
 	 */
 
+	public Apartment appar;
+	protected static Display display = new Display();
+	protected static Shell shell = new Shell(display);
 
+	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
+		this.appar = new Apartment(20.0, "20 rue des consé", "Test Apartment", 0, 0, 0, 0, 0, 0, false);
 
-	public static void main(String args[]) throws IllegalArgumentException, IOException, DOMException, IllegalAccessException {
-		
-		
-
-		Display display = new Display();
-	       Shell shell = new Shell(display);
-	       shell.setText("SWT List (o7planning.org)");
-	       shell.setSize(700, 1000);
-	 
-	       RowLayout layout = new RowLayout(SWT.VERTICAL);
-	       layout.spacing = 10;
-	       layout.marginHeight = 10;
-	       layout.marginWidth = 10;
-	 
-	       shell.setLayout(layout);
-	       
-	       
-	      
-	       
-	    
-	       // Create a List
-	       // (Allows selecte multiple lines and display vertical scroll bar.).
-	       final List list = new List(shell, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
-	       list.setLayoutData(new RowData(240, 100));
-	       
-	     
-	       ArrayList<Apartment> appart = new ArrayList<Apartment>(10);
-			 for(int i = 0; i < 10; ++i) {
-			  Apartment a = XMLProperties.generateRandomXML();
-			  appart.add(a);
-			 }
-			 
-			 for(Apartment a : appart) {
-			  System.out.println("Appart : " + a);
-			  list.add(a.getTitle() + "    "+ a.getAddress());
-			 }
-	       
-	     
-	       
-	 
-	       Label label = new Label(shell, SWT.NONE);
-	       label.setLayoutData(new RowData(240, SWT.DEFAULT));
-	 
-	       list.addSelectionListener(new SelectionAdapter() {
-	 
-	           @Override
-	           public void widgetSelected(SelectionEvent event) {
-	               int[] selections = list.getSelectionIndices();
-	               String outText = "";
-	               for (int i = 0; i < selections.length; i++) {
-	                   outText += selections[i] + " ";
-	               }
-	               label.setText("You selected: " + outText);
-	           }
-	 
-	       });
-	 
-	       shell.open();
-	       while (!shell.isDisposed()) {
-	           if (!display.readAndDispatch())
-	               display.sleep();
-	       }
-	       display.dispose();
 	}
+
+	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
+		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
+		FileInputStream fileinputstream = new FileInputStream(fileName);
+		this.appar = xmlReader.readApartment(fileinputstream);
+
+		LOGGER.info("Apratement has been loaded ");
+//lecture d'un appartement au format xml
+
+	}
+
+	/**
+	 * @param args
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws IOException
+	 */
+
+	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
+
+		@SuppressWarnings("unused")
+//PrintApartementGUI prtApp = new PrintApartementGUI("/home/aissatou/PROJETJAVA/Apartments/src/main/java/io/github/oliviercailloux/y2018/apartments/gui/testXML.xml");
+		PrintApartementGUI prtApp = new PrintApartementGUI();
+
+		LOGGER.info("Test Apartment has been created");
+		Label title = new Label(shell, SWT.CENTER);
+		Label adress = new Label(shell, SWT.CENTER);
+		Label florArea = new Label(shell, SWT.CENTER);
+		Label wifi = new Label(shell, SWT.CENTER);
+
+		title.setText(prtApp.appar.getTitle());
+		adress.setText("adress " + prtApp.appar.getAddress());
+		florArea.setText("floor Area " + prtApp.appar.getFloorArea() + " m2 ");
+		wifi.setText("wifi " + prtApp.appar.getWifi() + "");
+
+		wifi.pack();
+		florArea.pack();
+		adress.pack();
+		title.pack();
+
+		florArea.setLocation(100, 60);
+		adress.setLocation(100, 90);
+		wifi.setLocation(100, 120);
+		title.setLocation(100, 20);
+
+		shell.setText("Apartments");
+		shell.setMinimumSize(1000, 500);
+		shell.setSize(1000, 1500);
+		shell.pack();
+		shell.open();
+
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch())
+				display.sleep();
+		}
+		title.dispose();
+		display.dispose();
+
+	}
+
 }
-	
-
-	
-
-
