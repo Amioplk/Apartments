@@ -49,10 +49,10 @@ public class LinearValueFunction implements PartialValueFunction<Double> {
 	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException, IllegalStateException {
 		if (interval.isEmpty())
 			throw new IllegalStateException();
-		if(interval.lowerEndpoint() >= objectiveData) {
+		if(interval.lowerEndpoint() > objectiveData) {
 			return 0; // Is it safe ? What about minSubjectiveData ?
 		}
-		else if(interval.upperEndpoint() <= objectiveData) {
+		else if(interval.upperEndpoint() < objectiveData) {
 			return 1; // Is it safe ? What about maxSubjectiveData ?
 		}
 		else {

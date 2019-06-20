@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +14,8 @@ import com.google.common.collect.Range;
  */
 public class ReversedLinearValueFunction implements PartialValueFunction<Double> {
 
+	private double minSubjectiveValue;
+	private double maxSubjectiveValue;
 	private Range<Double> interval ;
 	private final static Logger LOGGER = LoggerFactory.getLogger(ReversedLinearValueFunction.class);
 
@@ -30,6 +34,17 @@ public class ReversedLinearValueFunction implements PartialValueFunction<Double>
 		LOGGER.info("The interval ["+min+","+max+"] "+" has been set with success in the LinearValueFunction class.");
 	}
 
+	/**
+	 * @param min represents the lowerEndBound of the desired interval, along with its subjectiveValue associated
+	 * @param max represents the upperEndBound of the desired interval, along with its subjectiveValue associated
+	 */
+	public ReversedLinearValueFunction (Map.Entry<Double,Double> min, Map.Entry<Double,Double> max) {
+		this(min.getKey(), max.getKey());
+		setMinSubjectiveValue(min.getValue());
+		setMaxSubjectiveValue(max.getValue());
+	}
+	
+	
 	@Override
 	public double getSubjectiveValue(Double objectiveData) throws IllegalArgumentException {
 		if(interval.lowerEndpoint() > objectiveData) {
@@ -46,6 +61,22 @@ public class ReversedLinearValueFunction implements PartialValueFunction<Double>
 	@Override
 	public Double apply(Double objectiveData) {
 		return getSubjectiveValue(objectiveData);
+	}
+
+	public double getMinSubjectiveValue() {
+		return minSubjectiveValue;
+	}
+
+	public void setMinSubjectiveValue(double minSubjectiveValue) {
+		this.minSubjectiveValue = minSubjectiveValue;
+	}
+
+	public double getMaxSubjectiveValue() {
+		return maxSubjectiveValue;
+	}
+
+	public void setMaxSubjectiveValue(double maxSubjectiveValue) {
+		this.maxSubjectiveValue = maxSubjectiveValue;
 	}
 
 }
