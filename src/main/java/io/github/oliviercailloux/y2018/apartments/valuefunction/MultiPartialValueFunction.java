@@ -40,6 +40,13 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	 */
 	public MultiPartialValueFunction(Map<Double, Double> parameters, SortedMap<Range<Double>, PartialValueFunction<Double>> partials) {
 
+		Preconditions.checkNotNull(partials);
+		Preconditions.checkArgument(partials.size() >= 1);
+		
+		if(partials.comparator().compare(Range.closed(0d,1d), Range.closed(1d,2d)) >= 0) {
+			throw new IllegalArgumentException("The comparator of the SortedMap is not valid for Range<Double,Double>.");
+		}
+
 		this.partials = partials;
 		
 		if (!parameters.containsValue(0d) || !parameters.containsValue(1d)) {
@@ -82,7 +89,6 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 		
 		Preconditions.checkNotNull(this.partials);
 		Verify.verify(map.size() >= 2);
-		Verify.verify(this.partials.size() >= 1);
 		
 		if (objectiveData <= map.firstKey()) {
 			return 0d;
@@ -94,13 +100,13 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 		Double minKey = map.floorEntry(objectiveData).getKey();
 		Double maxKey = map.ceilingEntry(objectiveData).getKey();
 		
-		PartialValueFunction<Double> partialValueFunction = new ConstantValueFunction<>();
+		PartialValueFunction<Double> partialValueFunction = new ConstantValueFunction<>(-1);
 		for(Range<Double> range: partials.keySet()) {
 			if(range.contains(maxKey) && range.contains(minKey)) {
 				partialValueFunction = partials.get(range);
 			}
 		}
-		
+
 		return partialValueFunction.getSubjectiveValue(objectiveData);
 	
 	}

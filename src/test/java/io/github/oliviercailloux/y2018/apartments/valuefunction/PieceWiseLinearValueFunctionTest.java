@@ -1,8 +1,8 @@
 package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.SortedMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -38,7 +38,7 @@ public class PieceWiseLinearValueFunctionTest {
 
 	private static PieceWiseLinearValueFunction initializePieceWise() {
 
-		Map<Double, Double> map = new HashMap<>();
+		SortedMap<Double, Double> map = new ConcurrentSkipListMap<>();
 		map.put(0d, 0d);
 		map.put(10d, 0.5);
 		map.put(30d, 1d);
