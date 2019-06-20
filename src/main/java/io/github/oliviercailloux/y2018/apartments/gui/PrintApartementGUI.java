@@ -1,24 +1,38 @@
 package io.github.oliviercailloux.y2018.apartments.gui;
 
 
+
+import java.awt.Window;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.omg.CORBA.portable.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +41,21 @@ import org.slf4j.LoggerFactory;
  * 
  */
 public class PrintApartementGUI {
+	
+	
+	
+	   
+	   public static Image resize(Image image, int width, int height) {
+		   Image scaled = new Image(Display.getDefault(), width, height);
+		   GC gc = new GC(scaled);
+		   gc.setAntialias(SWT.ON);
+		   gc.setInterpolation(SWT.HIGH);
+		   gc.drawImage(image, 0, 0,image.getBounds().width, image.getBounds().height, 0, 0, width, height);
+		   gc.dispose();
+		   image.dispose(); // don't forget about me!
+		   return scaled;
+		 }
+	   
 	/**
 	 * This class aims to print an apartment to the users
 	 */
@@ -43,8 +72,9 @@ public class PrintApartementGUI {
 	public Apartment appar;
 	protected static Display display; 
 	protected static Shell shell;
-
-	public static void setDisplayApartment(){
+	private int i = 0;
+	
+	public static void setDisplayApartment() {
 		display = new Display();
 		shell = new Shell(display);
 
@@ -89,8 +119,8 @@ public class PrintApartementGUI {
 		
 		LOGGER.info("Test Apartment has been created");
 		
-		prtApp.appar.addImages("118021148.jpg");
-	
+		prtApp.appar.addImages("image.jpg");
+		prtApp.appar.addImages("image2.jpg");
 		
 		while (!shell.isDisposed())
 			if (!display.readAndDispatch())
@@ -130,24 +160,56 @@ public class PrintApartementGUI {
 		pricePerNight.setLocation(25 , 50 );
 		florArea.setLocation(25, 110);
 		adress.setLocation(25, 125);
-		imageLabel.setLocation(25, 145);
-		imageLabel.setSize(400 , 300);
-		
+		imageLabel.setLocation(50, 160);
+		imageLabel.setSize(100, 100);
 		title.setFont( new Font(display,"Calibri", 24, SWT.COLOR_BLACK ));
 		pricePerNight.setFont(new Font(display,"Calibri", 28, SWT.COLOR_DARK_GREEN));
 		pricePerNight.setForeground(new Color(printAppartmentGui.display, 100,150,80));
 		florArea.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		adress.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
+		
+		
+
+		imageLabel.setImage(image);
+		image = resize (image, 500, 500);
 		imageLabel.setImage(image);
 		
-		title.pack();
+	    final Button button1 = new Button(shell, SWT.BUTTON4);
+	    button1.setText("next");
+	    button1.setLocation(550,);
+	    button1.setSize(new Point(20,500));
+	   
+	  
+	  
+	    title.pack();
 		pricePerNight.pack();
 		florArea.pack();
 		adress.pack();
 		imageLabel.pack();
-		
-		
-		
+	    
+	    Label label = new Label(shell, 0);
+	    
+	   button1.addSelectionListener(new SelectionAdapter() {
+		   public void widgetSelected(SelectionEvent arg0) {
+			   if (i < listImage.size()-1) i++;
+			   else 
+				   i = 0;
+			   Image image = new Image (display, getClass().getClassLoader().getResourceAsStream(listImage.get(i)));
+			   image = resize (image, 500, 500);
+			   
+			   imageLabel.setImage(image);
+			   imageLabel.pack();
+			   button1.pack();
+		   }
+		 
+		   
+	});
+	   button1.moveAbove(imageLabel);
+	   button1.pack();
+	
+	   
 	}
+
+	
 
 }
