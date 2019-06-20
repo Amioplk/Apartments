@@ -1,8 +1,10 @@
 package io.github.oliviercailloux.y2018.apartments.gui;
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
@@ -60,6 +62,7 @@ public class PrintApartementGUI {
 			setDisplayApartment();
 		}
 		this.appar = new Apartment(20.0, "20 rue des consé", "Test Apartment pour ta mère, mais pas grave");
+		
 	}
 
 	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
@@ -67,10 +70,12 @@ public class PrintApartementGUI {
 			setDisplayApartment();
 		}
 		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
-		FileInputStream fileinputstream = new FileInputStream(fileName);
-		this.appar = xmlReader.readApartment(fileinputstream);
-
+		InputStream inputstream = PrintApartementGUI.class.getResourceAsStream(fileName);
+		this.appar = xmlReader.readApartment(inputstream);
+		this.appar.setImages(findOutImagesPaths(this.appar.getImagesFloder()));
+		
 		LOGGER.info("Apratement has been loaded ");
+		LOGGER.info(this.appar.getImages().toString());
 
 	}
 
@@ -83,14 +88,9 @@ public class PrintApartementGUI {
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
 
 		@SuppressWarnings("unused")
-		// PrintApartementGUI prtApp = new
-		// PrintApartementGUI("/home/aissatou/PROJETJAVA/Apartments/src/main/java/io/github/oliviercailloux/y2018/apartments/gui/testXML.xml");
-		PrintApartementGUI prtApp = new PrintApartementGUI();
+		PrintApartementGUI prtApp = new PrintApartementGUI("apartTest.xml");
 		
 		LOGGER.info("Test Apartment has been created");
-		
-		prtApp.appar.addImages("118021148.jpg");
-	
 		
 		while (!shell.isDisposed())
 			if (!display.readAndDispatch())
@@ -103,9 +103,10 @@ public class PrintApartementGUI {
 	 * @param appar
 	 * this function aims to design and complete the window with all the information of the apartment
 	 * It also shows an image of the apartment, and let the user navigate between the available images
+	 * @throws IOException 
 	 */
 	@SuppressWarnings("unused")
-	public void setWindow(PrintApartementGUI printAppartmentGui) {
+	public void setWindow(PrintApartementGUI printAppartmentGui) throws IOException {
 		Label title = new Label(shell, SWT.CENTER);
 		Label adress = new Label(shell, SWT.CENTER);
 		Label florArea = new Label(shell, SWT.CENTER);
@@ -113,10 +114,14 @@ public class PrintApartementGUI {
 		Label pricePerNight = new Label(shell, SWT.CENTER);
 		Label imageLabel = new Label(shell, SWT.BORDER);
 		
+		
+		//Load all the images related to the apartment
 		ArrayList<String> listImage = printAppartmentGui.appar.getImages();
+		
+		
+		LOGGER.info("la liste des images : " + listImage.toString());
 		Image image;
-		LOGGER.info(""+getClass().getClassLoader().getResourceAsStream(listImage.get(0)));
-		image = new Image (display, getClass().getClassLoader().getResourceAsStream(listImage.get(0)));
+		image = new Image (display, PrintApartementGUI.class.getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(0)));
 		GC gc = new GC(image);
 		
 		title.setText(printAppartmentGui.appar.getTitle());
@@ -146,7 +151,34 @@ public class PrintApartementGUI {
 		adress.pack();
 		imageLabel.pack();
 		
+	}
+	
+	/**
+	 * @param FolderPath : the Path of the folder which contains Images related to the Apartment described in the XML file
+	 * @return ArrayList of strings, each string is the path of one image related to the apartment
+	 */
+
+	@SuppressWarnings("unused")
+	private ArrayList<String> findOutImagesPaths(String folderPath) throws IOException{
 		
+		try {
+			LOGGER.info(folderPath);
+			File file = new File(PrintApartementGUI.class.getResource(folderPath).getFile());
+			
+			LOGGER.info("Folder path has been set : " + file );
+			String liste[] = file.list();
+	        ArrayList<String> finalList  = new ArrayList<String>();
+	        for (String str : liste){
+	        	finalList.add(str);
+	        	LOGGER.info("a new path to another Image has been set : " + str);
+	        }
+	        return finalList;
+			
+		}
+	    catch(Exception e) {
+	    	e.printStackTrace();
+	    }
+		return null;
 		
 	}
 

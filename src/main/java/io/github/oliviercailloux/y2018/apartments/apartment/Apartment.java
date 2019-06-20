@@ -22,6 +22,10 @@ public class Apartment extends Object {
 	private static Logger LOGGER = LoggerFactory.getLogger(Apartment.class);
 
 	/**
+	 * @param imagesfolder contains the folder images ressources related to the apartment
+	 */
+	private String imagesFloder;	
+	/**
 	 * @param floorArea a real number it represents the floor area of the apartment in square meters.
 	 * Has to be initialized, if not, the apartment can't be created without a floor area.
 	 */
@@ -427,6 +431,14 @@ public class Apartment extends Object {
 	
 	public void setImages(ArrayList<String> images) {
 		this.images = images;
+	}
+
+	public String getImagesFloder() {
+		return imagesFloder;
+	}
+
+	public void setImagesFloder(String imagesFloder) {
+		this.imagesFloder = imagesFloder;
 	}
 
 }

@@ -78,8 +78,8 @@ public class ReadApartmentsXMLFormat {
 		if (prop.containsKey("nbMinNight"))
 			apartment.setNbMinNight(Integer.parseInt(prop.getProperty("nbMinNight")));
 		
-		if (prop.containsKey("Images"))
-			apartment.setImages(this.findOutImagesPaths(prop.getProperty("Images")));
+		if (prop.containsKey("images"))
+			apartment.setImagesFloder(prop.getProperty("images"));
 		
 		
 		LOGGER.info("Parameters inserted with success in the Apartment Object");
@@ -88,31 +88,5 @@ public class ReadApartmentsXMLFormat {
 		return apartment;
 	}
 	
-	/**
-	 * @param FolderPath : the Path of the folder which contains Images related to the Apartment described in the XML file
-	 * @return ArrayList of strings, each string is the path of one image related to the apratment
-	 */
-
-	private ArrayList<String> findOutImagesPaths(String FolderPath) throws IOException{
-		
-		try {
-			File file = new File(FolderPath).getAbsoluteFile();
-	        
-			LOGGER.info("Folder path has been set : " + file );
-			String liste[] = file.list();
-	        ArrayList<String> finalList  = new ArrayList<String>();
-	        for (String str : liste){
-	        	finalList.add(str);
-	        	LOGGER.info("a new path to another Image has been set : " + str);
-	        }
-	        return finalList;
-			
-		}
-	    catch(Exception e) {
-	    	e.printStackTrace();
-	    }
-		return null;
-		
-	}
 
 }

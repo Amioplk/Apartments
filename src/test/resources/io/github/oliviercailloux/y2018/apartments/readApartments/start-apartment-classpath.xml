@@ -11,5 +11,5 @@
 	<entry key="terrace">true</entry>
 	<entry key="floorAreaTerrace">160</entry>
 	<entry key="pricePerNight">3</entry>
-	<entry key="Images">/home/yanis/Documents/Apartments/src/test/resources/io/github/oliviercailloux/y2018/apartments/readApartments/Images_A</entry>
+	<entry key="Images">Images_A</entry>
 </properties>
