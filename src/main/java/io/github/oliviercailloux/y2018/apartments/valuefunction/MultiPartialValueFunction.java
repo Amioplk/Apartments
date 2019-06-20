@@ -26,6 +26,9 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	 * A map of PartialValueFunctions
 	 */
 	protected SortedMap<Range<Double>, PartialValueFunction<Double>> partials;
+	/**
+	 * Represents the subjectiveValues of the bounds
+	 */
 	protected ImmutableSortedMap<Double, Double> map;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 	
@@ -63,6 +66,9 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 			throw new IllegalArgumentException(
 					"A grade cannot be greater than another if its value associated is lower.");
 		}
+		
+		Verify.verify(partials.size() < map.size());
+		
 		LOGGER.info("The map of data has been successfully instantiated.");
 	}
 	
