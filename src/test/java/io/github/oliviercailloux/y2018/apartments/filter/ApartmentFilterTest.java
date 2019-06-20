@@ -16,51 +16,16 @@ import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsX
 
 public class ApartmentFilterTest {
 	
-	static List<Apartment> readTwoFilesWithDifferentTitles() throws NumberFormatException, InvalidPropertiesFormatException, IOException {
-		
-		ReadApartmentsXMLFormat readXML = new ReadApartmentsXMLFormat();
-		
-		InputStream input = new FileInputStream(new File("start-apartment.xml"));
-		Apartment a1 = readXML.readApartment(input);
-		if(!a1.getTitle().equals("hotel")) a1.setTitle("hotel");
-		
-		input = new FileInputStream(new File("start-apartment.xml"));
-		Apartment a2 = readXML.readApartment(input);
-		a2.setTitle("restaurant");
-		
-		List<Apartment> aparts = new ArrayList<Apartment>();
-		aparts.add(a1);
-		aparts.add(a2);
-		
-		return aparts;
-	}
-	
-	static List<Apartment> readTwoFilesWithDifferentNbOfBathrooms() throws NumberFormatException, InvalidPropertiesFormatException, IOException {
-		
-		ReadApartmentsXMLFormat readXML = new ReadApartmentsXMLFormat();
-		
-		InputStream input = new FileInputStream(new File("start-apartment.xml"));
-		Apartment a1 = readXML.readApartment(input);
-		if(!(a1.getNbBathrooms() < 2)) a1.setNbBathrooms(2);
-		
-		input = new FileInputStream(new File("start-apartment.xml"));
-		Apartment a2 = readXML.readApartment(input);
-		a2.setNbBathrooms(1);
-		
-		List<Apartment> aparts = new ArrayList<Apartment>();
-		aparts.add(a1);
-		aparts.add(a2);
-		
-		return aparts;
-	}
-	
-	
 	@Test
 	public void correctFilterOnTitle() throws NumberFormatException, InvalidPropertiesFormatException, IOException {
 		
-		List<Apartment> aparts = ApartmentFilterTest.readTwoFilesWithDifferentTitles();
-		Apartment a1 = aparts.get(0);
-		Apartment a2 = aparts.get(1);
+		List<Apartment> aparts = new ArrayList<>();
+		
+		Apartment a1 = getApartmentWithApropriateTitle(true);
+		Apartment a2 = getApartmentWithApropriateTitle(false);
+		
+		aparts.add(a1);
+		aparts.add(a2);
 		
 		ApartmentFilter filter = new ApartmentFilter();
 		filter.concat(a -> a.getTitle().contains("hotel"));
@@ -73,9 +38,13 @@ public class ApartmentFilterTest {
 	@Test
 	public void correctFilterOnNbBathroom() throws NumberFormatException, InvalidPropertiesFormatException, IOException {
 		
-		List<Apartment> aparts = ApartmentFilterTest.readTwoFilesWithDifferentNbOfBathrooms();
-		Apartment a1 = aparts.get(0);
-		Apartment a2 = aparts.get(1);
+		List<Apartment> aparts = new ArrayList<>();
+		
+		Apartment a1 = getApartmentWithApropriateNbOfBathroom(true);
+		Apartment a2 = getApartmentWithApropriateNbOfBathroom(false);
+		
+		aparts.add(a1);
+		aparts.add(a2);
 		
 		ApartmentFilter filter = new ApartmentFilter();
 		filter.concat(a -> a.getNbBathrooms() >= 2);
@@ -88,27 +57,61 @@ public class ApartmentFilterTest {
 	@Test
 	public void correctFilterOnBothTitleAndBathroom() throws NumberFormatException, InvalidPropertiesFormatException, IOException {
 		
-		List<Apartment> aparts1 = ApartmentFilterTest.readTwoFilesWithDifferentTitles();
-		Apartment a1 = aparts1.get(0);
-		aparts1.get(0).setNbBathrooms(2);
-		Apartment a2 = aparts1.get(1);
+		List<Apartment> aparts = new ArrayList<>();
 		
-		List<Apartment> aparts2 = ApartmentFilterTest.readTwoFilesWithDifferentNbOfBathrooms();
-		Apartment a3 = aparts2.get(0);
-		aparts2.get(0).setTitle("hotel");
-		Apartment a4 = aparts2.get(1);
+		Apartment a1 = getApartmentWithApropriateNbOfBathroom(true);
+		a1.setTitle("restaurant");
+		Apartment a2 = getApartmentWithApropriateNbOfBathroom(false);
+		Apartment a3 = getApartmentWithApropriateTitle(true);
+		a3.setNbBathrooms(1);
+		Apartment a4 = getApartmentWithApropriateTitle(false);
+		Apartment a5 = getApartmentWithApropriateTitle(true);
+		a5.setNbBathrooms(2);
 		
-		aparts1.addAll(aparts2);
+		aparts.add(a1);
+		aparts.add(a2);
+		aparts.add(a3);
+		aparts.add(a4);
+		aparts.add(a5);
 		
 		ApartmentFilter filter = new ApartmentFilter();
 		filter.concat(a -> a.getNbBathrooms() >= 2);
 		filter.concat(a -> a.getTitle().contains("hotel"));
 		
-		aparts1 = ApartmentFilter.filter(aparts1, filter.getPre());
-		Assertions.assertTrue(aparts1.contains(a1));
-		Assertions.assertFalse(aparts1.contains(a2));
-		Assertions.assertTrue(aparts1.contains(a3));
-		Assertions.assertFalse(aparts1.contains(a4));
+		aparts = ApartmentFilter.filter(aparts, filter.getPre());
+		Assertions.assertFalse(aparts.contains(a1));
+		Assertions.assertFalse(aparts.contains(a2));
+		Assertions.assertFalse(aparts.contains(a3));
+		Assertions.assertFalse(aparts.contains(a4));
+		Assertions.assertTrue(aparts.contains(a5));
+		
+	}
+	
+	private static Apartment getApartmentWithApropriateTitle(boolean correct) throws NumberFormatException, InvalidPropertiesFormatException, IOException {
+		
+		ReadApartmentsXMLFormat readXML = new ReadApartmentsXMLFormat();
+		
+		InputStream input = new FileInputStream(new File("start-apartment.xml"));
+		Apartment a = readXML.readApartment(input);
+		if(correct)
+			a.setTitle("hotel");
+		else
+			a.setTitle("restaurant");
+		return a;
+	}
+	
+	private static Apartment getApartmentWithApropriateNbOfBathroom(boolean correct) throws NumberFormatException, InvalidPropertiesFormatException, IOException {
+		
+	ReadApartmentsXMLFormat readXML = new ReadApartmentsXMLFormat();
+		
+		InputStream input = new FileInputStream(new File("start-apartment.xml"));
+		Apartment a = readXML.readApartment(input);
+		if(correct)
+			a.setNbBathrooms(2);
+		else
+			a.setNbBathrooms(1);
+		return a;
+	
 	}
 	
 }
