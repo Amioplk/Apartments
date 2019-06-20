@@ -35,6 +35,10 @@ public class LinearValueFunction implements PartialValueFunction<Double> {
 		LOGGER.info("The interval ["+min+","+max+"] "+" has been set with success in the LinearValueFunction class.");
 	}
 
+	/**
+	 * @param min represents the lowerEndBound of the desired interval, along with its subjectiveValue associated
+	 * @param max represents the upperEndBound of the desired interval, along with its subjectiveValue associated
+	 */
 	public LinearValueFunction (Map.Entry<Double,Double> min, Map.Entry<Double,Double> max) {
 		this(min.getKey(), max.getKey());
 		setMinSubjectiveValue(min.getValue());
