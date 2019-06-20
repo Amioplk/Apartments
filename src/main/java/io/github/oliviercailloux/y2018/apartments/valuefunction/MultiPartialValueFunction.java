@@ -30,7 +30,7 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 	
 	/**
-	 * Builder of the MultiPartialValueFunction
+	 * Constuctor of the MultiPartialValueFunction
 	 * 
 	 * @param parameters is the dictionary of all values along with the grades
 	 *                   associated to them, In this map, if the collection of keys
