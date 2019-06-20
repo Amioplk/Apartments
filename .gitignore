@@ -6,3 +6,4 @@ Thumbs.db
 *.txt
 .settings
 GUITest
+out.log
