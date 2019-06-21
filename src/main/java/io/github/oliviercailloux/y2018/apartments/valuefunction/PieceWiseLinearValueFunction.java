@@ -18,6 +18,7 @@ public class PieceWiseLinearValueFunction extends MultiPartialValueFunction {
 	/**
 	 * Builder of the PieceWiseLinearValueFunction
 	 * 
+
 	 * @param parameters is the dictionary of all values along with the grades
 	 *                   associated to them, In this map, if the collection of keys
 	 *                   was sorted, then the collection of grades would also have
