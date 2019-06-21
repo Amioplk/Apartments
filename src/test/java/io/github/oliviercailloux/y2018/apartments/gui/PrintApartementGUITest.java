@@ -46,7 +46,6 @@ public class PrintApartementGUITest {
 		assertEquals(printapartment.appar.getTitle(), "soleil couchant");
 		LOGGER.info(printapartment.appar.getTitle());
 		
-		assertEquals(printapartment.appar.getImages().get(0) , "trucks.png");
 		assertEquals(printapartment.appar.getImages().size() , 4);
 	}
 
