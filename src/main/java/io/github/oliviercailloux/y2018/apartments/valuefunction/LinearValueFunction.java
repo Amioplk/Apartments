@@ -14,7 +14,9 @@ public class LinearValueFunction implements PartialValueFunction<Double> {
 
 	private Range<Double> interval ;
 	private final static Logger LOGGER = LoggerFactory.getLogger(LinearValueFunction.class);
-
+	private double minSubjectiveValue;
+	private double maxSubjectiveValue;
+	
 	/**
 	 * Builder of the class LinearValueFunction.
 	 * @param min lower bound of the interval
