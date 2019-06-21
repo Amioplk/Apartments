@@ -1,8 +1,0 @@
-16:19:54.508 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [0.0,10.0]  has been set with success in the LinearValueFunction class.
-16:19:54.519 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [10.0,20.0]  has been set with success in the LinearValueFunction class.
-16:19:54.519 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [20.0,30.0]  has been set with success in the LinearValueFunction class.
-16:19:54.584 [main] INFO  i.g.o.y.a.v.PieceWiseLinearValueFunction - The map of data has been successfully instantiated.
-16:19:54.584 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [0.0,10.0]  has been set with success in the LinearValueFunction class.
-16:19:54.584 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [10.0,20.0]  has been set with success in the LinearValueFunction class.
-16:19:54.584 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [20.0,30.0]  has been set with success in the LinearValueFunction class.
-16:19:54.584 [main] INFO  i.g.o.y.a.v.PieceWiseLinearValueFunction - The map of data has been successfully instantiated.
