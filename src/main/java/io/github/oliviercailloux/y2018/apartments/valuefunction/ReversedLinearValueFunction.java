@@ -12,6 +12,8 @@ import com.google.common.collect.Range;
  */
 public class ReversedLinearValueFunction implements PartialValueFunction<Double> {
 
+	private double minSubjectiveValue;
+	private double maxSubjectiveValue;
 	private Range<Double> interval ;
 	private final static Logger LOGGER = LoggerFactory.getLogger(ReversedLinearValueFunction.class);
 
@@ -46,6 +48,22 @@ public class ReversedLinearValueFunction implements PartialValueFunction<Double>
 	@Override
 	public Double apply(Double objectiveData) {
 		return getSubjectiveValue(objectiveData);
+	}
+
+	public double getMinSubjectiveValue() {
+		return minSubjectiveValue;
+	}
+
+	public void setMinSubjectiveValue(double minSubjectiveValue) {
+		this.minSubjectiveValue = minSubjectiveValue;
+	}
+
+	public double getMaxSubjectiveValue() {
+		return maxSubjectiveValue;
+	}
+
+	public void setMaxSubjectiveValue(double maxSubjectiveValue) {
+		this.maxSubjectiveValue = maxSubjectiveValue;
 	}
 
 }
