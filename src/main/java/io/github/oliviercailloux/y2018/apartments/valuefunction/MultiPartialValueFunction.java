@@ -32,6 +32,8 @@ public class MultiPartialValueFunction implements PartialValueFunction<Double> {
 	protected ImmutableSortedMap<Double, Double> map;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PieceWiseLinearValueFunction.class);
 	
+	protected MultiPartialValueFunction() {}
+	
 	/**
 	 * Constuctor of the MultiPartialValueFunction
 	 * 

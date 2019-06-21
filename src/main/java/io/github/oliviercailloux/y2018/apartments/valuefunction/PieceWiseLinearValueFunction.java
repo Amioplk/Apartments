@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.Range;
 
 /**
@@ -25,9 +26,9 @@ public class PieceWiseLinearValueFunction extends MultiPartialValueFunction {
 	 *                   grade 0, and another value associated to the grade 1.
 	 */
 	public PieceWiseLinearValueFunction(Map<Double, Double> parameters) {
-
-		super(parameters, new ConcurrentSkipListMap<Range<Double>, PartialValueFunction<Double>>());
-
+		
+		this.map = ImmutableSortedMap.copyOf(parameters);
+		
 		ConcurrentSkipListMap<Range<Double>, PartialValueFunction<Double>> linears = new ConcurrentSkipListMap<Range<Double>, PartialValueFunction<Double>>(
 				Comparator.comparingDouble(Range::lowerEndpoint));
 
