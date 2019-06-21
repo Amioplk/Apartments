@@ -23,12 +23,20 @@ public class ApartmentFilter {
 		setPre(o -> true);
 	}
 	
+	/**
+	 * @param pre adds the criteria(s) to the filter
+	 */
 	void concat(Predicate<Apartment> pre) {
 		this.setPre(this.getPre().and(pre));
 	}
 	
-	static List<Apartment> filter(List<Apartment> aparts, Predicate<? super Apartment> predicate) {
-		return aparts.stream().filter(predicate).collect(Collectors.toList());
+	/**
+	 * @param aparts represents the apartments to filter on
+	 * @param predicate represents the criterias to filter on
+	 * @return the apartments from param aparts that do match the predicate of this filter
+	 */
+	public List<Apartment> filter(List<Apartment> aparts) {
+		return aparts.stream().filter(pre).collect(Collectors.toList());
 	}
 
 	public Predicate<Apartment> getPre() {

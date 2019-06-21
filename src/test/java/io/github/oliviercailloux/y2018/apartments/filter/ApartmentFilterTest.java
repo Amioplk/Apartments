@@ -30,7 +30,7 @@ public class ApartmentFilterTest {
 		ApartmentFilter filter = new ApartmentFilter();
 		filter.concat(a -> a.getTitle().contains("hotel"));
 		
-		aparts = ApartmentFilter.filter(aparts, filter.getPre());
+		aparts = filter.filter(aparts);
 		Assertions.assertTrue(aparts.contains(a1));
 		Assertions.assertFalse(aparts.contains(a2));
 	}
@@ -49,7 +49,7 @@ public class ApartmentFilterTest {
 		ApartmentFilter filter = new ApartmentFilter();
 		filter.concat(a -> a.getNbBathrooms() >= 2);
 		
-		aparts = ApartmentFilter.filter(aparts, filter.getPre());
+		aparts = filter.filter(aparts);
 		Assertions.assertTrue(aparts.contains(a1));
 		Assertions.assertFalse(aparts.contains(a2));
 	}
@@ -78,7 +78,7 @@ public class ApartmentFilterTest {
 		filter.concat(a -> a.getNbBathrooms() >= 2);
 		filter.concat(a -> a.getTitle().contains("hotel"));
 		
-		aparts = ApartmentFilter.filter(aparts, filter.getPre());
+		aparts = filter.filter(aparts);
 		Assertions.assertFalse(aparts.contains(a1));
 		Assertions.assertFalse(aparts.contains(a2));
 		Assertions.assertFalse(aparts.contains(a3));
