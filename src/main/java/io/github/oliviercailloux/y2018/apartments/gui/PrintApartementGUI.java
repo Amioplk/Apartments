@@ -194,7 +194,9 @@ public class PrintApartementGUI {
 		
 	
 	
-
+// funtion to resize to change the size of an image 
+// source : https://www.aniszczyk.org/2007/08/09/resizing-images-using-swt/
+	
 	   public static Image resize(Image image, int width, int height) {
 		   Image scaled = new Image(Display.getDefault(), width, height);
 		   GC gc = new GC(scaled);
