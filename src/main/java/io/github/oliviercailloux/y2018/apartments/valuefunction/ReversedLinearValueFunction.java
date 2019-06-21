@@ -1,5 +1,7 @@
 package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,12 +26,22 @@ public class ReversedLinearValueFunction implements PartialValueFunction<Double>
 	 */
 
 	public ReversedLinearValueFunction (double min, double max) {
-		if (min == max) {
+		if (min >= max) {
 			LOGGER.error("The upper bound is equal to the lower bound in the constructor of the LinearValueFunction.");
 			throw new IllegalArgumentException("The upper bound can't be equal to the lower bound.");
 		}
 		interval = Range.closed(min, max);
 		LOGGER.info("The interval ["+min+","+max+"] "+" has been set with success in the LinearValueFunction class.");
+	}
+	
+	/**
+	 * @param min represents the lowerEndBound of the desired interval, along with its subjectiveValue associated
+	 * @param max represents the upperEndBound of the desired interval, along with its subjectiveValue associated
+	 */
+	public ReversedLinearValueFunction (Map.Entry<Double,Double> min, Map.Entry<Double,Double> max) {
+		this(min.getKey(), max.getKey());
+		setMinSubjectiveValue(min.getValue());
+		setMaxSubjectiveValue(max.getValue());
 	}
 
 	@Override
