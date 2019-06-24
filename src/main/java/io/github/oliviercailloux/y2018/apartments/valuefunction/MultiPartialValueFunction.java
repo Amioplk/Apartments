@@ -16,7 +16,8 @@ import com.google.common.collect.Range;
 
 /**
  * @author Amioplk, alexisperdereau
- * A class which enables to get a utility whose type is different between 0 and 1
+ * A class which enables different types of PartialValueFunction
+ * The subjective value is set between 0 and 1
  * Does only work with PartialValueFunction<Double>, not PartialValueFunction<T>
  */
 public class MultiPartialValueFunction implements PartialValueFunction<Double> {
