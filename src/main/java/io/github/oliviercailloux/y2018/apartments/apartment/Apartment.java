@@ -16,6 +16,8 @@ import static com.google.common.base.Preconditions.checkArgument;
  * Modifications on 09 June
  * Sandra Salamé and AIT ALI BRAHAM Farouk 
  * Add Images attributes to the class 
+ * Modifications on 26.06.2019
+ * AIT ALI BRAHAM Farouk
  */
 public class Apartment extends Object {
 	
@@ -127,6 +129,30 @@ public class Apartment extends Object {
 		this.floorAreaTerrace = 0 ;
 		this.description = "";
 		this.title = title;
+		this.wifi = false ;
+		this.pricePerNight = 0;
+		this.nbMinNight = 0 ;
+		this.tele = false ;
+		
+		this.images = new ArrayList<String>();
+		
+		
+		checkArgument(floorArea>=0,"The floor area of the apartment cannot be negative");
+		checkArgument(address !="","The address of the apartment must be specified");
+		checkArgument(title !="","The title of the apartment must be specified");
+		LOGGER.info("the apartment has been created with success");
+	}
+	
+	public Apartment (){
+		this.floorArea = 0;
+		this.address = null;
+		this.nbBedrooms = 0 ;
+		this.nbSleeping = 0 ;
+		this.nbBathrooms = 0;
+		this.terrace = false ;
+		this.floorAreaTerrace = 0 ;
+		this.description = "";
+		this.title = null;
 		this.wifi = false ;
 		this.pricePerNight = 0;
 		this.nbMinNight = 0 ;
