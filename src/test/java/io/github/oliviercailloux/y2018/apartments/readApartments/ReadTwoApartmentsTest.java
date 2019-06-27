@@ -33,12 +33,12 @@ public class ReadTwoApartmentsTest {
 
 		try (InputStream f = ReadTwoApartmentsTest.class.getResourceAsStream("start-apartment-classpath.xml")){
 			Apartment a = r.readApartment(f);
-			System.out.println(a);
+			System.out.println(a.toFullString());
 		}
 
 		try (InputStream input = new FileInputStream(f1)){
 			Apartment b = r1.readApartment(input);
-			System.out.println(b);
+			System.out.println(b.toFullString());
 		}
 
 	}

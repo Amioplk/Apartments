@@ -1,7 +1,9 @@
 package io.github.oliviercailloux.y2018.apartments.readapartments;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 
@@ -32,6 +34,13 @@ public class ReadApartmentsXMLFormat {
 	 * @param input is the path of XML file
 	 * @return an apartment object with values for each parameters found in the XML files and default values for the other parameters.
 	 * @throws IOException, NumberFormatException, InvalidPropertiesFormatException
+	 */
+	/**
+	 * @param input
+	 * @return
+	 * @throws IOException
+	 * @throws NumberFormatException
+	 * @throws InvalidPropertiesFormatException
 	 */
 	public Apartment readApartment(InputStream input) throws IOException, NumberFormatException, InvalidPropertiesFormatException{
 		
@@ -69,10 +78,15 @@ public class ReadApartmentsXMLFormat {
 		if (prop.containsKey("nbMinNight"))
 			apartment.setNbMinNight(Integer.parseInt(prop.getProperty("nbMinNight")));
 		
+		if (prop.containsKey("images"))
+			apartment.setImagesFloder(prop.getProperty("images"));
+		
+		
 		LOGGER.info("Parameters inserted with success in the Apartment Object");
 		LOGGER.info("Leave readApartment method");
 		
 		return apartment;
 	}
+	
 
 }

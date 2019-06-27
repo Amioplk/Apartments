@@ -11,4 +11,5 @@
 	<entry key="terrace">true</entry>
 	<entry key="floorAreaTerrace">160</entry>
 	<entry key="pricePerNight">3</entry>
+	<entry key="Images">Images_A</entry>
 </properties>
