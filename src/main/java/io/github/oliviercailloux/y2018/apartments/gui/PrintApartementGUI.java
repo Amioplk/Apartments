@@ -176,7 +176,7 @@ public class PrintApartementGUI {
 		
 	    final Button button1 = new Button(shell, SWT.BUTTON4);
 	    button1.setText("next");
-	    button1.setLocation(550,);
+	    button1.setLocation(550,500);
 	    button1.setSize(new Point(20,500));
 	   
 	  
