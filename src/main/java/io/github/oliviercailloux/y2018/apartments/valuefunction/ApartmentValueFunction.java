@@ -660,9 +660,9 @@ public class ApartmentValueFunction {
 	 * @param lower    is true when we want to adapt the lower bound, false if we
 	 *                 want to adapt the upper bound
 	 */
-	public void adaptBounds(String criteria, double newBound, boolean lower) {
+	public void adaptBounds(String criterion, double newBound, boolean lower) {
 
-		switch (criteria) {
+		switch (criterion) {
 		case "floorArea":
 			this.setFloorAreaValueFunction(
 					this.adaptLinearValueFunction((LinearValueFunction) this.floorAreaValueFunction, newBound, lower));
