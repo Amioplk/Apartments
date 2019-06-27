@@ -660,34 +660,34 @@ public class ApartmentValueFunction {
 	 * @param lower    is true when we want to adapt the lower bound, false if we
 	 *                 want to adapt the upper bound
 	 */
-	public void adaptBounds(String criterion, double newBound, boolean lower) {
+	public void adaptBounds(Criterion criterion, double newBound, boolean lower) {
 
 		switch (criterion) {
-		case "floorArea":
+		case FLOOR_AREA:
 			this.setFloorAreaValueFunction(
 					this.adaptLinearValueFunction((LinearValueFunction) this.floorAreaValueFunction, newBound, lower));
 			break;
-		case "floorAreaTerrace":
+		case FLOOR_AREA_TERRACE:
 			this.setFloorAreaTerraceValueFunction(this.adaptLinearValueFunction(
 					(LinearValueFunction) this.floorAreaTerraceValueFunction, newBound, lower));
 			break;
-		case "pricePerNight":
+		case PRICE_PER_NIGHT:
 			this.setPricePerNightValueFunction(this
 					.adaptLinearValueFunction((LinearValueFunction) this.pricePerNightValueFunction, newBound, lower));
 			break;
-		case "nbSleeping":
+		case NB_SLEEPING:
 			this.setNbSleepingValueFunction(
 					this.adaptLinearValueFunction((LinearValueFunction) this.nbSleepingValueFunction, newBound, lower));
 			break;
-		case "nbBathrooms":
+		case NB_BATHROOMS:
 			this.setNbBathroomsValueFunction(this
 					.adaptLinearValueFunction((LinearValueFunction) this.nbBathroomsValueFunction, newBound, lower));
 			break;
-		case "nbBedrooms":
+		case NB_BEDROOMS:
 			this.setNbBedroomsValueFunction(
 					this.adaptLinearValueFunction((LinearValueFunction) this.nbBedroomsValueFunction, newBound, lower));
 			break;
-		case "nbMinNight":
+		case NB_MIN_NIGHT:
 			this.setNbMinNightValueFunction(
 					this.adaptLinearValueFunction((LinearValueFunction) this.nbMinNightValueFunction, newBound, lower));
 			break;
