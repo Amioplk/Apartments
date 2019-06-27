@@ -718,7 +718,7 @@ public class ApartmentValueFunction {
 	 * @param lessImportant is the criteria that is to be less important in this
 	 *                      object of ApartmentValueFunction
 	 */
-	public void adaptWeight(AdaptiveWeightType moreImportant, AdaptiveWeightType lessImportant) {
+	public void adaptWeight(Criterion moreImportant, Criterion lessImportant) {
 
 		Preconditions.checkArgument(lessImportant.equals(moreImportant), "Both fields are the same.");
 
@@ -730,7 +730,7 @@ public class ApartmentValueFunction {
 		this.setSubjectiveValueWeight(lessImportant, weightSum / 10);
 	}
 
-	private double getSubjectiveValueWeight(AdaptiveWeightType awt) {
+	private double getSubjectiveValueWeight(Criterion awt) {
 		switch (awt) {
 		case TELE:
 			return this.teleSubjectiveValueWeight;
@@ -757,7 +757,7 @@ public class ApartmentValueFunction {
 		}
 	}
 
-	private void setSubjectiveValueWeight(AdaptiveWeightType awt, double value) {
+	private void setSubjectiveValueWeight(Criterion awt, double value) {
 
 		switch (awt) {
 		case TELE:
