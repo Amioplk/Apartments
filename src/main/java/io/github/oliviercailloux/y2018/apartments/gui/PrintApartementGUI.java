@@ -23,7 +23,9 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.slf4j.Logger;
@@ -49,13 +51,14 @@ public class PrintApartementGUI {
 	 */
 
 	public Apartment appar;
-	protected static Display display; 
-	protected static Shell shell;
+	static Display display; 
+	static Shell shell;
 
 	public static void setDisplayApartment(){
-		display = new Display();
+		if(display == null) 
+			display = new Display();
+		
 		shell = new Shell(display);
-
 		shell.setText("Apartments");
 		shell.setMinimumSize(700, 800);
 		shell.setSize(1000, 1500);
@@ -64,10 +67,18 @@ public class PrintApartementGUI {
 	}
 	
 	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
-		if (display == null ){
+		if (shell == null ){
 			setDisplayApartment();
 		}
 		this.appar = new Apartment(20.0, "20 rue des consé", "Test Apartment pour ta mère, mais pas grave");
+		this.i = 0;
+	}
+	
+	public PrintApartementGUI(Apartment appart){
+		if (shell == null ){
+			setDisplayApartment();
+		}
+		this.appar = appart;
 		this.i = 0;
 	}
 
@@ -125,9 +136,19 @@ public class PrintApartementGUI {
 		
 		
 		LOGGER.info("la liste des images : " + listImage.toString());
-		Image image;
-		image = new Image (display, PrintApartementGUI.class.getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(0)));
-		GC gc = new GC(image);
+		Image image = null;
+		if ( listImage.size() > 0 ){ 
+			image = new Image (display, PrintApartementGUI.class.getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(0)));
+			GC gc = new GC(image);
+			
+			imageLabel.setLocation(50, 160);
+			imageLabel.setSize(100, 100);
+
+			imageLabel.setImage(image);
+			image = resize (image, 500, 500);
+			imageLabel.setImage(image);
+			
+		}
 		
 		
 		
@@ -142,19 +163,13 @@ public class PrintApartementGUI {
 		pricePerNight.setLocation(25 , 50 );
 		florArea.setLocation(25, 110);
 		adress.setLocation(25, 125);
-		imageLabel.setLocation(50, 160);
-		imageLabel.setSize(100, 100);
+		
 		title.setFont( new Font(display,"Calibri", 24, SWT.COLOR_BLACK ));
 		pricePerNight.setFont(new Font(display,"Calibri", 28, SWT.COLOR_DARK_GREEN));
 		pricePerNight.setForeground(new Color(printAppartmentGui.display, 100,150,80));
 		florArea.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		adress.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		
-		
-
-		imageLabel.setImage(image);
-		image = resize (image, 500, 500);
-		imageLabel.setImage(image);
 		
 	    final Button button1 = new Button(shell, SWT.BUTTON4);
 	    button1.setText("next");
@@ -171,21 +186,29 @@ public class PrintApartementGUI {
 	    
 	    Label label = new Label(shell, 0);
 	    
+	   LOGGER.info("liste d'images " + listImage.toString());
+	    
 	   button1.addSelectionListener(new SelectionAdapter() {
 		   public void widgetSelected(SelectionEvent arg0) {
 			   if (i < listImage.size()-1) i++;
 			   else 
 				   i = 0;
-			   Image image = new Image (display, getClass().getClassLoader().getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(i)));
-			   image = resize (image, 500, 500);
+			   LOGGER.info("indice " + i);
+			   if (listImage.size() > 0 ){
+				   Image image = new Image (display, PrintApartementGUI.class.getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(i) ));
+				   image = resize (image, 500, 500);
 			   
-			   imageLabel.setImage(image);
-			   imageLabel.pack();
+				   imageLabel.setImage(image);
+				   imageLabel.pack();}
+			   
 			   button1.pack();
 		   }
 		 
 		   
 	});
+	   
+
+	
 	   button1.moveAbove(imageLabel);
 	   button1.pack();
 	
@@ -237,5 +260,6 @@ public class PrintApartementGUI {
 		return null;
 		
 	}
+	
 
 }

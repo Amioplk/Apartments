@@ -49,7 +49,7 @@ public class LayoutApartmentGUI {
 	public static void main(String[] args) throws IllegalAccessException, IOException {
 		ApartmentValueFunction avf = new ApartmentValueFunction();
 		avf.setFloorAreaValueFunction(new LinearValueFunction(0, 300));
-
+		
 		ArrayList<Apartment> listap = getListSorted(avf);
 		displayAppart(listap);
 	}
@@ -137,8 +137,11 @@ public class LayoutApartmentGUI {
 		gridData = new GridData(GridData.HORIZONTAL_ALIGN_END);
 		gridData.horizontalSpan = 3;
 		
+	
+		
 		// on click on an apartment
 				OnaClick(adresse,surface,prix,nbrChambres,listApp);
+				OnaClick(listApp);
 
 		shell.setSize(1000, 550);
 		shell.open();
@@ -217,8 +220,56 @@ public class LayoutApartmentGUI {
 				});	
 	
 	}
-	
-	
+
+	/**
+	 * @author AIT ALI BRAHAM Farouk
+	 * this method aims to create a PrintAppartmentGui each time we click on an apartment on the list
+	 */
+	public static void OnaClick(ArrayList<Apartment> listApp) {
+		listShell.addSelectionListener(new SelectionAdapter() {
+			
+			
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				int[] selectedItems = listShell.getSelectionIndices();
+				
+				PrintApartementGUI.display = display;
+				PrintApartementGUI.setDisplayApartment();
+				PrintApartementGUI.shell.addListener(SWT.Close, new Listener() {
+				      public void handleEvent(Event event) {
+				    	  event.doit = false;
+				        }
+				});
+				
+				PrintApartementGUI printApartmentGUI = null; 
+				/*PrintApartementGUI.display = display;
+				PrintApartementGUI.shell = new Shell(display);*/
+
+				LOGGER.info("yanis");
+				
+				for (int loopIndex = 0; loopIndex < selectedItems.length; loopIndex++) {
+					
+					
+					printApartmentGUI = new PrintApartementGUI(listApp.get(listShell.getSelectionIndex()));
+					while (!shell.isDisposed())
+						if (!display.readAndDispatch())
+							
+					printApartmentGUI.setWindow(printApartmentGUI);
+					
+					
+					LOGGER.info("yanis");		
+				}
+				
+
+				
+
+			}
+			
+		});
+		
+	}
+
+		
 	
 
 	

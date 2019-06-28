@@ -16,6 +16,7 @@ import static com.google.common.base.Preconditions.checkArgument;
  * Modifications on 09 June
  * Sandra Salamé and AIT ALI BRAHAM Farouk 
  * Add Images attributes to the class 
+ * 
  */
 public class Apartment extends Object {
 	
@@ -139,6 +140,26 @@ public class Apartment extends Object {
 		checkArgument(address !="","The address of the apartment must be specified");
 		checkArgument(title !="","The title of the apartment must be specified");
 		LOGGER.info("the apartment has been created with success");
+	}
+	
+	public Apartment(){
+		this.floorArea = 0;
+		this.address = null;
+		this.nbBedrooms = 0 ;
+		this.nbSleeping = 0 ;
+		this.nbBathrooms = 0;
+		this.terrace = false ;
+		this.floorAreaTerrace = 0 ;
+		this.description = "";
+		this.title = null;
+		this.wifi = false ;
+		this.pricePerNight = 0;
+		this.nbMinNight = 0 ;
+		this.tele = false ;
+		
+		this.images = new ArrayList<String>();
+		LOGGER.info("the apartment has been created with success");
+		
 	}
 	
 	@Override
@@ -440,7 +461,9 @@ public class Apartment extends Object {
 			apartmentToBuild = new Apartment();
 			
 			return buildApartment;
-		}	
+		}
+		
+		
 			
 		public Builder setFloorArea(double floorArea) {
 			this.apartmentToBuild.floorArea = floorArea;
