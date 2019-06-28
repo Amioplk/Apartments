@@ -582,9 +582,9 @@ public class ApartmentValueFunction {
 	}
 
 	private ApartmentValueFunction cloneAVF() {
-		
+
 		ApartmentValueFunction avf = new ApartmentValueFunction();
-		
+
 		setFloorAreaValueFunction(this.floorAreaValueFunction);
 		setNbBedroomsValueFunction(this.nbBedroomsValueFunction);
 		setNbSleepingValueFunction(this.nbSleepingValueFunction);
@@ -607,11 +607,10 @@ public class ApartmentValueFunction {
 		avf.nbMinNightSubjectiveValueWeight = this.nbMinNightSubjectiveValueWeight;
 		avf.teleSubjectiveValueWeight = this.teleSubjectiveValueWeight;
 
-		
 		return avf;
-		
+
 	}
-	
+
 	/**
 	 * @return A randomized instance of an ApartmentValueFunction
 	 */
@@ -694,7 +693,7 @@ public class ApartmentValueFunction {
 	public ApartmentValueFunction adaptBounds(Criterion criterion, double newBound, boolean lower) {
 
 		ApartmentValueFunction avf = cloneAVF();
-		
+
 		switch (criterion) {
 		case FLOOR_AREA:
 			avf.setFloorAreaValueFunction(
@@ -713,8 +712,8 @@ public class ApartmentValueFunction {
 					avf.adaptLinearValueFunction((LinearValueFunction) avf.nbSleepingValueFunction, newBound, lower));
 			break;
 		case NB_BATHROOMS:
-			avf.setNbBathroomsValueFunction(avf
-					.adaptLinearValueFunction((LinearValueFunction) avf.nbBathroomsValueFunction, newBound, lower));
+			avf.setNbBathroomsValueFunction(
+					avf.adaptLinearValueFunction((LinearValueFunction) avf.nbBathroomsValueFunction, newBound, lower));
 			break;
 		case NB_BEDROOMS:
 			avf.setNbBedroomsValueFunction(
@@ -725,9 +724,9 @@ public class ApartmentValueFunction {
 					this.adaptLinearValueFunction((LinearValueFunction) avf.nbMinNightValueFunction, newBound, lower));
 			break;
 		default:
-			throw new IllegalArgumentException();		
+			throw new IllegalArgumentException();
 		}
-		
+
 		return avf;
 	}
 
@@ -748,8 +747,8 @@ public class ApartmentValueFunction {
 	 * This method assumes that the preference between true and false is known but
 	 * doesn't matter.
 	 * 
-	 * @param moreImportant is the criterion that is to be prioritized in this object
-	 *                      of ApartmentValueFunction
+	 * @param moreImportant is the criterion that is to be prioritized in this
+	 *                      object of ApartmentValueFunction
 	 * @param lessImportant is the criterion that is to be less important in this
 	 *                      object of ApartmentValueFunction
 	 */
@@ -758,14 +757,14 @@ public class ApartmentValueFunction {
 		Preconditions.checkArgument(!lessImportant.equals(moreImportant), "Both fields are the same.");
 
 		ApartmentValueFunction avf = cloneAVF();
-		
+
 		double weightSum = 0;
 		weightSum += avf.getSubjectiveValueWeight(moreImportant);
 		weightSum += avf.getSubjectiveValueWeight(lessImportant);
 
 		avf = avf.setSubjectiveValueWeight(moreImportant, 9 * weightSum / 10);
 		avf = avf.setSubjectiveValueWeight(lessImportant, weightSum / 10);
-	
+
 		return avf;
 	}
 
@@ -798,8 +797,8 @@ public class ApartmentValueFunction {
 
 	private ApartmentValueFunction setSubjectiveValueWeight(Criterion awt, double value) {
 
-		ApartmentValueFunction avf = cloneAVF(); 
-		
+		ApartmentValueFunction avf = cloneAVF();
+
 		switch (awt) {
 		case TELE:
 			avf.setTeleSubjectiveValueWeight(value);
@@ -834,7 +833,7 @@ public class ApartmentValueFunction {
 		default:
 			throw new IllegalArgumentException();
 		}
-		
+
 		return avf;
 
 	}
