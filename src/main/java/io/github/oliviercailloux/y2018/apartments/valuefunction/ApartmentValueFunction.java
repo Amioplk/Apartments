@@ -149,6 +149,37 @@ public class ApartmentValueFunction {
 		this.nbMinNightSubjectiveValueWeight= 0.1;
 		this.teleSubjectiveValueWeight= 0.1;
 	}
+	
+	private ApartmentValueFunction cloneAVF() {
+
+		ApartmentValueFunction avf = new ApartmentValueFunction();
+
+		setFloorAreaValueFunction(this.floorAreaValueFunction);
+		setNbBedroomsValueFunction(this.nbBedroomsValueFunction);
+		setNbSleepingValueFunction(this.nbSleepingValueFunction);
+		setNbBathroomsValueFunction(this.nbBathroomsValueFunction);
+		setTerraceValueFunction(this.terraceValueFunction);
+		setFloorAreaTerraceValueFunction(this.floorAreaTerraceValueFunction);
+		setWifiValueFunction(this.wifiValueFunction);
+		setPricePerNightValueFunction(this.pricePerNightValueFunction);
+		setNbMinNightValueFunction(this.nbMinNightValueFunction);
+		setTeleValueFunction(this.teleValueFunction);
+
+		avf.floorAreaSubjectiveValueWeight = this.floorAreaSubjectiveValueWeight;
+		avf.nbBedroomsSubjectiveValueWeight = this.nbBedroomsSubjectiveValueWeight;
+		avf.nbSleepingSubjectiveValueWeight = this.nbSleepingSubjectiveValueWeight;
+		avf.nbBathroomsSubjectiveValueWeight = this.nbBathroomsSubjectiveValueWeight;
+		avf.terraceSubjectiveValueWeight = this.terraceSubjectiveValueWeight;
+		avf.floorAreaTerraceSubjectiveValueWeight = this.floorAreaTerraceSubjectiveValueWeight;
+		avf.wifiSubjectiveValueWeight = this.wifiSubjectiveValueWeight;
+		avf.pricePerNightSubjectiveValueWeight = this.pricePerNightSubjectiveValueWeight;
+		avf.nbMinNightSubjectiveValueWeight = this.nbMinNightSubjectiveValueWeight;
+		avf.teleSubjectiveValueWeight = this.teleSubjectiveValueWeight;
+
+		return avf;
+
+	}
+
 
 	/**
 	 * Set the function which will be used to calculate the subjective value of the floor area
