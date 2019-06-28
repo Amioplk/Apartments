@@ -3,6 +3,8 @@ package io.github.oliviercailloux.y2018.apartments.valuefunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Preconditions;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.List;
@@ -516,5 +518,164 @@ public class ApartmentValueFunction {
 		return apartValueFunction;
 	}
 
+	/**
+	 * We make the assumption (by casting), that the runtime PartialValueFunction
+	 * associated to criteria is a LinearValueFunction, even if in real life it
+	 * would be a discrete criteria (e.g. the number of bedrooms)
+	 * 
+	 * The goal is to replace a LinearValueFunction's bound by a new bound
+	 * 
+	 * @param criteria
+	 * @param newBound
+	 * @param lower    is true when we want to adapt the lower bound, false if we
+	 *                 want to adapt the upper bound
+	 */
+	public ApartmentValueFunction adaptBounds(Criterion criterion, double newBound, boolean lower) {
+
+		ApartmentValueFunction avf = cloneAVF();
+
+		switch (criterion) {
+		case FLOOR_AREA:
+			avf.setFloorAreaValueFunction(
+					avf.adaptLinearValueFunction((LinearValueFunction) avf.floorAreaValueFunction, newBound, lower));
+			break;
+		case FLOOR_AREA_TERRACE:
+			avf.setFloorAreaTerraceValueFunction(avf.adaptLinearValueFunction(
+					(LinearValueFunction) avf.floorAreaTerraceValueFunction, newBound, lower));
+			break;
+		case PRICE_PER_NIGHT:
+			avf.setPricePerNightValueFunction(avf
+					.adaptLinearValueFunction((LinearValueFunction) avf.pricePerNightValueFunction, newBound, lower));
+			break;
+		case NB_SLEEPING:
+			avf.setNbSleepingValueFunction(
+					avf.adaptLinearValueFunction((LinearValueFunction) avf.nbSleepingValueFunction, newBound, lower));
+			break;
+		case NB_BATHROOMS:
+			avf.setNbBathroomsValueFunction(
+					avf.adaptLinearValueFunction((LinearValueFunction) avf.nbBathroomsValueFunction, newBound, lower));
+			break;
+		case NB_BEDROOMS:
+			avf.setNbBedroomsValueFunction(
+					avf.adaptLinearValueFunction((LinearValueFunction) avf.nbBedroomsValueFunction, newBound, lower));
+			break;
+		case NB_MIN_NIGHT:
+			avf.setNbMinNightValueFunction(
+					this.adaptLinearValueFunction((LinearValueFunction) avf.nbMinNightValueFunction, newBound, lower));
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}
+
+		return avf;
+	}
+
+	private LinearValueFunction adaptLinearValueFunction(LinearValueFunction oldLVF, double newBound, boolean lower) {
+
+		double remainingBound = 0d;
+		if (lower) {
+			remainingBound = oldLVF.getInterval().upperEndpoint();
+			return new LinearValueFunction(newBound, remainingBound);
+		} else {
+			remainingBound = oldLVF.getInterval().lowerEndpoint();
+			return new LinearValueFunction(remainingBound, newBound);
+		}
+
+	}
+
+	/**
+	 * This method assumes that the preference between true and false is known but
+	 * doesn't matter.
+	 * 
+	 * @param moreImportant is the criterion that is to be prioritized in this
+	 *                      object of ApartmentValueFunction
+	 * @param lessImportant is the criterion that is to be less important in this
+	 *                      object of ApartmentValueFunction
+	 */
+	public ApartmentValueFunction adaptWeight(Criterion moreImportant, Criterion lessImportant) {
+
+		Preconditions.checkArgument(!lessImportant.equals(moreImportant), "Both fields are the same.");
+
+		ApartmentValueFunction avf = cloneAVF();
+
+		double weightSum = 0;
+		weightSum += avf.getSubjectiveValueWeight(moreImportant);
+		weightSum += avf.getSubjectiveValueWeight(lessImportant);
+
+		avf = avf.setSubjectiveValueWeight(moreImportant, 9 * weightSum / 10);
+		avf = avf.setSubjectiveValueWeight(lessImportant, weightSum / 10);
+
+		return avf;
+	}
+
+	private double getSubjectiveValueWeight(Criterion awt) {
+		switch (awt) {
+		case TELE:
+			return teleSubjectiveValueWeight;
+		case TERRACE:
+			return terraceSubjectiveValueWeight;
+		case WIFI:
+			return wifiSubjectiveValueWeight;
+		case FLOOR_AREA:
+			return floorAreaTerraceSubjectiveValueWeight;
+		case FLOOR_AREA_TERRACE:
+			return floorAreaTerraceSubjectiveValueWeight;
+		case NB_BATHROOMS:
+			return nbBathroomsSubjectiveValueWeight;
+		case NB_BEDROOMS:
+			return nbBedroomsSubjectiveValueWeight;
+		case NB_SLEEPING:
+			return nbSleepingSubjectiveValueWeight;
+		case NB_MIN_NIGHT:
+			return nbMinNightSubjectiveValueWeight;
+		case PRICE_PER_NIGHT:
+			return pricePerNightSubjectiveValueWeight;
+		default:
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private ApartmentValueFunction setSubjectiveValueWeight(Criterion awt, double value) {
+
+		ApartmentValueFunction avf = cloneAVF();
+
+		switch (awt) {
+		case TELE:
+			avf.setTeleSubjectiveValueWeight(value);
+			break;
+		case TERRACE:
+			avf.setTerraceSubjectiveValueWeight(value);
+			break;
+		case WIFI:
+			avf.setWifiSubjectiveValueWeight(value);
+			break;
+		case FLOOR_AREA:
+			avf.setFloorAreaSubjectiveValueWeight(value);
+			break;
+		case FLOOR_AREA_TERRACE:
+			avf.setFloorAreaTerraceSubjectiveValueWeight(value);
+			break;
+		case NB_BATHROOMS:
+			avf.setNbBathroomsSubjectiveValueWeight(value);
+			break;
+		case NB_BEDROOMS:
+			avf.setNbBedroomsSubjectiveValueWeight(value);
+			break;
+		case NB_SLEEPING:
+			avf.setNbSleepingSubjectiveValueWeight(value);
+			break;
+		case NB_MIN_NIGHT:
+			avf.setNbMinNightSubjectiveValueWeight(value);
+			break;
+		case PRICE_PER_NIGHT:
+			avf.setPricePerNightSubjectiveValueWeight(value);
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}
+
+		return avf;
+
+	}
 
 }
