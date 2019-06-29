@@ -753,7 +753,7 @@ public class ApartmentValueFunction {
 	 * @param lessImportant is the criterion that is to be less important in this
 	 *                      object of ApartmentValueFunction
 	 */
-	public ApartmentValueFunction adaptWeight(Criterion moreImportant, Criterion lessImportant) {
+	public ApartmentValueFunction withAdaptedWeights(Criterion moreImportant, Criterion lessImportant) {
 
 		Preconditions.checkArgument(!lessImportant.equals(moreImportant), "Both fields are the same.");
 
