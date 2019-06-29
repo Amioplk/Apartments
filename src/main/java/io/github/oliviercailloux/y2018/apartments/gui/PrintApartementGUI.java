@@ -40,14 +40,6 @@ public class PrintApartementGUI {
 	private final static Logger LOGGER = LoggerFactory.getLogger(CreateApartmentGUI.class);
 
 	private int i;
-	/**
-	 * @param filename : the file describing apartments should be given in
-	 *                 parameters "XML format"
-	 * @throws IOException
-	 * @throws IllegalAccessException
-	 * @throws IllegalArgumentException
-	 */
-
 	public Apartment appar;
 	protected static Display display; 
 	protected static Shell shell;
