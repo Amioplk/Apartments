@@ -579,6 +579,7 @@ public class ApartmentValueFunction {
 						+ floorAreaTerraceSubjectiveValueWeight + wifiSubjectiveValueWeight
 						+ pricePerNightSubjectiveValueWeight + nbMinNightSubjectiveValueWeight
 						+ teleSubjectiveValueWeight));
+
 	}
 
 	private ApartmentValueFunction cloneAVF() {
@@ -677,6 +678,7 @@ public class ApartmentValueFunction {
 
 		return apartValueFunction;
 	}
+
 
 	/**
 	 * We make the assumption (by casting), that the runtime PartialValueFunction
