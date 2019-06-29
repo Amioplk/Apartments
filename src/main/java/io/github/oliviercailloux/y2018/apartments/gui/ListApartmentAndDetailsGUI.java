@@ -18,12 +18,13 @@ public class ListApartmentAndDetailsGUI {
 	
 	private ArrayList<Apartment> listApartment;
 	private final static Logger LOGGER = LoggerFactory.getLogger(CreateApartmentGUI.class);
-	
+	private ApartmentValueFunction avf;
 	/**
 	 * @param listApartment the list of apartments we have
 	 */
-	public ListApartmentAndDetailsGUI( ArrayList<Apartment> listApartment){
+	public ListApartmentAndDetailsGUI( ArrayList<Apartment> listApartment, ApartmentValueFunction avf){
 		this.setListApartment(listApartment);
+		this.avf = avf;
 	}
 	
 	/**
@@ -32,7 +33,7 @@ public class ListApartmentAndDetailsGUI {
 	 * @throws IllegalAccessException 
 	 */
 	public ListApartmentAndDetailsGUI() throws IllegalAccessException, IOException{
-		ApartmentValueFunction avf = new ApartmentValueFunction();
+		this.avf = new ApartmentValueFunction();
 		avf.setFloorAreaValueFunction(new LinearValueFunction(0, 300));
 
 		this.setListApartment(LayoutApartmentGUI.getListSorted(avf));

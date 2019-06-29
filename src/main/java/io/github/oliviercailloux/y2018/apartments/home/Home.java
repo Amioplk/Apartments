@@ -9,9 +9,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
+import io.github.oliviercailloux.y2018.apartments.gui.AskOpinionForUtility;
+import io.github.oliviercailloux.y2018.apartments.gui.Layout2;
 import io.github.oliviercailloux.y2018.apartments.gui.ListApartmentAndDetailsGUI;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
+import io.github.oliviercailloux.y2018.apartments.valuefunction.ApartmentValueFunction;
 
+/**
+ * @author AIT ALI BRAHAM Farouk 
+ * This class aims to merge all the functionalities developed during this project
+ *
+ */
 public class Home {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(Home.class);
@@ -25,10 +33,22 @@ public class Home {
 		
 	}
 	
+	/**
+	 * @throws NumberFormatException
+	 * @throws InvalidPropertiesFormatException
+	 * @throws IOException
+	 */
+	
 	public Home() throws NumberFormatException, InvalidPropertiesFormatException, IOException{
 		this.listApartments = this.loadAllApartments();
-		ListApartmentAndDetailsGUI listGUI = new ListApartmentAndDetailsGUI(this.listApartments);
+
+		AskOpinionForUtility asker = new AskOpinionForUtility();
+		ApartmentValueFunction avf = new ApartmentValueFunction();
+		asker.askQuestions();
+		asker.adaptAnswers(avf);
+		ListApartmentAndDetailsGUI listGUI = new ListApartmentAndDetailsGUI(this.listApartments,avf);
 		listGUI.viewList();
+		
 	}
 	
 	
