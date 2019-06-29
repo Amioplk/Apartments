@@ -241,7 +241,7 @@ public class LayoutApartmentGUI {
 				        }
 				});
 				
-				PrintApartementGUI printApartmentGUI = null; 
+				PrintApartementGUI printApartmentGUI = null;
 				/*PrintApartementGUI.display = display;
 				PrintApartementGUI.shell = new Shell(display);*/
 
@@ -249,13 +249,16 @@ public class LayoutApartmentGUI {
 				
 				for (int loopIndex = 0; loopIndex < selectedItems.length; loopIndex++) {
 					
-					
-					printApartmentGUI = new PrintApartementGUI(listApp.get(listShell.getSelectionIndex()));
+					try {
+						printApartmentGUI = new PrintApartementGUI(listApp.get(listShell.getSelectionIndex()));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					while (!shell.isDisposed())
 						if (!display.readAndDispatch())
 							
 					printApartmentGUI.setWindow(printApartmentGUI);
-					
 					
 					LOGGER.info("yanis");		
 				}

@@ -74,12 +74,18 @@ public class PrintApartementGUI {
 		this.i = 0;
 	}
 	
-	public PrintApartementGUI(Apartment appart){
+	/**
+	 * @param appart
+	 * @throws IOException
+	 * this constructor takes an object type Apartment and construct the PrinApartmentGUI
+	 */
+	public PrintApartementGUI(Apartment appart) throws IOException{
 		if (shell == null ){
 			setDisplayApartment();
 		}
 		this.appar = appart;
 		this.i = 0;
+		this.appar.setImages(findOutImagesPaths(this.appar.getImagesFloder()));
 	}
 
 	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
