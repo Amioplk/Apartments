@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.SortedMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
 public class PieceWiseLinearValueFunctionTest {
@@ -14,8 +14,8 @@ public class PieceWiseLinearValueFunctionTest {
 
 		PieceWiseLinearValueFunction p = initializePieceWise();
 
-		Assert.assertEquals(0.75, p.getSubjectiveValue(20d), 0.001);
-		Assert.assertEquals(0.25, p.getSubjectiveValue(5d), 0.001);
+		Assertions.assertEquals(0.75, p.getSubjectiveValue(20d), 0.001);
+		Assertions.assertEquals(0.25, p.getSubjectiveValue(5d), 0.001);
 	}
 
 	@Test
@@ -23,7 +23,7 @@ public class PieceWiseLinearValueFunctionTest {
 
 		PieceWiseLinearValueFunction p = initializePieceWise();
 
-		Assert.assertEquals(1d, p.getSubjectiveValue(70d), 0);
+		Assertions.assertEquals(1d, p.getSubjectiveValue(70d), 0);
 
 	}
 
@@ -32,7 +32,7 @@ public class PieceWiseLinearValueFunctionTest {
 
 		PieceWiseLinearValueFunction p = initializePieceWise();
 		
-		Assert.assertEquals(0, p.getSubjectiveValue(-10d), 0);
+		Assertions.assertEquals(0, p.getSubjectiveValue(-10d), 0);
 
 	}
 

@@ -1,7 +1,6 @@
 package io.github.oliviercailloux.y2018.apartments.valuefunction;
 
-
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.google.maps.model.LatLng;
@@ -34,13 +33,13 @@ class ValueDistFunctionTest {
 	@Test 
 	void getSubjectiveValueTest() throws Exception{
 		initializeValueDistFunction();
-		Assert.assertEquals(0.90919444444, v.getSubjectiveValue(interest1), 0.1);
+		Assertions.assertEquals(0.90919444444, v.getSubjectiveValue(interest1), 0.1);
 	}
 	
 	@Test
 	void getMaxDurationTest() throws Exception {
 		initializeValueDistFunction();
-		Assert.assertEquals(5091.0, v.getMaxDuration(),0);
+		Assertions.assertEquals(5091.0, v.getMaxDuration(),0);
 	}
 
 }
