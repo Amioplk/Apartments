@@ -17,17 +17,20 @@ public class Home {
 	private final static Logger LOGGER = LoggerFactory.getLogger(Home.class);
 	private ArrayList<Apartment> listApartments;
 	
-	public Home() throws NumberFormatException, InvalidPropertiesFormatException, IOException{
-		this.listApartments = this.loadAllApartments();
-		ListApartmentAndDetailsGUI listGUI = new ListApartmentAndDetailsGUI(this.listApartments);
-	
-	}
+
 	
 	public static void main(String[] args) throws NumberFormatException, InvalidPropertiesFormatException, IOException {
 		// TODO Auto-generated method stub
 		Home home = new Home();
 		
 	}
+	
+	public Home() throws NumberFormatException, InvalidPropertiesFormatException, IOException{
+		this.listApartments = this.loadAllApartments();
+		ListApartmentAndDetailsGUI listGUI = new ListApartmentAndDetailsGUI(this.listApartments);
+		listGUI.viewList();
+	}
+	
 	
 	
 	/**
@@ -39,13 +42,13 @@ public class Home {
 	 * @throws NumberFormatException 
 	 */
 	 public ArrayList<Apartment> loadAllApartments() throws NumberFormatException, InvalidPropertiesFormatException, IOException{
-		ArrayList<String> listXML = seekXML_folder("XML");
+		ArrayList<String> listXML = seekXML_folder("FILES");
 		ReadApartmentsXMLFormat r = new ReadApartmentsXMLFormat();
 		ArrayList<Apartment> listApartments = new ArrayList<Apartment>();
 		
 		for ( String str : listXML){
-			listApartments.add(r.readApartment(Home.class.getResourceAsStream(str) ));
 			LOGGER.info("ajout de l'appartment " + str);
+			listApartments.add(r.readApartment(Home.class.getResourceAsStream("FILES/"+str) ));
 		}
 		
 		return listApartments;
@@ -57,7 +60,7 @@ public class Home {
 	 */
 	private ArrayList<String> seekXML_folder(String folderName){
 		
-			File file = new File(Home.class.getResource("FILES").getFile());
+			File file = new File(Home.class.getResource(folderName).getFile());
 			
 			LOGGER.info("Folder path has been set : " + file );
 			String liste[] = file.list();
