@@ -1,6 +1,6 @@
 package io.github.oliviercailloux.y2018.apartments.distance;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
@@ -24,7 +24,7 @@ class DistanceSubwayTest {
 
 		DistanceSubway dist = new DistanceSubway("Paris","Ville d'Avray",KeyManager.getApiKey());
 		double time = dist.calculateDistanceAddress(DistanceMode.ADDRESS);
-		Assert.assertTrue(7200 > time &&  1800 < time);
+		Assertions.assertTrue(7200 > time &&  1800 < time);
 	}
 
 }
