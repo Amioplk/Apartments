@@ -224,9 +224,10 @@ public class PrintApartementGUI {
 			
 		}
 	    catch(Exception e) {
-	    	e.printStackTrace();
+	    	LOGGER.info("le fichier " + folderPath + "est introuvabe"); 
+		e.printStackTrace();
 	    }
-		return null;
+		return new Arraylist<String>();
 		
 	}
 
