@@ -26,14 +26,10 @@ public class Apartment extends Object {
 	/**
 
 
-	 * @param imagesfolder contains the folder images ressources related to the apartment
+	 * @param contains the name of the folder images ressources related to the apartment
 	 */
 	private String imagesFloder;	
 	/**
-	 * @param floorArea a real number it represents the floor area of the apartment in square meters.
-
-	 * Has to be initialized, if not, the apartment can't be created without a floor area.
-=======
 	 * @param a real number it represents the floor area of the apartment in square
 	 *          meters. Has to be initialized, if not, the apartment can't be
 	 *          created without a floor area.
@@ -138,7 +134,7 @@ public class Apartment extends Object {
 	private boolean tele;
 
 
-	/**	@param Images is a set of Image describing one apartment
+	/** @param Images is a set of Image describing one apartment
 	 * An apartment can have zero, one or many Images,  
 	 * If not initialized, it will be a set without any object
 	 */
@@ -395,7 +391,7 @@ public class Apartment extends Object {
 	}
 
 	/**
-	 * @param floorArea is a real number superior or equal to zero
+	 * @param is a real number superior or equal to zero
 	 * @return
 	 */
 	public void setFloorArea(double floorArea) {
