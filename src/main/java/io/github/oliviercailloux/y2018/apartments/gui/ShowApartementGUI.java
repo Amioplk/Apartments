@@ -3,7 +3,6 @@ package io.github.oliviercailloux.y2018.apartments.gui;
 
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
-import io.github.oliviercailloux.y2018.apartments.readapartments.ReadTwoApartmentsTest;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -100,7 +98,7 @@ public class ShowApartementGUI {
 	 */
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
 
-		ShowApartementGUI prtApp = new ShowApartementGUI("ApartmentA.xml");
+		ShowApartementGUI prtApp = new ShowApartementGUI();
 		
 		LOGGER.info("Test Apartment has been created");
 		
