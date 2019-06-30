@@ -3,14 +3,11 @@ package io.github.oliviercailloux.y2018.apartments.gui;
 
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -19,15 +16,10 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -172,7 +164,7 @@ public class PrintApartementGUI {
 		
 		title.setFont( new Font(display,"Calibri", 24, SWT.COLOR_BLACK ));
 		pricePerNight.setFont(new Font(display,"Calibri", 28, SWT.COLOR_DARK_GREEN));
-		pricePerNight.setForeground(new Color(printAppartmentGui.display, 100,150,80));
+		pricePerNight.setForeground(new Color(PrintApartementGUI.display, 100,150,80));
 		florArea.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		adress.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		

@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
 import io.github.oliviercailloux.y2018.apartments.gui.AskOpinionForUtility;
-import io.github.oliviercailloux.y2018.apartments.gui.Layout2;
 import io.github.oliviercailloux.y2018.apartments.gui.ListApartmentAndDetailsGUI;
 import io.github.oliviercailloux.y2018.apartments.readapartments.ReadApartmentsXMLFormat;
 import io.github.oliviercailloux.y2018.apartments.valuefunction.ApartmentValueFunction;
@@ -28,7 +27,7 @@ public class Home {
 
 	
 	public static void main(String[] args) throws NumberFormatException, InvalidPropertiesFormatException, IOException {
-		// TODO Auto-generated method stub
+		@SuppressWarnings("unused")
 		Home home = new Home();
 		
 	}

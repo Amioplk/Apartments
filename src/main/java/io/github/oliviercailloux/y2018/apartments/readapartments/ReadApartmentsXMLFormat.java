@@ -1,9 +1,7 @@
 package io.github.oliviercailloux.y2018.apartments.readapartments;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 

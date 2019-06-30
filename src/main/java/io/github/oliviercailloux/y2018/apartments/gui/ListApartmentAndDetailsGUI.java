@@ -17,6 +17,7 @@ import io.github.oliviercailloux.y2018.apartments.valuefunction.LinearValueFunct
 public class ListApartmentAndDetailsGUI {
 	
 	private ArrayList<Apartment> listApartment;
+	@SuppressWarnings("unused")
 	private final static Logger LOGGER = LoggerFactory.getLogger(CreateApartmentGUI.class);
 	private ApartmentValueFunction avf;
 	/**

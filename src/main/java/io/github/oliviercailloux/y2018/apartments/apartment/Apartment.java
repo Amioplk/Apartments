@@ -1,10 +1,7 @@
 package io.github.oliviercailloux.y2018.apartments.apartment;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
