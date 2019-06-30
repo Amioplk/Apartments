@@ -5,7 +5,7 @@
 	<groupId>io.github.oliviercailloux</groupId>
 	<artifactId>apartments</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+	<sourceDirectory></sourceDirectory>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>8</maven.compiler.source>

@@ -98,7 +98,7 @@ public class ShowApartementGUI {
 	 */
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
 
-		ShowApartementGUI prtApp = new ShowApartementGUI();
+		ShowApartementGUI prtApp = new ShowApartementGUI("ApartmentA.xml");
 		
 		LOGGER.info("Test Apartment has been created");
 		
@@ -186,7 +186,7 @@ public class ShowApartementGUI {
 			   else 
 				   i = 0;
 			   if(listImage.size() > 0){
-			   Image image = new Image (display, getClass().getClassLoader().getResourceAsStream(showAppartmentGui.appar.getImagesFolder()+"/"+listImage.get(i)));
+			   Image image = new Image (display, ShowApartementGUI.class.getResourceAsStream(showAppartmentGui.appar.getImagesFolder()+"/"+listImage.get(i)));
 			   image = resize (image, 500, 500);
 			   
 			   imageLabel.setImage(image);
