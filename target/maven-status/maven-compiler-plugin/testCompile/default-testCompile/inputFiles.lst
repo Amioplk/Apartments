@@ -1,0 +1,13 @@
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/readapartments/ReadApartmentsXMLFormatTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/valuefunction/ApartmentValueFunctionTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/toxmlproperties/ToXmlPropertiesTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/valuefunction/DiscreteValueFunctionTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/gui/ShowApartementGUITest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/distance/DistanceSubwayTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/readapartments/ReadTwoApartmentsTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/apartment/ApartmentTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/valuefunction/PieceWiseLinearValueFunctionTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/valuefunction/ValueDistFunctionTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/valuefunction/LinearValueFunctionTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/valuefunction/ReversedLinearValueFunctionTest.java
+/home/yan/Apartments/src/test/java/io/github/oliviercailloux/y2018/apartments/valuefunction/BooleanValueFunctionTest.java

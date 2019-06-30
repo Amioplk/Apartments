@@ -1,0 +1,13 @@
+io/github/oliviercailloux/y2018/apartments/gui/ShowApartementGUITest.class
+io/github/oliviercailloux/y2018/apartments/apartment/ApartmentTest.class
+io/github/oliviercailloux/y2018/apartments/valuefunction/DiscreteValueFunctionTest.class
+io/github/oliviercailloux/y2018/apartments/valuefunction/ValueDistFunctionTest.class
+io/github/oliviercailloux/y2018/apartments/toxmlproperties/ToXmlPropertiesTest.class
+io/github/oliviercailloux/y2018/apartments/valuefunction/LinearValueFunctionTest.class
+io/github/oliviercailloux/y2018/apartments/valuefunction/BooleanValueFunctionTest.class
+io/github/oliviercailloux/y2018/apartments/readapartments/ReadApartmentsXMLFormatTest.class
+io/github/oliviercailloux/y2018/apartments/distance/DistanceSubwayTest.class
+io/github/oliviercailloux/y2018/apartments/valuefunction/ReversedLinearValueFunctionTest.class
+io/github/oliviercailloux/y2018/apartments/valuefunction/ApartmentValueFunctionTest.class
+io/github/oliviercailloux/y2018/apartments/valuefunction/PieceWiseLinearValueFunctionTest.class
+io/github/oliviercailloux/y2018/apartments/readapartments/ReadTwoApartmentsTest.class

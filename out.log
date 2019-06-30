@@ -1,0 +1,152 @@
+00:11:24.188 [main] INFO  i.g.o.y.a.v.DiscreteValueFunction - The Map with the three elements have been set with success
+00:11:24.196 [main] ERROR i.g.o.y.a.v.LinearValueFunction - The upper bound is equal to the lower bound in the constructor of the LinearValueFunction.
+00:11:24.199 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [10.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.201 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [10.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.203 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [10.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.226 [main] INFO  i.g.o.y.a.v.PieceWiseLinearValueFunction - The map of data has been successfully instantiated.
+00:11:24.228 [main] INFO  i.g.o.y.a.v.PieceWiseLinearValueFunction - The map of data has been successfully instantiated.
+00:11:24.229 [main] INFO  i.g.o.y.a.v.PieceWiseLinearValueFunction - The map of data has been successfully instantiated.
+00:11:24.232 [main] INFO  i.g.o.y.a.v.BooleanValueFunction - The Map with the subjective values for true and false has been set with success in the BooleanValueFunction class.
+00:11:24.233 [main] INFO  i.g.o.y.a.v.BooleanValueFunction - The Map with the subjective values for true and false has been set with success in the BooleanValueFunction class.
+00:11:24.237 [main] INFO  i.g.o.y.a.v.ReversedLinearValueFunction - The interval [10.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.240 [main] ERROR i.g.o.y.a.v.ReversedLinearValueFunction - The upper bound is equal to the lower bound in the constructor of the LinearValueFunction.
+00:11:24.244 [main] INFO  i.g.o.y.a.v.ReversedLinearValueFunction - The interval [10.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.245 [main] INFO  i.g.o.y.a.v.ReversedLinearValueFunction - The interval [10.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.246 [main] INFO  i.g.o.y.a.v.ReversedLinearValueFunction - The interval [10.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.248 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 4
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - The number minimum of night has been set to 3
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 3.3
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to false
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to false
+00:11:24.249 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
+00:11:24.250 [main] INFO  i.g.o.y.a.apartment.Apartment - The description has been set to Une ferme rustique en compagnie de Dwight Schrute, interdit à Jim Halpert
+00:11:24.250 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 40.0
+00:11:24.251 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [0.0,200.0]  has been set with success in the LinearValueFunction class.
+00:11:24.251 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The floor area preferencies has been set
+00:11:24.252 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [3.0,5.0]  has been set with success in the LinearValueFunction class.
+00:11:24.252 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The number of sleep-in preferencies has been set
+00:11:24.252 [main] INFO  i.g.o.y.a.v.ReversedLinearValueFunction - The interval [7.0,30.0]  has been set with success in the LinearValueFunction class.
+00:11:24.252 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The number of minimum night preferencies has been set
+00:11:24.252 [main] INFO  i.g.o.y.a.v.BooleanValueFunction - The Map with the subjective values for true and false has been set with success in the BooleanValueFunction class.
+00:11:24.253 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The terrace preferencies has been set
+00:11:24.253 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [3.0,4.0]  has been set with success in the LinearValueFunction class.
+00:11:24.253 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The number of bedrooms preferencies has been set
+00:11:24.253 [main] INFO  i.g.o.y.a.v.ReversedLinearValueFunction - The interval [20.0,40.0]  has been set with success in the LinearValueFunction class.
+00:11:24.253 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The price per night preferencies has been set
+00:11:24.253 [main] INFO  i.g.o.y.a.v.BooleanValueFunction - The Map with the subjective values for true and false has been set with success in the BooleanValueFunction class.
+00:11:24.254 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The tele preferencies has been set
+00:11:24.254 [main] INFO  i.g.o.y.a.v.BooleanValueFunction - The Map with the subjective values for true and false has been set with success in the BooleanValueFunction class.
+00:11:24.254 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The wifi preferencies has been set
+00:11:24.254 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [2.0,3.0]  has been set with success in the LinearValueFunction class.
+00:11:24.254 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The number of bathrooms preferencies has been set
+00:11:24.254 [main] INFO  i.g.o.y.a.v.LinearValueFunction - The interval [30.0,50.0]  has been set with success in the LinearValueFunction class.
+00:11:24.254 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The floor area of the terrace preferencies has been set
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the floor area subjective value has been set to 1.0
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the number of bedrooms subjective value has been set to 0.0
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the number of sleepings subjective value has been set to 0.5
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the number of bathrooms subjective value has been set to 0.0
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the terrace subjective value has been set to 1.0
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the floor area of the terrace subjective value has been set to 0.5
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the wifi subjective value has been set to 0.0
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the price per night subjective value has been set to 1.0
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the minimum number of nights subjective value has been set to 1.0
+00:11:24.255 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the tele subjective value has been set to 0.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - The wifi weight has been set to 10.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the floor area subjective value has been set to 1.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the number of bedrooms subjective value has been set to 0.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the number of sleepings subjective value has been set to 0.5
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the number of bathrooms subjective value has been set to 0.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the terrace subjective value has been set to 1.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the floor area of the terrace subjective value has been set to 0.5
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the wifi subjective value has been set to 0.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the price per night subjective value has been set to 1.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the minimum number of nights subjective value has been set to 1.0
+00:11:24.256 [main] INFO  i.g.o.y.a.v.ApartmentValueFunction - the tele subjective value has been set to 0.0
+00:11:24.260 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.260 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.261 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.261 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.263 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.263 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.264 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.264 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.266 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Enter readApartment method
+00:11:24.283 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - XML Files loaded with success
+00:11:24.283 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.283 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
+00:11:24.283 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 160.0
+00:11:24.283 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to true
+00:11:24.283 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to true
+00:11:24.283 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 5
+00:11:24.284 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 3.0
+00:11:24.284 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Parameters inserted with success in the Apartment Object
+00:11:24.284 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Leave readApartment method
+00:11:24.286 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.286 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 10
+00:11:24.286 [main] INFO  i.g.o.y.a.apartment.Apartment - The number minimum of night has been set to 1
+00:11:24.286 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
+00:11:24.286 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 5
+00:11:24.286 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 404.0
+00:11:24.287 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to false
+00:11:24.287 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to true
+00:11:24.287 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
+00:11:24.287 [main] INFO  i.g.o.y.a.apartment.Apartment - The description has been set to Un igloo tout mignon en compagnie du père noël et de la mère noël
+00:11:24.287 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 8.6
+00:11:24.311 [main] INFO  i.g.o.y.a.t.XMLProperties - Stream has been closed
+00:11:24.312 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Enter readApartment method
+00:11:24.314 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - XML Files loaded with success
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The description has been set to Un igloo tout mignon en compagnie du père noël et de la mère noël
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 8.6
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to true
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to false
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 10
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 5
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 404.0
+00:11:24.315 [main] INFO  i.g.o.y.a.apartment.Apartment - The number minimum of night has been set to 1
+00:11:24.315 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Parameters inserted with success in the Apartment Object
+00:11:24.315 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Leave readApartment method
+00:11:24.316 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Enter readApartment method
+00:11:24.319 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - XML Files loaded with success
+00:11:24.319 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:24.319 [main] INFO  i.g.o.y.a.apartment.Apartment - The description has been set to Un igloo tout mignon en compagnie du père noël et de la mère noël
+00:11:24.320 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
+00:11:24.320 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
+00:11:24.320 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 8.6
+00:11:24.320 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to true
+00:11:24.320 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to false
+00:11:24.320 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 10
+00:11:24.320 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 5
+00:11:24.321 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 404.0
+00:11:24.321 [main] INFO  i.g.o.y.a.apartment.Apartment - The number minimum of night has been set to 1
+00:11:24.321 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Parameters inserted with success in the Apartment Object
+00:11:24.321 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Leave readApartment method
+00:11:25.450 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - ApartmentA.xml
+00:11:25.451 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Enter readApartment method
+00:11:25.453 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - XML Files loaded with success
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The description has been set to Un igloo tout mignon en compagnie du père noël et de la mère noël
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 8.6
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to true
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to false
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 10
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 5
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 404.0
+00:11:25.454 [main] INFO  i.g.o.y.a.apartment.Apartment - The number minimum of night has been set to 1
+00:11:25.457 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Parameters inserted with success in the Apartment Object
+00:11:25.457 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Leave readApartment method
+00:11:25.457 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - Folder path has been set : /home/yan/Apartments/target/classes/io/github/oliviercailloux/y2018/apartments/gui/Images_A
+00:11:25.457 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : trucks.png
+00:11:25.458 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : 728A4317.jpg
+00:11:25.458 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : Deutsche-Bahn-c-Christian-BEDESCHINSKI_web.jpg
+00:11:25.458 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : farouk.png
+00:11:25.458 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - Apratement has been loaded 
+00:11:25.458 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - [trucks.png, 728A4317.jpg, Deutsche-Bahn-c-Christian-BEDESCHINSKI_web.jpg, farouk.png]
+00:11:25.460 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
