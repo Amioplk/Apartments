@@ -1,9 +1,8 @@
 package io.github.oliviercailloux.y2018.apartments.apartment;	
 
+import java.util.Objects;	
 
- import java.util.Objects;	
-
- import org.slf4j.Logger;	
+import org.slf4j.Logger;	
 import org.slf4j.LoggerFactory;	
 import static com.google.common.base.Preconditions.checkArgument;	
 
