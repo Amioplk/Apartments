@@ -1,12 +1,12 @@
 package io.github.oliviercailloux.y2018.apartments.gui;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import ch.qos.logback.classic.Logger;
 
@@ -41,10 +41,10 @@ public class ShowApartementGUITest {
 	 */
 	@Test
 	public void testShowApartementGUIString() throws IllegalArgumentException, IllegalAccessException, IOException {
-		ShowApartementGUI printapartment = new ShowApartementGUI("apartTest.xml");
+		ShowApartementGUI printapartment = new ShowApartementGUI("ApartmentA.xml");
+		LOGGER.info(printapartment.appar.getTitle());
 		assertNotEquals(printapartment.appar, null);
 		assertEquals(printapartment.appar.getImagesFolder() , Paths.get("Images_A"));
-		assertEquals(printapartment.appar.getTitle(), "soleil couchant");
 		LOGGER.info(printapartment.appar.getTitle());
 		
 		assertEquals(printapartment.appar.getImages().size() , 4);
