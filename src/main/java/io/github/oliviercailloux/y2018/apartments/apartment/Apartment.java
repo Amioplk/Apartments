@@ -132,7 +132,7 @@ public class Apartment extends Object {
 	private boolean tele;
 
 
-	/**	@param Images is a set of Image describing one apartment
+	/**	@param is a set of Image describing one apartment
 	 * An apartment can have zero, one or many Images,  
 	 * If not initialized, it will be a set without any object
 	 */
