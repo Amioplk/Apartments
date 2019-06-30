@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * @author AITALIBRAHAM & SAKHO
  * 
  */
-public class PrintApartementGUI {
+public class ShowApartementGUI {
 	/**
 	 * This class aims to print an apartment to the users
 	 */
@@ -55,7 +55,7 @@ public class PrintApartementGUI {
 		shell.open();
 	}
 	
-	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
+	public ShowApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
 		if (display == null ){
 			setDisplayApartment();
 		}
@@ -63,14 +63,14 @@ public class PrintApartementGUI {
 		this.i = 0;
 	}
 
-	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
+	public ShowApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
 		if (display == null ){
 			setDisplayApartment();
 		}
 		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
-		InputStream inputstream = PrintApartementGUI.class.getResourceAsStream(fileName);
+		InputStream inputstream = ShowApartementGUI.class.getResourceAsStream(fileName);
 		this.appar = xmlReader.readApartment(inputstream);
-		this.appar.setImages(findOutImagesPaths(this.appar.getImagesFloder()));
+		this.appar.setImages(findOutImagesPaths(this.appar.getImagesFolder()));
 		this.i = 0;
 		LOGGER.info("Apratement has been loaded ");
 		LOGGER.info(this.appar.getImages().toString());
@@ -86,7 +86,7 @@ public class PrintApartementGUI {
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
 
 		@SuppressWarnings("unused")
-		PrintApartementGUI prtApp = new PrintApartementGUI("apartTest.xml");
+		ShowApartementGUI prtApp = new ShowApartementGUI("apartTest.xml");
 		
 		LOGGER.info("Test Apartment has been created");
 		
@@ -104,7 +104,7 @@ public class PrintApartementGUI {
 	 * It also shows an image of the apartment, and let the user navigate between the available images
 	 */
 	@SuppressWarnings("unused")
-	public void setWindow(PrintApartementGUI printAppartmentGui) {
+	public void setWindow(ShowApartementGUI showAppartmentGui) {
 		Label title = new Label(shell, SWT.CENTER);
 		Label adress = new Label(shell, SWT.CENTER);
 		Label florArea = new Label(shell, SWT.CENTER);
@@ -113,21 +113,21 @@ public class PrintApartementGUI {
 		Label imageLabel = new Label(shell, SWT.BORDER);
 		
 		//Load all the images related to the apartment
-		ArrayList<String> listImage = printAppartmentGui.appar.getImages();
+		ArrayList<String> listImage = showAppartmentGui.appar.getImages();
 		
 		
 		LOGGER.info("la liste des images : " + listImage.toString());
 		Image image;
-		image = new Image (display, PrintApartementGUI.class.getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(0)));
+		image = new Image (display, ShowApartementGUI.class.getResourceAsStream(showAppartmentGui.appar.getImagesFolder()+"/"+listImage.get(0)));
 		GC gc = new GC(image);
 		
 		
 		
-		title.setText(printAppartmentGui.appar.getTitle());
-		adress.setText("adress : " + printAppartmentGui.appar.getAddress());
-		florArea.setText(printAppartmentGui.appar.getFloorArea() + " m2 ");
-		wifi.setText("wifi : " + printAppartmentGui.appar.getWifi() + "");
-		pricePerNight.setText(printAppartmentGui.appar.getPricePerNight() + " euros/night");
+		title.setText(showAppartmentGui.appar.getTitle());
+		adress.setText("adress : " + showAppartmentGui.appar.getAddress());
+		florArea.setText(showAppartmentGui.appar.getFloorArea() + " m2 ");
+		wifi.setText("wifi : " + showAppartmentGui.appar.getWifi() + "");
+		pricePerNight.setText(showAppartmentGui.appar.getPricePerNight() + " euros/night");
 		
 		
 		title.setLocation(25, 10);
@@ -138,7 +138,7 @@ public class PrintApartementGUI {
 		imageLabel.setSize(100, 100);
 		title.setFont( new Font(display,"Calibri", 24, SWT.COLOR_BLACK ));
 		pricePerNight.setFont(new Font(display,"Calibri", 28, SWT.COLOR_DARK_GREEN));
-		pricePerNight.setForeground(new Color(printAppartmentGui.display, 100,150,80));
+		pricePerNight.setForeground(new Color(showAppartmentGui.display, 100,150,80));
 		florArea.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		adress.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		
@@ -168,7 +168,7 @@ public class PrintApartementGUI {
 			   if (i < listImage.size()-1) i++;
 			   else 
 				   i = 0;
-			   Image image = new Image (display, getClass().getClassLoader().getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(i)));
+			   Image image = new Image (display, getClass().getClassLoader().getResourceAsStream(showAppartmentGui.appar.getImagesFolder()+"/"+listImage.get(i)));
 			   image = resize (image, 500, 500);
 			   
 			   imageLabel.setImage(image);
@@ -211,7 +211,7 @@ public class PrintApartementGUI {
 		
 		try {
 			LOGGER.info(folderPath);
-			File file = new File(PrintApartementGUI.class.getResource(folderPath).getFile());
+			File file = new File(ShowApartementGUI.class.getResource(folderPath).getFile());
 			
 			LOGGER.info("Folder path has been set : " + file );
 			String liste[] = file.list();

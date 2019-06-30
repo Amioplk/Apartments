@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2018.apartments.apartment;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import java.util.Objects;
@@ -26,9 +27,9 @@ public class Apartment extends Object {
 	/**
 
 
-	 * @param contains the name of the folder images ressources related to the apartment
+	 * @param the path of the folder which containes the images related to the apartment
 	 */
-	private String imagesFloder;	
+	private Path imagesFolder;	
 	/**
 	 * @param a real number it represents the floor area of the apartment in square
 	 *          meters. Has to be initialized, if not, the apartment can't be
@@ -134,12 +135,12 @@ public class Apartment extends Object {
 	private boolean tele;
 
 
-	/** @param is a set of Image describing one apartment
-	 * An apartment can have zero, one or many Images (jpeg or png files),  
-	 * If not initialized, it will be a set without any object
+	/** @param 	is a set of Image describing one apartment
+	 * 		   	An apartment can have zero, one or many Images (jpeg or png files),  
+	 * 			If not initialized, it will be a set without any object
 	 */
 
-	private ArrayList<String> images;
+	private ArrayList<Path> images;
 
 	/**
 	 * @param floorArea a real number superior or equal to zero, it represents the
@@ -165,7 +166,7 @@ public class Apartment extends Object {
 		this.nbMinNight = 0 ;
 		this.tele = false ;
 		
-		this.images = new ArrayList<String>();
+		this.images = new ArrayList<Path>();
 		
 
 		checkArgument(floorArea >= 0, "The floor area of the apartment cannot be negative");
@@ -190,7 +191,7 @@ public class Apartment extends Object {
 		this.nbMinNight = 0 ;
 		this.tele = false ;
 		
-		this.images = new ArrayList<String>();
+		this.images = new ArrayList<Path>();
 		
 		
 		checkArgument(floorArea>=0,"The floor area of the apartment cannot be negative");
@@ -581,26 +582,27 @@ public class Apartment extends Object {
 			this.apartmentToBuild.terrace = terrace;
 			return this;
 		}
+		
 	}
 
-	public ArrayList<String> getImages() {
+	public ArrayList<Path> getImages() {
 		return this.images;
 	}
 
-	public void addImages(String image) {
+	public void addImages(Path image) {
 		this.images.add(image);
 	}
 	
-	public void setImages(ArrayList<String> images) {
+	public void setImages(ArrayList<Path> images) {
 		this.images = images;
 	}
 
-	public String getImagesFloder() {
-		return imagesFloder;
+	public Path getImagesFolder() {
+		return imagesFolder;
 	}
 
-	public void setImagesFloder(String imagesFloder) {
-		this.imagesFloder = imagesFloder;
+	public void setImagesFolder(Path imagesFolder) {
+		this.imagesFolder = imagesFolder;
 	}
 
 }
