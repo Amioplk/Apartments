@@ -3,9 +3,10 @@ package io.github.oliviercailloux.y2018.apartments.gui;
 
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import io.github.oliviercailloux.y2018.apartments.apartment.Apartment;
@@ -19,13 +20,10 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,6 +74,15 @@ public class ShowApartementGUI {
 		LOGGER.info(this.appar.getImages().toString());
 
 	}
+	
+	public ShowApartementGUI(Apartment appart) throws IOException {
+		if (shell == null){
+			setDisplayApartment();
+		}
+		this.appar = appart;
+		this.i = 0;
+		this.appar.setImages(findOutImagesPaths(this.appar.getImagesFolder()));
+	}
 
 	/**
 	 * @param args
@@ -85,8 +92,7 @@ public class ShowApartementGUI {
 	 */
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
 
-		@SuppressWarnings("unused")
-		ShowApartementGUI prtApp = new ShowApartementGUI("apartTest.xml");
+		ShowApartementGUI prtApp = new ShowApartementGUI();
 		
 		LOGGER.info("Test Apartment has been created");
 		
@@ -113,13 +119,23 @@ public class ShowApartementGUI {
 		Label imageLabel = new Label(shell, SWT.BORDER);
 		
 		//Load all the images related to the apartment
-		ArrayList<String> listImage = showAppartmentGui.appar.getImages();
+		ArrayList<Path> listImage = showAppartmentGui.appar.getImages();
 		
 		
 		LOGGER.info("la liste des images : " + listImage.toString());
 		Image image;
-		image = new Image (display, ShowApartementGUI.class.getResourceAsStream(showAppartmentGui.appar.getImagesFolder()+"/"+listImage.get(0)));
-		GC gc = new GC(image);
+		
+		if (listImage.size() > 0){
+			image = new Image (display, ShowApartementGUI.class.getResourceAsStream(showAppartmentGui.appar.getImagesFolder()+"/"+listImage.get(0)));
+			GC gc = new GC(image);
+
+			imageLabel.setImage(image);
+			image = resize (image, 500, 500);
+			imageLabel.setImage(image);
+			imageLabel.pack();
+			imageLabel.setLocation(50, 160);
+			imageLabel.setSize(100, 100);
+		}
 		
 		
 		
@@ -134,19 +150,14 @@ public class ShowApartementGUI {
 		pricePerNight.setLocation(25 , 50 );
 		florArea.setLocation(25, 110);
 		adress.setLocation(25, 125);
-		imageLabel.setLocation(50, 160);
-		imageLabel.setSize(100, 100);
 		title.setFont( new Font(display,"Calibri", 24, SWT.COLOR_BLACK ));
 		pricePerNight.setFont(new Font(display,"Calibri", 28, SWT.COLOR_DARK_GREEN));
-		pricePerNight.setForeground(new Color(showAppartmentGui.display, 100,150,80));
+		pricePerNight.setForeground(new Color(ShowApartementGUI.display, 100,150,80));
 		florArea.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		adress.setFont( new Font(display,"Calibri", 16 , SWT.COLOR_BLACK ));
 		
 		
 
-		imageLabel.setImage(image);
-		image = resize (image, 500, 500);
-		imageLabel.setImage(image);
 		
 	    final Button button1 = new Button(shell, SWT.BUTTON4);
 	    button1.setText("next");
@@ -159,7 +170,7 @@ public class ShowApartementGUI {
 		pricePerNight.pack();
 		florArea.pack();
 		adress.pack();
-		imageLabel.pack();
+		
 	    
 	    Label label = new Label(shell, 0);
 	    
@@ -168,12 +179,14 @@ public class ShowApartementGUI {
 			   if (i < listImage.size()-1) i++;
 			   else 
 				   i = 0;
+			   if(listImage.size() > 0){
 			   Image image = new Image (display, getClass().getClassLoader().getResourceAsStream(showAppartmentGui.appar.getImagesFolder()+"/"+listImage.get(i)));
 			   image = resize (image, 500, 500);
 			   
 			   imageLabel.setImage(image);
 			   imageLabel.pack();
 			   button1.pack();
+			   }
 		   }
 		 
 		   
@@ -206,28 +219,27 @@ public class ShowApartementGUI {
 	 * @return ArrayList of strings, each string is the path of one image related to the apartment
 	 */
 
-	@SuppressWarnings("unused")
-	private ArrayList<String> findOutImagesPaths(String folderPath) throws IOException{
+	private ArrayList<Path> findOutImagesPaths(Path path) throws IOException{
 		
 		try {
-			LOGGER.info(folderPath);
-			File file = new File(ShowApartementGUI.class.getResource(folderPath).getFile());
+			
+			File file = new File(ShowApartementGUI.class.getResource(path.toString()).getFile());
 			
 			LOGGER.info("Folder path has been set : " + file );
 			String liste[] = file.list();
-	        ArrayList<String> finalList  = new ArrayList<String>();
+	        ArrayList<Path> finalList  = new ArrayList<Path>();
 	        for (String str : liste){
-	        	finalList.add(str);
+	        	finalList.add(Paths.get(str));
 	        	LOGGER.info("a new path to another Image has been set : " + str);
 	        }
 	        return finalList;
 			
 		}
 	    catch(Exception e) {
-	    	LOGGER.info("le fichier " + folderPath + "est introuvabe"); 
+	    	LOGGER.info("le fichier " + path + "est introuvabe"); 
 	    	e.printStackTrace();
 	    }
-		return new ArrayList<String>();
+		return new ArrayList<Path>();
 		
 	}
 

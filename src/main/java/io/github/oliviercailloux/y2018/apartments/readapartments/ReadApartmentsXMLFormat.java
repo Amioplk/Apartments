@@ -3,9 +3,13 @@ package io.github.oliviercailloux.y2018.apartments.readapartments;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
+
+import javax.tools.ToolProvider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,9 +92,10 @@ public class ReadApartmentsXMLFormat {
 		if (prop.containsKey("nbMinNight"))
 			apartment.setNbMinNight(Integer.parseInt(prop.getProperty("nbMinNight")));
 		
-		if (prop.containsKey("images"))
-			apartment.setImagesFloder(prop.getProperty("images"));
-		
+		if (prop.containsKey("images")){
+			Path temp = Paths.get(prop.getProperty("images"));
+			apartment.setImagesFolder(temp);	
+		}
 
 		LOGGER.info("Parameters inserted with success in the Apartment Object");
 		LOGGER.info("Leave readApartment method");
