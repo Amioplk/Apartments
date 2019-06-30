@@ -47,9 +47,7 @@ public class ShowApartementGUITest {
 		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
 		InputStream f = ShowApartementGUITest.class.getResourceAsStream("ApartmentA.xml");
 		Apartment appar = xmlReader.readApartment(f);
-		ShowApartementGUI printapartment = new ShowApartementGUI(appar);
-		assertNotEquals(printapartment.appar, null);
-		assertEquals(printapartment.appar.getImagesFolder(),Paths.get("Images_A"));
+		assertNotEquals(appar, null);
 	}
 
 
