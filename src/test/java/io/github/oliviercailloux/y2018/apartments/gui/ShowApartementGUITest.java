@@ -2,6 +2,7 @@ package io.github.oliviercailloux.y2018.apartments.gui;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 
 import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Logger;
@@ -48,7 +49,7 @@ public class ShowApartementGUITest {
 		Apartment appar = xmlReader.readApartment(f);
 		ShowApartementGUI printapartment = new ShowApartementGUI(appar);
 		assertNotEquals(printapartment.appar, null);
-		assertEquals(printapartment.appar.getImages().size() , 4);
+		assertEquals(printapartment.appar.getImagesFolder(),Paths.get("Images_A"));
 	}
 
 

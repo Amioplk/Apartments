@@ -1,21 +1,21 @@
-00:51:42.821 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Enter readApartment method
-00:51:42.895 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - XML Files loaded with success
-00:51:42.923 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
-00:51:42.924 [main] INFO  i.g.o.y.a.apartment.Apartment - The description has been set to Un igloo tout mignon en compagnie du père noël et de la mère noël
-00:51:42.925 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
-00:51:42.925 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
-00:51:42.929 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 8.6
-00:51:42.929 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to true
-00:51:42.929 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to false
-00:51:42.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 10
-00:51:42.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 5
-00:51:42.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 404.0
-00:51:42.931 [main] INFO  i.g.o.y.a.apartment.Apartment - The number minimum of night has been set to 1
-00:51:42.953 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Parameters inserted with success in the Apartment Object
-00:51:42.953 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Leave readApartment method
-00:51:45.873 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - Folder path has been set : /home/yan/Apartments/target/classes/io/github/oliviercailloux/y2018/apartments/gui/Images_A
-00:51:45.887 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : trucks.png
-00:51:45.888 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : 728A4317.jpg
-00:51:45.888 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : Deutsche-Bahn-c-Christian-BEDESCHINSKI_web.jpg
-00:51:45.888 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : farouk.png
-00:51:45.897 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:56:04.911 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Enter readApartment method
+00:56:04.925 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - XML Files loaded with success
+00:56:04.928 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
+00:56:04.928 [main] INFO  i.g.o.y.a.apartment.Apartment - The description has been set to Un igloo tout mignon en compagnie du père noël et de la mère noël
+00:56:04.928 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 1
+00:56:04.928 [main] INFO  i.g.o.y.a.apartment.Apartment - terrace has been set to true
+00:56:04.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The floor area of the terrace has been set to 8.6
+00:56:04.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The wifi has been set to true
+00:56:04.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The tele has been set to false
+00:56:04.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of sleepings has been set to 10
+00:56:04.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The number of bathrooms has been set to 5
+00:56:04.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The price per night has been set to 404.0
+00:56:04.930 [main] INFO  i.g.o.y.a.apartment.Apartment - The number minimum of night has been set to 1
+00:56:04.932 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Parameters inserted with success in the Apartment Object
+00:56:04.932 [main] INFO  i.g.o.y.a.r.ReadApartmentsXMLFormat - Leave readApartment method
+00:56:06.017 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - Folder path has been set : /home/yan/Apartments/target/classes/io/github/oliviercailloux/y2018/apartments/gui/Images_A
+00:56:06.017 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : trucks.png
+00:56:06.017 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : 728A4317.jpg
+00:56:06.017 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : Deutsche-Bahn-c-Christian-BEDESCHINSKI_web.jpg
+00:56:06.017 [main] INFO  i.g.o.y.a.gui.CreateApartmentGUI - a new path to another Image has been set : farouk.png
+00:56:06.028 [main] INFO  i.g.o.y.a.apartment.Apartment - the apartment has been created with success
