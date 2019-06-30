@@ -202,7 +202,7 @@ public class PrintApartementGUI {
 	   
 	
 	/**
-	 * @param FolderPath : the Path of the folder which contains Images related to the Apartment described in the XML file
+	 * @param the Path of the folder which contains Images related to the Apartment described in the XML file
 	 * @return ArrayList of strings, each string is the path of one image related to the apartment
 	 */
 
@@ -225,9 +225,9 @@ public class PrintApartementGUI {
 		}
 	    catch(Exception e) {
 	    	LOGGER.info("le fichier " + folderPath + "est introuvabe"); 
-		e.printStackTrace();
+	    	e.printStackTrace();
 	    }
-		return new Arraylist<String>();
+		return new ArrayList<String>();
 		
 	}
 

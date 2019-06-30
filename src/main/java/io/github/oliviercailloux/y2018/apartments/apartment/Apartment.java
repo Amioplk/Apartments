@@ -135,7 +135,7 @@ public class Apartment extends Object {
 
 
 	/** @param is a set of Image describing one apartment
-	 * An apartment can have zero, one or many Images,  
+	 * An apartment can have zero, one or many Images (jpeg or png files),  
 	 * If not initialized, it will be a set without any object
 	 */
 
