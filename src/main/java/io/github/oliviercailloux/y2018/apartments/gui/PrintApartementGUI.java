@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * @author AITALIBRAHAM & SAKHO
  * 
  */
-public class ShowApartmentGUI {
+public class PrintApartementGUI {
 	/**
 	 * This class aims to print an apartment to the users
 	 */
@@ -55,7 +55,7 @@ public class ShowApartmentGUI {
 		shell.open();
 	}
 	
-	public ShowApartmentGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
+	public PrintApartementGUI() throws IOException, IllegalArgumentException, IllegalAccessException {
 		if (display == null ){
 			setDisplayApartment();
 		}
@@ -63,12 +63,12 @@ public class ShowApartmentGUI {
 		this.i = 0;
 	}
 
-	public ShowApartmentGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
+	public PrintApartementGUI(String fileName) throws IOException, IllegalArgumentException, IllegalAccessException {
 		if (display == null ){
 			setDisplayApartment();
 		}
 		ReadApartmentsXMLFormat xmlReader = new ReadApartmentsXMLFormat();
-		InputStream inputstream = ShowApartmentGUI.class.getResourceAsStream(fileName);
+		InputStream inputstream = PrintApartementGUI.class.getResourceAsStream(fileName);
 		this.appar = xmlReader.readApartment(inputstream);
 		this.appar.setImages(findOutImagesPaths(this.appar.getImagesFloder()));
 		this.i = 0;
@@ -86,7 +86,7 @@ public class ShowApartmentGUI {
 	public static void main(String args[]) throws IllegalArgumentException, IllegalAccessException, IOException {
 
 		@SuppressWarnings("unused")
-		ShowApartmentGUI prtApp = new ShowApartmentGUI("apartTest.xml");
+		PrintApartementGUI prtApp = new PrintApartementGUI("apartTest.xml");
 		
 		LOGGER.info("Test Apartment has been created");
 		
@@ -104,7 +104,7 @@ public class ShowApartmentGUI {
 	 * It also shows an image of the apartment, and let the user navigate between the available images
 	 */
 	@SuppressWarnings("unused")
-	public void setWindow(ShowApartmentGUI printAppartmentGui) {
+	public void setWindow(PrintApartementGUI printAppartmentGui) {
 		Label title = new Label(shell, SWT.CENTER);
 		Label adress = new Label(shell, SWT.CENTER);
 		Label florArea = new Label(shell, SWT.CENTER);
@@ -118,7 +118,7 @@ public class ShowApartmentGUI {
 		
 		LOGGER.info("la liste des images : " + listImage.toString());
 		Image image;
-		image = new Image (display, ShowApartmentGUI.class.getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(0)));
+		image = new Image (display, PrintApartementGUI.class.getResourceAsStream(printAppartmentGui.appar.getImagesFloder()+"/"+listImage.get(0)));
 		GC gc = new GC(image);
 		
 		
@@ -211,7 +211,7 @@ public class ShowApartmentGUI {
 		
 		try {
 			LOGGER.info(folderPath);
-			File file = new File(ShowApartmentGUI.class.getResource(folderPath).getFile());
+			File file = new File(PrintApartementGUI.class.getResource(folderPath).getFile());
 			
 			LOGGER.info("Folder path has been set : " + file );
 			String liste[] = file.list();
