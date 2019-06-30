@@ -26,11 +26,11 @@ public class Apartment extends Object {
 	/**
 
 
-	 * @param imagesfolder contains the folder images ressources related to the apartment
+	 * @param contains the folder images ressources related to the apartment
 	 */
 	private String imagesFloder;	
 	/**
-	 * @param floorArea a real number it represents the floor area of the apartment in square meters.
+	 * @param a real number it represents the floor area of the apartment in square meters.
 	 */
 	private double floorArea;
 
